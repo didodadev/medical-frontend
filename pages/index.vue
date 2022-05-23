@@ -11,4 +11,3 @@ export default Vue.extend({
   name: 'IndexPage'
 })
 </script>
-v
