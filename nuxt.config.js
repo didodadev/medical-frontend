@@ -1,3 +1,6 @@
+import tr from './languages/tr'
+import en from './languages/en'
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -38,8 +41,15 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/i18n'
   ],
+  i18n: {
+    locales: ['tr', 'en'],
+    vueI18n: {
+      messages: { tr, en }
+    }
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
