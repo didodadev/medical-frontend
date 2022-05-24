@@ -48,7 +48,16 @@ export default {
     '@nuxtjs/i18n'
   ],
   i18n: {
-    locales: ['tr', 'en'],
+    locales: [
+      {
+        code: 'en',
+        iso: 'en-US'
+      },
+      {
+        code: 'tr',
+        iso: 'tr-TR'
+      }
+    ],
     vueI18n: {
       messages: { tr, en }
     }
