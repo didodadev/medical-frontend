@@ -1,22 +1,24 @@
 <template>
-  <div class="top-side-bar row">
-    <div class="col-md-8">
-      <div class="d-flex">
-        <div class="item">
-          <i class="bi bi-telephone-fill"></i> +440-98-5298
-        </div>
+  <div class="top-side-bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="d-flex">
+            <div class="item">
+              <i class="bi bi-telephone-fill"></i> +440-98-5298
+            </div>
 
-        <div class="item">
-          <i class="bi bi-envelope-fill"></i> info@example.com
-        </div>
+            <div class="item">
+              <i class="bi bi-envelope-fill"></i> info@example.com
+            </div>
 
-        <div class="item">
-          <i class="bi bi-map-fill"></i> 121 King Street, Melbourne
+            <div class="item">
+              <i class="bi bi-map-fill"></i> 121 King Street, Melbourne
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
-    <div class="col-md-4"></div>
   </div>
 </template>
 
@@ -35,6 +37,6 @@
 }
 
 .top-side-bar .item:last-child {
-  border: none
+  border: none;
 }
 </style>
