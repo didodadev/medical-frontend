@@ -2,9 +2,9 @@
   <div class="header">
     <div class="container">
       <div class="row justify-content-center align-items-center">
-        <div class="col-md-2">LOGO</div>
+        <div class="col-md-1">LOGO</div>
 
-        <div class="col-md-9">
+        <div class="col-md-10">
           <div class="navs d-flex">
             <div
               class="nav-item"
@@ -131,6 +131,7 @@ export default Vue.extend({
 .header {
   background: white;
   padding-bottom: 1em;
+  z-index: 990999;
 }
 
 .search-input {
@@ -167,14 +168,18 @@ export default Vue.extend({
 }
 
 .nav-item .title {
-  /* background: var(--scondary); */
+  /* background: var(--secondary); */
   /* color: white; */
   padding: 0.5em 1em;
   /* font-weight: 600; */
 }
 
+.nav-item .title i {
+  margin-left: 1em;
+}
+
 .active {
-  background: var(--scondary);
+  background: var(--secondary);
   color: white;
   border-radius: 30px;
 }
@@ -184,6 +189,7 @@ export default Vue.extend({
   opacity: 1;
   visibility: visible;
   left: 0;
+  z-index: 5
 }
 
 .nav-item .list {
@@ -192,11 +198,10 @@ export default Vue.extend({
   background: white;
   /* border-top: 2px solid black; */
   width: max-content;
-  margin-top: 0.5em;
   opacity: 0;
   visibility: hidden;
   left: -2em;
-  box-shadow: 10px 10px 25px var(--shadow-1);
+  /* box-shadow: 10px 10px 25px var(--shadow-1); */
   border-radius: 7px;
   /* border-bottom-left-radius: 7px; */
   min-width: 20vw;
