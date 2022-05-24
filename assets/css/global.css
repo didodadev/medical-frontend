@@ -1,4 +1,20 @@
 :root {
   --primary: #01A3C9;
   --scondary: #5663C1;
+  --shadow-1: rgb(241, 241, 241);
+  --border-1: rgb(242, 242, 242);
+  --border-2: rgb(225, 225, 225);
+}
+
+a,
+a:hover {
+  color: inherit
+}
+
+i {
+  cursor: pointer;
+}
+
+body {
+  background-image: url('../images/p4.png');
 }
