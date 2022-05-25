@@ -1,17 +1,45 @@
 {
   "header-home": "ANASAYFA",
   "header-about": "HAKKIMIZDA",
-  "header-our-doctors": "Doktorlarımız",
-  "header-our-clinics-and-hospitals": "Kliniklerimiz ve hastanelerimiz",
-  "header-procedures": "PROSEDÜRLER",
-  "header-hair-transplant": "Saç ekimi",
-  "header-dental-treatments": "Diş tedavileri",
-  "header-plastic-surgery": "Estetik cerrahi",
-  "header-IVF": "Tüp bebek",
-  "header-before-after": "ÖNCESİ & SONRASI",
-  "header-experiences": "DENEYİMLER",
   "header-search-placeholder": "Sayfa veya içerik arayın",
+  "header-services": "HİZMETLER",
+  "header-contact": "İLETİŞİM",
 
   "home-call-us-anytime": "Bizi İstediğiniz Zaman Arayın",
-  "home-book-an-appointment": "Randevu Al"
+  "home-book-an-appointment": "Randevu Al",
+  "home-our": "",
+  "home-services": "Hizmetler",
+  "home-gallery": "Galeri",
+  "home-all": "TÜMÜ",
+  "home-pricing": "Fiyatlandırma",
+  "home-fees": "Ücretlerimiz",
+  "home-get-offer": "Sipariş Ver",
+  "home-latest": "Son",
+  "home-news": "Haberler",
+
+  "footer-pages": "Sayfalar",
+  "footer-home": "Anasayfa",
+  "footer-about": "Hakkımızda",
+  "footer-services": "Hizmetler",
+  "footer-contact": "İletişim",
+
+  "about": "Hakkımızda",
+  "about-opening-hours": "Açılış Saatleri",
+  "about-our-services": "Hizmetlerimiz",
+  "about-our-doctors": "Doktorlarımız",
+  "about-need-help": "Yardıma Ihtiyacım Var",
+
+  "service-services": "Hizmetlerimiz",
+  "service": "Hizmet",
+  "service-download-pdf": "PDF İndir",
+
+  "contact": "İletişim",
+  "contact-fullname": "Tam isim",
+  "contact-subject": "Konu",
+  "contact-message": "Mesaj",
+  "contact-send-message": "Mesaj Gönder",
+
+  "read-more": "Devamını Oku",
+  "phone": "Telefon",
+  "view-details": "Detayları Görüntüle"
 }

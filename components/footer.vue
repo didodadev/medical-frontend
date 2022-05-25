@@ -1,7 +1,10 @@
 <template>
   <footer>
-    <div class="top">
-      <div class="container-xxl p-0">
+    <div class="top" style="background: white">
+      <div
+        class="container-xxl p-xxl-4 p-sm-0 p-0"
+        style="padding-top: 0 !important; padding-bottom: 0 !important"
+      >
         <div class="row m-0">
           <div class="l-bg-primary col-md-4 d-flex info p-4">
             <i class="bi bi-hospital-fill" style="margin-right: 0.5em"></i>
@@ -39,8 +42,8 @@
     <div class="footer-content">
       <div class="container">
         <div class="row m-0 text-muted">
-          <div class="col-md-3">
-            <h1>LOGO</h1>
+          <div class="col-md-3 mb-4">
+            <img src="../assets/images/logo.png" alt="" width="100%">
 
             <p>
               203, Envato Labs, Behind Alis Steet, Melbourne,
@@ -66,14 +69,33 @@
               </div>
             </div>
           </div>
+
+          <div class="col-md-3">
+            <h3> {{$t('footer-pages')}} </h3>
+            <div class="title-line"></div>
+
+            <p>
+              <NuxtLink to="/"> Home </NuxtLink>
+            </p>
+
+            <p>
+              <NuxtLink to="/"> About </NuxtLink>
+            </p>
+
+            <p>
+              <NuxtLink to="/"> Services </NuxtLink>
+            </p>
+
+            <p>
+              <NuxtLink to="/"> Contact </NuxtLink>
+            </p>
+          </div>
         </div>
       </div>
     </div>
 
     <div class="bottom">
-      <div class="container">
-        © 2021 ThemeMascot. All Rights Reserved.
-      </div>
+      <div class="container">© 2021 ThemeMascot. All Rights Reserved.</div>
     </div>
   </footer>
 </template>
@@ -105,9 +127,28 @@
 }
 
 .bottom {
-  background: #2A2B2B;
+  background: #2a2b2b;
   color: white;
   padding: 1em;
   padding-left: 2.8em;
+}
+
+.title-line {
+  display: flex;
+  margin-bottom: 1em;
+}
+
+.title-line::before {
+  content: " ";
+  width: 20%;
+  background: var(--secondary);
+  height: 3px;
+}
+
+.title-line::after {
+  content: " ";
+  width: 80%;
+  background: #363838;
+  height: 3px;
 }
 </style>

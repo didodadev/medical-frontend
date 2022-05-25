@@ -1,19 +1,23 @@
 <template>
   <div class="header">
     <div class="container">
-      <div class="row justify-content-center align-items-center">
-        <div class="col-md-1">LOGO</div>
+      <div class="row justify-content-between align-items-center">
+        <div class="col-2">
+          <img
+            src="../assets/images/logo.png"
+            width="100%"
+          />
+        </div>
 
-        <div class="col-md-10">
+        <div class="col-xl-6 d-none d-xl-block">
           <div class="navs d-flex">
             <div
               class="nav-item"
               v-for="(i, index) in headerNavs"
               :key="index"
-              :class="isActive(i.path)"
+              :class="isActive(i.path, i.extraKey)"
             >
               <div class="title">
-
                 <NuxtLink :to="pathHandler(i.path)">
                   {{ $t(i.i18nTitle) }}
                 </NuxtLink>
@@ -31,24 +35,58 @@
             </div>
           </div>
         </div>
+
+        <div class="d-block d-xl-none col-2 mt-2">
+          <i class="bi bi-list" style="font-size: 30px" @click="changeShowDrawer(true)"></i>
+        </div>
+
+        <div class="bottom d-flex justify-content-center col-1">
+          <i
+            class="bi bi-search"
+            style="font-size: 18px"
+            @click="openSearch()"
+          ></i>
+
+          <a-modal v-model:visible="showSearch" centered footer=''>
+            <div class="search-input">
+              <input
+                type="text"
+                :placeholder="$t('header-search-placeholder')"
+              />
+
+              <i class="bi bi-search"></i>
+            </div>
+          </a-modal>
+        </div>
       </div>
+    </div>
 
-      <div class="bottom d-flex justify-content-center">
-        <i
-          class="bi bi-search"
-          style="font-size: 18px"
-          @click="openSearch()"
-        ></i>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <i class="bi bi-cart" style="font-size: 18px"></i>
+    <div class="drawer" :class="showDrawer ? 'show-drawer' : ''">
+      <div class="shadow" @click="changeShowDrawer(false)"></div>
 
-        <a-modal v-model:visible="showSearch" footer="">
-          <div class="search-input">
-            <input type="text" :placeholder="$t('header-search-placeholder')" />
+      <div class="navs">
+        <div
+          class="nav-item"
+          v-for="(i, index) in headerNavs"
+          :key="index"
+          :class="isActive(i.path, i.extraKey)"
+        >
+          <div class="title">
+            <NuxtLink :to="pathHandler(i.path)" @click="changeShowDrawer(false)">
+              {{ $t(i.i18nTitle) }}
+            </NuxtLink>
 
-            <i class="bi bi-search"></i>
+            <i class="bi bi-chevron-down" v-if="i.list"></i>
           </div>
-        </a-modal>
+
+          <div class="list" v-if="i.list">
+            <div v-for="(k, index) in i.list" :key="index" class="item">
+              <NuxtLink :to="k.path">
+                {{ $t(k.i18nTitle) }}
+              </NuxtLink>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -67,11 +105,13 @@ interface IList {
   i18nTitle: string;
   path: string;
   list?: IListItem[];
+  extraKey?: string
 }
 
 interface IData {
   headerNavs: IList[];
   showSearch: boolean;
+  showDrawer: boolean;
 }
 
 export default Vue.extend({
@@ -85,11 +125,12 @@ export default Vue.extend({
         },
         {
           i18nTitle: "header-about",
-          path: "/about"
+          path: "/about",
         },
         {
           i18nTitle: "header-services",
-          path: "/services"
+          path: "/services",
+          extraKey: 'service'
         },
         {
           i18nTitle: "header-contact",
@@ -97,6 +138,7 @@ export default Vue.extend({
         },
       ],
       showSearch: false,
+      showDrawer: false,
     };
   },
   methods: {
@@ -106,16 +148,23 @@ export default Vue.extend({
       this.showSearch = true;
     },
 
-    isActive(p: string): string {
-      const handlePath = pathHandler(p)
-      let rootPath = this.$route.path
+    changeShowDrawer(t: boolean) {
+      this.showDrawer = t;
+    },
 
-      if (rootPath.endsWith('/')) rootPath = rootPath.slice(0, rootPath.length - 1)
+    isActive(p: string, e: string = 'unknow'): string {
+      const handlePath = pathHandler(p);
+      let rootPath = this.$route.path;
 
-      if (rootPath === handlePath) return 'active'
+      if (rootPath.endsWith("/"))
+        rootPath = rootPath.slice(0, rootPath.length - 1);
 
-      return ''
-    }
+        console.log(rootPath)
+
+      if (rootPath === handlePath || rootPath.includes(e)) return "active";
+
+      return "";
+    },
   },
   mounted() {
     this.$forceUpdate();
@@ -126,8 +175,10 @@ export default Vue.extend({
 <style scoped>
 .header {
   background: white;
-  padding-bottom: 1em;
   z-index: 990999;
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid var(--border-1)
 }
 
 .search-input {
@@ -185,7 +236,7 @@ export default Vue.extend({
   opacity: 1;
   visibility: visible;
   left: 0;
-  z-index: 5
+  z-index: 5;
 }
 
 .nav-item .list {
@@ -215,5 +266,47 @@ export default Vue.extend({
 
 .nav-item .list .item:hover {
   background: rgb(245, 245, 245);
+}
+
+.drawer {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: .2s;
+}
+
+.drawer .navs {
+  z-index: 999;
+  background: white;
+  padding: 3em;
+  height: 100vh;
+  position: absolute;
+  right: -20em;
+  top: 0;
+  transition: .3s;
+}
+
+.drawer .shadow {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background: black;
+  opacity: .3;
+  z-index: -1 !important;
+}
+
+.show-drawer {
+  opacity: 1;
+  visibility: visible;
+}
+
+.show-drawer .navs {
+  right: 0;
 }
 </style>

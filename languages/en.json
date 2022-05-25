@@ -1,17 +1,45 @@
 {
   "header-home": "HOME",
   "header-about": "ABOUT",
-  "header-our-doctors": "Doctors",
-  "header-our-clinics-and-hospitals": "Clinics and hospitals",
-  "header-procedures": "PROCEDURES",
-  "header-hair-transplant": "Hair transplant",
-  "header-dental-treatments": "Dental treatments",
-  "header-plastic-surgery": "Plastic surgery",
-  "header-IVF": "IVF",
-  "header-before-after": "BEFORE & AFTER",
-  "header-experiences": "EXPERIENCES",
   "header-search-placeholder": "Search for pages or content",
+  "header-services": "SERVICES",
+  "header-contact": "CONTACT",
 
   "home-call-us-anytime": "Call Us Anytime",
-  "home-book-an-appointment": "Book An Appointment"
+  "home-book-an-appointment": "Book An Appointment",
+  "home-our": "Our",
+  "home-services": "Services",
+  "home-gallery": "Gallery",
+  "home-all": "ALL",
+  "home-pricing": "Pricing",
+  "home-fees": "Fees",
+  "home-get-offer": "Get Offer",
+  "home-latest": "Latest",
+  "home-news": "News",
+
+  "footer-pages": "Pages",
+  "footer-home": "Home",
+  "footer-about": "About",
+  "footer-services": "Services",
+  "footer-contact": "Contact",
+
+  "about": "About",
+  "about-opening-hours": "Opening Hours",
+  "about-our-services": "Our Services",
+  "about-our-doctors": "Doctors",
+  "about-need-help": "Need Help",
+
+  "service-services": "Services",
+  "service": "Service",
+  "service-download-pdf": "Download PDF",
+
+  "contact": "Contact",
+  "contact-fullname": "Fullname",
+  "contact-subject": "Subject",
+  "contact-message": "Message",
+  "contact-send-message": "Send Message",
+
+  "read-more": "Read More",
+  "phone": "Phone",
+  "view-details": "View Details"
 }

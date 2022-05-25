@@ -1,5 +1,5 @@
 :root {
-  --primary: #01A3C9;
+  --primary: #008DD2;
   --dark-primary: #003A6B;
   --secondary: #5663C1;
   --shadow-1: rgb(241, 241, 241);
@@ -55,4 +55,52 @@ body {
 
 .l-text-primary {
   color: var(--primary) !important;
+}
+
+.pagination-header {
+  position: relative;
+  height: 300px;
+  background-image: url('https://kodesolution.com/html/2015/medinova-b5/images/bg/bg1.jpg');
+  background-position: center !important;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination-header .cover {
+  z-index: 3;
+  text-align: center;
+}
+
+.pagination-header .cover .title {
+  margin-bottom: 1em;
+}
+
+.pagination-header .cover * {
+  color: white;
+}
+
+.pagination-header .cover::before {
+  content: ' ';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: black;
+  opacity: .8;
+  z-index: -1;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  border: 1px solid var(--border-2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--secondary);
 }

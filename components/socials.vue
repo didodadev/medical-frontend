@@ -32,6 +32,6 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  font-size: 18px;
+  font-size: 20px;
 }
 </style>
