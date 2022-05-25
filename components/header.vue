@@ -10,10 +10,11 @@
               class="nav-item"
               v-for="(i, index) in headerNavs"
               :key="index"
-              :class="pathHandler(i.path) === $route.path + '/' ? 'active' : ''"
+              :class="isActive(i.path)"
             >
               <div class="title">
-                <NuxtLink :to="i.path">
+
+                <NuxtLink :to="pathHandler(i.path)">
                   {{ $t(i.i18nTitle) }}
                 </NuxtLink>
 
@@ -80,33 +81,19 @@ export default Vue.extend({
         {
           // i18n key
           i18nTitle: "header-home",
-          path: "/",
+          path: "/home",
         },
         {
           i18nTitle: "header-about",
-          path: "/about",
-          list: [
-            { i18nTitle: "header-our-doctors", path: "/doctors" },
-            { i18nTitle: "header-our-clinics-and-hospitals", path: "/clinics-and-hospitals" },
-          ],
+          path: "/about"
         },
         {
-          i18nTitle: "header-procedures",
-          path: "/procedures",
-          list: [
-            { i18nTitle: "header-hair-transplant", path: "/" },
-            { i18nTitle: "header-dental-treatments", path: "/" },
-            { i18nTitle: "header-plastic-surgery", path: "/" },
-            { i18nTitle: "header-IVF", path: "/" },
-          ],
+          i18nTitle: "header-services",
+          path: "/services"
         },
         {
-          i18nTitle: "header-before-after",
-          path: "/before-after",
-        },
-        {
-          i18nTitle: "header-experiences",
-          path: "/experiences",
+          i18nTitle: "header-contact",
+          path: "/contact",
         },
       ],
       showSearch: false,
@@ -117,9 +104,18 @@ export default Vue.extend({
 
     openSearch() {
       this.showSearch = true;
-
-      console.log("test", this.showSearch);
     },
+
+    isActive(p: string): string {
+      const handlePath = pathHandler(p)
+      let rootPath = this.$route.path
+
+      if (rootPath.endsWith('/')) rootPath = rootPath.slice(0, rootPath.length - 1)
+
+      if (rootPath === handlePath) return 'active'
+
+      return ''
+    }
   },
   mounted() {
     this.$forceUpdate();
