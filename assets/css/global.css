@@ -21,6 +21,12 @@ body {
   background-image: url('../images/p4.png');
 }
 
+.admin {
+  background-color: white !important;
+  height: 100vh;
+  overflow: auto;
+}
+
 * {
   font-weight: 300;
 }

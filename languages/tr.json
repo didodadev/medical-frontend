@@ -4,6 +4,8 @@
   "header-search-placeholder": "Sayfa veya içerik arayın",
   "header-services": "HİZMETLER",
   "header-contact": "İLETİŞİM",
+  "header-doctors": "DOKTORLAR",
+  "header-contract": "ANLAŞMALI KURUMLAR",
 
   "home-call-us-anytime": "Bizi İstediğiniz Zaman Arayın",
   "home-book-an-appointment": "Randevu Al",
@@ -41,5 +43,10 @@
 
   "read-more": "Devamını Oku",
   "phone": "Telefon",
-  "view-details": "Detayları Görüntüle"
+  "view-details": "Detayları Görüntüle",
+
+  "doctors": "Doktorlar",
+  "doctors-doctor": "Doktor",
+
+  "contracted-institutions": "Anlaşmalı Kurumlar"
 }

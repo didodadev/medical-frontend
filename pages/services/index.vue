@@ -1,18 +1,7 @@
 <template>
   <div>
-    <div class="pagination-header">
-      <div class="cover">
-        <h3 class="title">{{ $t("service-services") }}</h3>
+    <PaginationHeader title="service-services" />
 
-        <small>
-          Home
-          <i class="bi bi-chevron-right"></i>
-          Pages
-          <i class="bi bi-chevron-right"></i>
-          Page Title
-        </small>
-      </div>
-    </div>
     <div class="white-block p-5">
       <div class="container">
         <div class="row services">
@@ -79,11 +68,13 @@
 import Vue from "vue";
 import pathHandler from "../../tools/path-handler";
 import ServiceCard from "../../components/service-card.vue";
+import PaginationHeader from '../../components/pagination-header.vue'
 
 export default Vue.extend({
   methods: { pathHandler },
   components: {
     ServiceCard,
+    PaginationHeader
   },
 });
 </script>

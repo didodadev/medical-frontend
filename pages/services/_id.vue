@@ -1,18 +1,7 @@
 <template>
   <div>
-    <div class="pagination-header">
-      <div class="cover">
-        <h3 class="title">{{$t('service')}} "example service"</h3>
+    <PaginationHeader title="service" subTitle="Example Service" />
 
-        <small>
-          Home
-          <i class="bi bi-chevron-right"></i>
-          Pages
-          <i class="bi bi-chevron-right"></i>
-          Page Title
-        </small>
-      </div>
-    </div>
     <div class="white-block p-5">
       <div class="container">
         <div class="row">
@@ -76,3 +65,13 @@
     </div>
   </div>
 </template>
+
+<script>
+import PaginationHeader from '../../components/pagination-header.vue'
+
+export default {
+  components: {
+    PaginationHeader
+  }
+}
+</script>

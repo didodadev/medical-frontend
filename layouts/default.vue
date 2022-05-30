@@ -1,12 +1,12 @@
 <template>
   <div class="default-template container-fluid p-0">
-    <TopSideBarVue />
-    <HeaderVue />
-    <SocialsVue />
+    <TopSideBarVue v-if="!$route.path.includes('admin')" />
+    <HeaderVue v-if="!$route.path.includes('admin')" />
+    <SocialsVue v-if="!$route.path.includes('admin')" />
 
-    <Nuxt />
+    <Nuxt :class="$route.path.includes('admin') ? 'admin' : ''" />
 
-    <FooterVue />
+    <FooterVue v-if="!$route.path.includes('admin')" />
   </div>
 </template>
 

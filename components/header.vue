@@ -9,7 +9,7 @@
           />
         </div>
 
-        <div class="col-xl-6 d-none d-xl-block">
+        <div class="col-xl-10 d-none d-xl-block">
           <div class="navs d-flex">
             <div
               class="nav-item"
@@ -40,7 +40,7 @@
           <i class="bi bi-list" style="font-size: 30px" @click="changeShowDrawer(true)"></i>
         </div>
 
-        <div class="bottom d-flex justify-content-center col-1">
+        <div class="bottom d-flex justify-content-center col-1 m-auto mb-3">
           <i
             class="bi bi-search"
             style="font-size: 18px"
@@ -119,7 +119,6 @@ export default Vue.extend({
     return {
       headerNavs: [
         {
-          // i18n key
           i18nTitle: "header-home",
           path: "/home",
         },
@@ -135,6 +134,16 @@ export default Vue.extend({
         {
           i18nTitle: "header-contact",
           path: "/contact",
+        },
+        {
+          i18nTitle: "header-doctors",
+          path: "/doctors",
+          extraKey: "doctor"
+        },
+        {
+          i18nTitle: "header-contract",
+          path: "/contracts",
+          extraKey: "contract"
         },
       ],
       showSearch: false,
@@ -210,7 +219,7 @@ export default Vue.extend({
 }
 
 .nav-item {
-  margin: 1em;
+  margin: .6em;
   position: relative;
 }
 
@@ -277,6 +286,9 @@ export default Vue.extend({
   opacity: 0;
   visibility: hidden;
   transition: .2s;
+  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 .drawer .navs {

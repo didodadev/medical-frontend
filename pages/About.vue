@@ -1,18 +1,6 @@
 <template>
   <div class="about">
-    <div class="pagination-header">
-      <div class="cover">
-        <h3 class="title">{{ $t("about") }}</h3>
-
-        <small>
-          Home
-          <i class="bi bi-chevron-right"></i>
-          Pages
-          <i class="bi bi-chevron-right"></i>
-          About
-        </small>
-      </div>
-    </div>
+    <PaginationHeader title="about" />
 
     <div class="white-block p-5">
       <div class="container">
@@ -272,132 +260,27 @@
 
           <div class="row mt-5">
             <div class="col-md-4">
-              <b-card
-                img-src="https://kodesolution.com/html/2015/medinova-b5/images/team/t1.jpg"
-                style="border: none; border-radius: 5px"
-                class="shadow"
-              >
-                <b-card-body class="p-3">
-                  <h2>Mari Angel</h2>
-                  <p class="text-muted">Cardioog</p>
-
-                  <table>
-                    <tbody>
-                      <tr>
-                        <td>Monday Friday</td>
-                        <td>9:00 - 16:00</td>
-                      </tr>
-
-                      <tr>
-                        <td>Saturday</td>
-                        <td>9:00 - 16:00</td>
-                      </tr>
-                    </tbody>
-                  </table>
-
-                  <br />
-
-                  <div class="socials">
-                    <div class="item">
-                      <i class="bi bi-instagram"></i>
-                    </div>
-
-                    <div class="item">
-                      <i class="bi bi-facebook"></i>
-                    </div>
-
-                    <div class="item">
-                      <i class="bi bi-twitter"></i>
-                    </div>
-                  </div>
-                </b-card-body>
-              </b-card>
+              <DoctorCard
+                img="https://kodesolution.com/html/2015/medinova-b5/images/team/t1.jpg"
+                name="Maria"
+                branch="Cardiolog"
+              />
             </div>
 
             <div class="col-md-4">
-              <b-card
-                img-src="https://kodesolution.com/html/2015/medinova-b5/images/team/t1.jpg"
-                style="border: none; border-radius: 5px"
-                class="shadow"
-              >
-                <b-card-body class="p-3">
-                  <h2>Mari Angel</h2>
-                  <p class="text-muted">Cardioog</p>
-
-                  <table>
-                    <tbody>
-                      <tr>
-                        <td>Monday Friday</td>
-                        <td>9:00 - 16:00</td>
-                      </tr>
-
-                      <tr>
-                        <td>Saturday</td>
-                        <td>9:00 - 16:00</td>
-                      </tr>
-                    </tbody>
-                  </table>
-
-                  <br />
-
-                  <div class="socials">
-                    <div class="item">
-                      <i class="bi bi-instagram"></i>
-                    </div>
-
-                    <div class="item">
-                      <i class="bi bi-facebook"></i>
-                    </div>
-
-                    <div class="item">
-                      <i class="bi bi-twitter"></i>
-                    </div>
-                  </div>
-                </b-card-body>
-              </b-card>
+              <DoctorCard
+                img="https://kodesolution.com/html/2015/medinova-b5/images/team/t1.jpg"
+                name="Maria"
+                branch="Cardiolog"
+              />
             </div>
 
             <div class="col-md-4">
-              <b-card
-                img-src="https://kodesolution.com/html/2015/medinova-b5/images/team/t1.jpg"
-                style="border: none; border-radius: 5px"
-                class="shadow"
-              >
-                <b-card-body class="p-3">
-                  <h2>Mari Angel</h2>
-                  <p class="text-muted">Cardioog</p>
-
-                  <table>
-                    <tbody>
-                      <tr>
-                        <td>Monday Friday</td>
-                        <td>9:00 - 16:00</td>
-                      </tr>
-
-                      <tr>
-                        <td>Saturday</td>
-                        <td>9:00 - 16:00</td>
-                      </tr>
-                    </tbody>
-                  </table>
-
-                  <br />
-
-                  <div class="socials">
-                    <div class="item">
-                      <i class="bi bi-instagram"></i>
-                    </div>
-
-                    <div class="item">
-                      <i class="bi bi-facebook"></i>
-                    </div>
-
-                    <div class="item">
-                      <i class="bi bi-twitter"></i>
-                    </div>
-                  </div>
-                </b-card-body>
-              </b-card>
+              <DoctorCard
+                img="https://kodesolution.com/html/2015/medinova-b5/images/team/t1.jpg"
+                name="Maria"
+                branch="Cardiolog"
+              />
             </div>
           </div>
         </div>
@@ -446,23 +329,16 @@ table tr td:last-child {
   background: var(--primary);
   color: white;
 }
-
-.socials {
-  display: flex;
-  margin-top: 1em;
-}
-
-.socials .item {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: var(--primary);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: White;
-  margin: 0.3em;
-  font-size: 14px;
-}
 </style>
+
+<script>
+import PaginationHeader from "../components/pagination-header.vue";
+import DoctorCard from "../components/doctor-card.vue";
+
+export default {
+  components: {
+    PaginationHeader,
+    DoctorCard,
+  },
+};
+</script>

@@ -4,6 +4,9 @@
   "header-search-placeholder": "Search for pages or content",
   "header-services": "SERVICES",
   "header-contact": "CONTACT",
+  "header-doctors": "DOCTORS",
+  "header-contract": "CONTRACTED INSTITUTIONS",
+
 
   "home-call-us-anytime": "Call Us Anytime",
   "home-book-an-appointment": "Book An Appointment",
@@ -41,5 +44,10 @@
 
   "read-more": "Read More",
   "phone": "Phone",
-  "view-details": "View Details"
+  "view-details": "View Details",
+
+  "doctors": "Doctors",
+  "doctors-doctor": "Doctor",
+
+  "contracted-institutions": "Contracted Institutions"
 }
