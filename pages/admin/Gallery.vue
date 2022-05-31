@@ -1,0 +1,208 @@
+<template>
+  <div class="doctor">
+    <div class="admin-header">
+      <h1 class="page-title"><i class="bi bi-box2-heart"></i> &nbsp;Galeri</h1>
+
+      <div class="head-actions d-flex">
+        <button class="btn btn-primary" @click="setModalShow(true)">
+          Resim Ekle
+        </button>
+      </div>
+    </div>
+
+    <div class="row mb-3 gallery-wrapper">
+      <div class="col-md-4">
+        <div class="cover-wrapper">
+          <GalleryCard
+            title="Saç Ekimi"
+            img="https://kodesolution.com/html/2015/medinova-b5/images/services/ws4.jpg"
+            text="Lorem ipsum dolor sit amet, consectetur!"
+            style="border-radius: 6px; overflow: hidden"
+          />
+          <div class="red-cover">
+            <i class="bi bi-trash" style="font-size: 30px"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="cover-wrapper">
+          <GalleryCard
+            title="Saç Ekimi"
+            img="https://kodesolution.com/html/2015/medinova-b5/images/services/ws4.jpg"
+            text="Lorem ipsum dolor sit amet, consectetur!"
+            style="border-radius: 6px; overflow: hidden"
+          />
+          <div class="red-cover">
+            <i class="bi bi-trash" style="font-size: 30px"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="cover-wrapper">
+          <GalleryCard
+            title="Saç Ekimi"
+            img="https://kodesolution.com/html/2015/medinova-b5/images/services/ws4.jpg"
+            text="Lorem ipsum dolor sit amet, consectetur!"
+            style="border-radius: 6px; overflow: hidden"
+          />
+          <div class="red-cover">
+            <i class="bi bi-trash" style="font-size: 30px"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="cover-wrapper">
+          <GalleryCard
+            title="Saç Ekimi"
+            img="https://kodesolution.com/html/2015/medinova-b5/images/services/ws4.jpg"
+            text="Lorem ipsum dolor sit amet, consectetur!"
+            style="border-radius: 6px; overflow: hidden"
+          />
+          <div class="red-cover">
+            <i class="bi bi-trash" style="font-size: 30px"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <small class="text-muted" v-show="doctors.length === 0">
+      Resim bulunamadı. &nbsp;&nbsp;
+    </small>
+
+    <button class="btn-sm btn btn-primary" @click="setModalShow(true)">
+      Resim Ekle
+    </button>
+
+    <Modal
+      title="Resim Ekle"
+      :close="() => setModalShow(false)"
+      :show="show"
+      :err="err"
+    >
+      <template v-slot:body>
+        <div class="mb-3">
+          <UploadImage :setBase64="setBase64" />
+        </div>
+
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            placeholder="Resim Adı"
+          />
+          <label for="name">
+            Resim Adı
+            <i class="required"></i>
+          </label>
+        </div>
+
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="subTitle"
+            placeholder="c"
+          />
+          <label for="subTitle">
+            Alt Başlık
+            <i class="required"></i>
+          </label>
+        </div>
+      </template>
+
+      <template v-slot:footer>
+        <button class="btn btn-primary" @click="createDoctor()">
+          Resim Ekle
+        </button>
+      </template>
+    </Modal>
+  </div>
+</template>
+
+<script lang='ts'>
+import Vue from "vue";
+import Modal from "../../components/ui/modal.vue";
+import IconSelect from "../../components/ui/icon-select.vue";
+import getEmpty, {
+  IEmptyDoctor,
+  ISocial,
+  IViewDoctor,
+} from "../../ts/empty-data-and-types";
+import UploadImage from "../../components/admin/upload-image.vue";
+
+const errMessages = {
+  addSocialMedia: "Lütfen bir simge seçiniz ve link ekleyiniz.",
+};
+
+interface IData {
+  doctors: IViewDoctor[];
+  show: boolean;
+  doctor: IEmptyDoctor;
+  social: ISocial;
+  err: string;
+  range: number;
+}
+
+export default Vue.extend({
+  data: (): IData => ({
+    doctors: [],
+    show: false,
+    doctor: getEmpty("doctor"),
+    social: getEmpty("social"),
+    err: "",
+    range: 10,
+  }),
+  methods: {
+    setBase64(base64: string) {
+      console.log(base64);
+
+      this.doctor.image = base64;
+    },
+
+    setModalShow(t: boolean) {
+      this.show = t;
+    },
+    onSelect(i: string) {
+      this.social.icon = i;
+    },
+    addSocialMedia() {
+      if (this.social.icon.trim() === "" || this.social.link.trim() === "") {
+        this.err = errMessages.addSocialMedia;
+      } else {
+        if (this.err === errMessages.addSocialMedia) this.err = "";
+
+        this.doctor.socials.push(this.social);
+        this.social = getEmpty("social");
+      }
+    },
+    deleteIcon(index: number) {
+      this.doctor.socials.splice(index, 1);
+    },
+    createDoctor() {
+      console.log(this.doctor);
+    },
+  },
+  async created() {
+    this.doctors = (
+      await this.$axios.$get(`/api/doctor?range=${this.range}`)
+    ).data;
+
+    console.log(this.doctors);
+  },
+  components: {
+    Modal,
+    IconSelect,
+    UploadImage,
+  },
+});
+</script>
+
+<style scoped>
+.gallery-wrapper > div {
+  margin-bottom: 1.5em;
+}
+</style>

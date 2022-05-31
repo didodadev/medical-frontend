@@ -16,7 +16,7 @@ export default {
     ],
     link: [
       { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css' },
-      { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css' }, 
+      { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css' },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
@@ -30,7 +30,8 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '@/plugins/antd-ui',
-    '@/plugins/bootstrap'
+    '@/plugins/bootstrap',
+    '@/plugins/vue2-editor'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -64,10 +65,17 @@ export default {
     }
   },
 
+  proxy: {
+    '/api/': 'http://localhost:4000'
+  },
+
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/'
+    baseURL: 'http://localhost:4000/api/',
+    proxyHeaders: false,
+    credentials: false,
+    proxy: true
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

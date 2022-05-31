@@ -110,3 +110,91 @@ body {
 ::-webkit-scrollbar-thumb {
   background: var(--secondary);
 }
+
+.admin .page-title {
+  margin-bottom: 1em;
+}
+
+.admin .head-actions {
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-bottom: 1em;
+}
+
+.admin .table .actions i {
+  font-size: 18px;
+}
+
+.admin .table .actions i[class="bi bi-trash"] {
+  color: red;
+}
+
+.admin .required::after {
+  content: '*';
+  color: red;
+}
+
+.admin .cover-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.admin .cover-wrapper .red-cover,
+.admin .cover-wrapper .primary-cover {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9;
+  opacity: 0;
+  visibility: hidden;
+  transition: .2s;
+}
+
+.admin .cover-wrapper:hover .red-cover,
+.admin .cover-wrapper:hover .primary-cover {
+  opacity: 1;
+  visibility: visible;
+}
+
+.admin .cover-wrapper .red-cover::before,
+.admin .cover-wrapper .primary-cover::before {
+  content: ' ';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  opacity: .6;
+  z-index: -1;
+}
+
+.admin .cover-wrapper .red-cover::before {
+  background-color: red;
+}
+
+.admin .cover-wrapper .primary-cover::before {
+  background-color: var(--primary);
+}
+
+.admin .centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin .btn-primary {
+  background-color: black !important;
+  border: none;
+}
+
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
