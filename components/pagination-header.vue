@@ -20,7 +20,7 @@ export default {
     subTitle: {
       type: String,
       required: true
-    }
+    },
   }
 }
 </script>

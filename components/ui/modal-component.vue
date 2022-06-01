@@ -94,7 +94,7 @@ export default Vue.extend({
   align-items: center;
   justify-content: center;
   transition: 0.2s;
-  z-index: 999;
+  z-index: 9999;
 }
 
 .shadow {
