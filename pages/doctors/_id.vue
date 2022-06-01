@@ -1,3 +1,5 @@
+
+<style></style>
 <template>
   <div class="doctors">
     <PaginationHeader title="doctor" sub-title="Maria" />
@@ -93,3 +95,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.row > div {
+  cursor: pointer
+}
+</style>
