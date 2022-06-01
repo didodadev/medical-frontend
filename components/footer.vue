@@ -75,19 +75,19 @@
             <div class="title-line"></div>
 
             <p>
-              <NuxtLink to="/"> Home </NuxtLink>
+              <NuxtLink :to="pathHandler('/home')"> Home </NuxtLink>
             </p>
 
             <p>
-              <NuxtLink to="/"> About </NuxtLink>
+              <NuxtLink :to="pathHandler('/about')"> About </NuxtLink>
             </p>
 
             <p>
-              <NuxtLink to="/"> Services </NuxtLink>
+              <NuxtLink :to="pathHandler('/services')"> Services </NuxtLink>
             </p>
 
             <p>
-              <NuxtLink to="/"> Contact </NuxtLink>
+              <NuxtLink :to="pathHandler('/contact')"> Contact </NuxtLink>
             </p>
           </div>
         </div>
@@ -99,6 +99,17 @@
     </div>
   </footer>
 </template>
+
+<script lang="ts">
+import Vue from 'vue'
+import pathHandler from '../tools/path-handler'
+
+export default Vue.extend({
+  methods: {
+    pathHandler
+  }
+})
+</script>
 
 <style scoped>
 .info i {

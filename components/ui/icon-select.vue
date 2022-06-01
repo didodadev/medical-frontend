@@ -107,7 +107,7 @@ export default Vue.extend({
   border-radius: 6px;
   /* top: 0; */
   left: 50px;
-  height: 120px;
+  height: 200px;
   overflow: auto;
   bottom: 0;
   width: 240px;

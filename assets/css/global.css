@@ -112,7 +112,6 @@ body {
 }
 
 .admin .page-title {
-  margin-bottom: 1em;
 }
 
 .admin .head-actions {
@@ -197,4 +196,16 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  padding: 1em;
+  backdrop-filter: saturate(180%) blur(5px);
+  border-bottom: 1px solid var(--border-2);
+  margin-bottom: 2em;
+}
+
+input[type='time'] {
+  border: 1px solid var(--border-2);
+  padding: .3em .5em;
 }

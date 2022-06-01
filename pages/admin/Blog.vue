@@ -1,13 +1,9 @@
 <template>
   <div class="doctor">
-    <div class="admin-header">
-      <h1 class="page-title"><i class="bi bi-box2-heart"></i> &nbsp;Blog</h1>
-
-      <div class="head-actions d-flex">
-        <button class="btn btn-primary" @click="setModalShow(true)">
-          Blog Ekle
-        </button>
-      </div>
+    <div class="d-flex align-items-end mb-3">
+      <button class="btn btn-primary" @click="setModalShow(true)">
+        Blog Ekle
+      </button>
     </div>
 
     <div class="row mb-3 gallery-wrapper">
@@ -52,13 +48,13 @@
       </div>
     </div>
 
-    <small class="text-muted" v-show="doctors.length === 0">
+    <!-- <small class="text-muted" v-show="doctors.length === 0">
       Blog bulunamadı. &nbsp;&nbsp;
     </small>
 
     <button class="btn-sm btn btn-primary" @click="setModalShow(true)">
       Blog Ekle
-    </button>
+    </button> -->
 
     <Modal
       title="Blog Ekle"
@@ -160,10 +156,6 @@ export default Vue.extend({
     },
   },
   async created() {
-    this.doctors = (
-      await this.$axios.$get(`/api/doctor?range=${this.range}`)
-    ).data;
-
     console.log(this.doctors);
   },
   components: {

@@ -1,15 +1,9 @@
 <template>
   <div class="doctor">
-    <div class="admin-header">
-      <h1 class="page-title">
-        <i class="bi bi-person-heart"></i> &nbsp;Doktorlar
-      </h1>
-
-      <div class="head-actions d-flex">
-        <button class="btn btn-primary" @click="setModalShow(true)">
-          Doktor Ekle
-        </button>
-      </div>
+    <div class="d-flex align-items-end mb-3">
+      <button class="btn btn-primary" @click="setModalShow(true)">
+        Doktor ekle
+      </button>
     </div>
 
     <table class="table tabe-responsive table-striped table-bordered w-100">
@@ -32,16 +26,36 @@
             <i class="bi bi-trash"></i>
           </td>
         </tr>
+
+        <tr>
+          <td>1</td>
+          <td>Koray</td>
+          <td>Çetintaş</td>
+          <td>Kardiyolog</td>
+          <td class="actions">
+            <i class="bi bi-trash"></i>
+          </td>
+        </tr>
+
+        <tr>
+          <td>2</td>
+          <td>Polat</td>
+          <td>Poyraz</td>
+          <td>Kardiyolog</td>
+          <td class="actions">
+            <i class="bi bi-trash"></i>
+          </td>
+        </tr>
       </tbody>
     </table>
 
-    <small class="text-muted" v-show="doctors.length === 0">
+    <!-- <small class="text-muted" v-show="doctors.length === 0">
       Doktor bulunamadı. &nbsp;&nbsp;
-    </small>
+    </small> -->
 
-    <button class="btn-sm btn btn-primary" @click="setModalShow(true)">
+    <!-- <button class="btn-sm btn btn-primary" @click="setModalShow(true)">
       Doktor Ekle
-    </button>
+    </button> -->
 
     <Modal
       title="Doktor Ekle"
@@ -54,35 +68,41 @@
           <UploadImage :setBase64="setBase64" />
         </div>
 
-        <div class="form-floating mb-3">
-          <input
-            type="text"
-            class="form-control"
-            id="fullname"
-            placeholder="İsim Soyisim"
-          />
-          <label for="fullname">
-            İsim Soyisim
-            <i class="required"></i>
-          </label>
-        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="fullname"
+                placeholder="İsim Soyisim"
+              />
+              <label for="fullname">
+                İsim Soyisim
+                <i class="required"></i>
+              </label>
+            </div>
+          </div>
 
-        <div class="form-floating">
-          <input
-            type="text"
-            class="form-control"
-            id="branch"
-            placeholder="Alan"
-          />
-          <label for="branch">
-            Alan
-            <i class="required"></i>
-          </label>
-        </div>
-        <div class="mb-3">
-          <small class="text-muted">
-            Doktorun çalıştığı alan. Kardiyolog, Cerrahi vb.
-          </small>
+          <div class="col-md-6">
+            <div class="form-floating">
+              <input
+                type="text"
+                class="form-control"
+                id="branch"
+                placeholder="Alan"
+              />
+              <label for="branch">
+                Alan
+                <i class="required"></i>
+              </label>
+            </div>
+            <div class="mb-3">
+              <small class="text-muted">
+                Doktorun çalıştığı alan. Kardiyolog, Cerrahi vb.
+              </small>
+            </div>
+          </div>
         </div>
 
         <div class="form-floating mb-3">
@@ -227,11 +247,7 @@ export default Vue.extend({
       console.log(this.doctor);
     },
   },
-  async created() {
-    this.doctors = (
-      await this.$axios.$get(`/api/doctor?range=${this.range}`)
-    ).data;
-
+  async mounted() {
     console.log(this.doctors);
   },
   components: {

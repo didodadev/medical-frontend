@@ -1,20 +1,20 @@
 <template>
   <div>
-    <div class="preview">
+    <div class="preview" v-show="imageBase64 !== ''">
       <input
-      id="uploadInput"
-      type="file"
-      style="display: none"
-      @change="onSelect($event)"
-    />
+        id="uploadInput"
+        type="file"
+        style="display: none"
+        @change="onSelect($event)"
+      />
 
-    <label class="cover-wrapper" for="uploadInput">
-      <div class="primary-cover">
-        <i class="bi bi-pen-fill" style="font-size: 30px"></i>
-      </div>
+      <label class="cover-wrapper" for="uploadInput">
+        <div class="primary-cover">
+          <i class="bi bi-pen-fill" style="font-size: 30px"></i>
+        </div>
 
-      <img alt="" ref="image" class="w-100" v-show="imageBase64 !== ''" />
-    </label>
+        <img alt="" ref="image" class="w-100" />
+      </label>
     </div>
 
     <div class="upload-image centered" v-show="imageBase64 === ''">
@@ -49,7 +49,7 @@ export default Vue.extend({
       const file = e.target.files[0];
       const reader = new FileReader();
 
-      if (!file) return
+      if (!file) return;
 
       reader.addEventListener("loadend", () => {
         this.setBase64(reader.result);

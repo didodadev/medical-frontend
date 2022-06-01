@@ -1,17 +1,13 @@
 <template>
   <div class="doctor">
-    <div class="admin-header">
-      <h1 class="page-title"><i class="bi bi-box2-heart"></i> &nbsp;Galeri</h1>
-
-      <div class="head-actions d-flex">
-        <button class="btn btn-primary" @click="setModalShow(true)">
-          Resim Ekle
-        </button>
-      </div>
+    <div class="d-flex align-items-end mb-3">
+      <button class="btn btn-primary" @click="setModalShow(true)">
+        Resim ekle
+      </button>
     </div>
 
     <div class="row mb-3 gallery-wrapper">
-      <div class="col-md-4">
+      <div class="col-md-4 col-sm-6">
         <div class="cover-wrapper">
           <GalleryCard
             title="Saç Ekimi"
@@ -25,7 +21,7 @@
         </div>
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-4 col-sm-6">
         <div class="cover-wrapper">
           <GalleryCard
             title="Saç Ekimi"
@@ -39,7 +35,7 @@
         </div>
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-4 col-sm-6">
         <div class="cover-wrapper">
           <GalleryCard
             title="Saç Ekimi"
@@ -53,7 +49,7 @@
         </div>
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-4 col-sm-6">
         <div class="cover-wrapper">
           <GalleryCard
             title="Saç Ekimi"
@@ -68,13 +64,13 @@
       </div>
     </div>
 
-    <small class="text-muted" v-show="doctors.length === 0">
+    <!-- <small class="text-muted" v-show="doctors.length === 0">
       Resim bulunamadı. &nbsp;&nbsp;
     </small>
 
     <button class="btn-sm btn btn-primary" @click="setModalShow(true)">
       Resim Ekle
-    </button>
+    </button> -->
 
     <Modal
       title="Resim Ekle"
@@ -108,7 +104,7 @@
             placeholder="c"
           />
           <label for="subTitle">
-            Alt Başlık
+            Kısa açıklama. <small class="text-muted">(kısa bir cümle olması gerekir)</small>
             <i class="required"></i>
           </label>
         </div>
@@ -187,10 +183,6 @@ export default Vue.extend({
     },
   },
   async created() {
-    this.doctors = (
-      await this.$axios.$get(`/api/doctor?range=${this.range}`)
-    ).data;
-
     console.log(this.doctors);
   },
   components: {

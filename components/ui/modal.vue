@@ -1,15 +1,22 @@
 <template>
   <div class="ui-modal" :class="show ? 'open' : 'close'">
     <div class="shadow" @click="close"></div>
-    <div class="ui-modal-content col-md-6 col-11" :class="isFullscreen ? 'full-screen' : ''">
+    <div
+      class="ui-modal-content col-md-8 col-xl-6 col-11"
+      :class="isFullscreen ? 'full-screen' : ''"
+    >
       <div class="modal-header d-block">
         <div class="d-flex justify-content-between">
           <h2>{{ title }}</h2>
 
           <div class="d-flex align-items-center">
-            <i class="bi bi-x" style="font-size: 30px" @click="close"></i> &nbsp;&nbsp;
+            <i class="bi bi-x" style="font-size: 30px" @click="close"></i>
+            &nbsp;&nbsp;
             <i
-              class="bi bi-arrows-fullscreen"
+              class="bi"
+              :class="
+                isFullscreen ? 'bi-fullscreen-exit' : 'bi-arrows-fullscreen'
+              "
               style="font-size: 17px"
               @click="isFullscreen = !isFullscreen"
             ></i>
@@ -36,8 +43,8 @@ import Vue from "vue";
 export default Vue.extend({
   props: ["show", "close", "title", "err"],
   data: () => ({
-    isFullscreen: false
-  })
+    isFullscreen: false,
+  }),
 });
 </script>
 
@@ -70,6 +77,7 @@ export default Vue.extend({
   align-items: center;
   justify-content: center;
   transition: 0.2s;
+  z-index: 999;
 }
 
 .shadow {

@@ -1,15 +1,9 @@
 <template>
   <div class="doctor">
-    <div class="admin-header">
-      <h1 class="page-title">
-        <i class="bi bi-box2-heart"></i> &nbsp;Hizmetler
-      </h1>
-
-      <div class="head-actions d-flex">
-        <button class="btn btn-primary" @click="setModalShow(true)">
-          Hizmet Ekle
-        </button>
-      </div>
+    <div class="d-flex align-items-end mb-3">
+      <button class="btn btn-primary" @click="setModalShow(true)">
+        Hizmet ekle
+      </button>
     </div>
 
     <table class="table tabe-responsive table-striped table-bordered w-100">
@@ -55,13 +49,13 @@
       </tbody>
     </table>
 
-    <small class="text-muted" v-show="doctors.length === 0">
+    <!-- <small class="text-muted" v-show="doctors.length === 0">
       Hizmet bulunamadı. &nbsp;&nbsp;
     </small>
 
     <button class="btn-sm btn btn-primary" @click="setModalShow(true)">
       Hizmet Ekle
-    </button>
+    </button> -->
 
     <Modal
       title="Hizmet Ekle"
@@ -163,10 +157,6 @@ export default Vue.extend({
     },
   },
   async created() {
-    this.doctors = (
-      await this.$axios.$get(`/api/doctor?range=${this.range}`)
-    ).data;
-
     console.log(this.doctors);
   },
   components: {
