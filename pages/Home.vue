@@ -16,17 +16,13 @@
       @sliding-end="onSlideEnd"
     >
       <!-- Text slides with image -->
-      <b-carousel-slide
-        img-src="https://picsum.photos/1024/480/?image=52"
-      />
+      <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=52" />
 
       <!-- Slides with custom text -->
       <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=54" />
 
       <!-- Slides with image only -->
-      <b-carousel-slide
-        img-src="https://picsum.photos/1024/480/?image=58"
-      />
+      <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=58" />
 
       <!-- Slides with img slot -->
       <!-- Note the classes .d-block and .img-fluid to prevent browser default image alignment -->
@@ -38,7 +34,7 @@
             height="480"
             src="https://picsum.photos/1024/480/?image=55"
             alt="image slot"
-          >
+          />
         </template>
       </b-carousel-slide>
     </b-carousel>
@@ -50,9 +46,7 @@
             <p>Welcome To</p>
 
             <h1>Medianova Conference 2021</h1>
-            <h4 class="mt-5">
-              121 King Street Melbourne
-            </h4>
+            <h4 class="mt-5">121 King Street Melbourne</h4>
 
             <p class="text-muted">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum
@@ -168,7 +162,8 @@
                   <span
                     style="font-size: 40px !important"
                     class="l-text-primary"
-                  >129</span>
+                    >129</span
+                  >
                 </div>
 
                 <b-button variant="primary" class="mt-4">
@@ -193,7 +188,8 @@
                   <span
                     style="font-size: 40px !important"
                     class="l-text-primary"
-                  >129</span>
+                    >129</span
+                  >
                 </div>
 
                 <b-button variant="primary" class="mt-4">
@@ -218,7 +214,8 @@
                   <span
                     style="font-size: 40px !important"
                     class="l-text-primary"
-                  >129</span>
+                    >129</span
+                  >
                 </div>
 
                 <b-button variant="primary" class="mt-4">
@@ -246,15 +243,9 @@
             <div class="item active">
               {{ $t("home-all") }}
             </div>
-            <div class="item">
-              LABARATORY
-            </div>
-            <div class="item">
-              SURGERY
-            </div>
-            <div class="item">
-              ORTHOPEDICS
-            </div>
+            <div class="item">LABARATORY</div>
+            <div class="item">SURGERY</div>
+            <div class="item">ORTHOPEDICS</div>
           </div>
 
           <div class="col-md-4 item mb-3">
@@ -324,30 +315,36 @@
 
         <div class="row blogs">
           <div class="col-md-4 mb-4">
-            <BLogCard
-              img="https://kodesolution.com/html/2015/medinova-b5/images/blog/b1.jpg"
-              title="Capitalize on low hanging fruit to identify a ballpark test"
-              cover="Lorem ipsum dolor sit amet, consectetur adipisi cing elit.
+            <NuxtLink :to="pathHandler('/blog/test')">
+              <BLogCard
+                img="https://kodesolution.com/html/2015/medinova-b5/images/blog/b1.jpg"
+                title="Capitalize on low hanging fruit to identify a ballpark test"
+                cover="Lorem ipsum dolor sit amet, consectetur adipisi cing elit.
                     Molestias eius illum libero dolor nobis...."
-            />
+              />
+            </NuxtLink>
           </div>
 
           <div class="col-md-4 mb-4">
-            <BLogCard
-              img="https://kodesolution.com/html/2015/medinova-b5/images/blog/b1.jpg"
-              title="Capitalize on low hanging fruit to identify a ballpark test"
-              cover="Lorem ipsum dolor sit amet, consectetur adipisi cing elit.
+            <NuxtLink :to="pathHandler('/blog/test')">
+              <BLogCard
+                img="https://kodesolution.com/html/2015/medinova-b5/images/blog/b1.jpg"
+                title="Capitalize on low hanging fruit to identify a ballpark test"
+                cover="Lorem ipsum dolor sit amet, consectetur adipisi cing elit.
                     Molestias eius illum libero dolor nobis...."
-            />
+              />
+            </NuxtLink>
           </div>
 
           <div class="col-md-4 mb-4">
-            <BLogCard
-              img="https://kodesolution.com/html/2015/medinova-b5/images/blog/b1.jpg"
-              title="Capitalize on low hanging fruit to identify a ballpark test"
-              cover="Lorem ipsum dolor sit amet, consectetur adipisi cing elit.
+            <NuxtLink :to="pathHandler('/blog/test')">
+              <BLogCard
+                img="https://kodesolution.com/html/2015/medinova-b5/images/blog/b1.jpg"
+                title="Capitalize on low hanging fruit to identify a ballpark test"
+                cover="Lorem ipsum dolor sit amet, consectetur adipisi cing elit.
                     Molestias eius illum libero dolor nobis...."
-            />
+              />
+            </NuxtLink>
           </div>
         </div>
       </div>
@@ -355,34 +352,34 @@
   </div>
 </template>
 <script lang="ts">
-import Vue from 'vue'
-import pathHandler from '../tools/path-handler'
-import ServiceCard from '../components/service-card.vue'
-import GalleryCard from '../components/gallery-card.vue'
-import BLogCard from '../components/blog-card.vue'
+import Vue from "vue";
+import pathHandler from "../tools/path-handler";
+import ServiceCard from "../components/service-card.vue";
+import GalleryCard from "../components/gallery-card.vue";
+import BLogCard from "../components/blog-card.vue";
 
 export default Vue.extend({
-  name: 'IndexPage',
+  name: "IndexPage",
   components: {
     ServiceCard,
     GalleryCard,
-    BLogCard
+    BLogCard,
   },
   data: () => ({
     slide: 0,
-    sliding: true
+    sliding: true,
   }),
   methods: {
     pathHandler,
 
-    onSlideStart () {
-      this.sliding = true
+    onSlideStart() {
+      this.sliding = true;
     },
-    onSlideEnd () {
-      this.sliding = false
-    }
-  }
-})
+    onSlideEnd() {
+      this.sliding = false;
+    },
+  },
+});
 </script>
 
 <style scoped>

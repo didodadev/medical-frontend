@@ -57,7 +57,6 @@
       compassionate care at its best for everyone. Lorem ipsum dolor sit amet,
       consectetur adipisicing elit. Atque commodi molestiae autem fugit
       consectetur dolor ullam illo ipsa numquam.
-      </p>
     </div>
   </div>
 </template>
