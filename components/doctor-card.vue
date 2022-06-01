@@ -6,7 +6,9 @@
   >
     <b-card-body class="p-3">
       <h2>{{ name }}</h2>
-      <p class="text-muted">{{ branch }}</p>
+      <p class="text-muted">
+        {{ branch }}
+      </p>
 
       <table>
         <tbody>
@@ -22,19 +24,19 @@
         </tbody>
       </table>
 
-      <br />
+      <br>
 
       <div class="socials">
         <div class="item">
-          <i class="bi bi-instagram"></i>
+          <i class="bi bi-instagram" />
         </div>
 
         <div class="item">
-          <i class="bi bi-facebook"></i>
+          <i class="bi bi-facebook" />
         </div>
 
         <div class="item">
-          <i class="bi bi-twitter"></i>
+          <i class="bi bi-twitter" />
         </div>
       </div>
     </b-card-body>
@@ -43,8 +45,21 @@
 
 <script>
 export default {
-  props: ["img", "name", "branch"],
-};
+  props: {
+    img: {
+      type: String,
+      required: true
+    },
+    name: {
+      type: String,
+      required: true
+    },
+    branch: {
+      type: String,
+      required: true
+    }
+  }
+}
 </script>
 
 <style scoped>

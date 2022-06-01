@@ -1,6 +1,6 @@
 <template>
   <div class="ui-modal" :class="show ? 'open' : 'close'">
-    <div class="shadow" @click="close"></div>
+    <div class="shadow" @click="close" />
     <div
       class="ui-modal-content col-md-8 col-xl-6 col-11"
       :class="isFullscreen ? 'full-screen' : ''"
@@ -10,7 +10,7 @@
           <h2>{{ title }}</h2>
 
           <div class="d-flex align-items-center">
-            <i class="bi bi-x" style="font-size: 30px" @click="close"></i>
+            <i class="bi bi-x" style="font-size: 30px" @click="close" />
             &nbsp;&nbsp;
             <i
               class="bi"
@@ -19,33 +19,50 @@
               "
               style="font-size: 17px"
               @click="isFullscreen = !isFullscreen"
-            ></i>
+            />
           </div>
         </div>
 
         <small class="err">{{ err }}</small>
       </div>
 
-      <div class="modal-body" v-if="show">
-        <slot name="body"></slot>
+      <div v-if="show" class="modal-body">
+        <slot name="body" />
       </div>
 
       <div class="modal-footer">
-        <slot name="footer"></slot>
+        <slot name="footer" />
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue from 'vue'
 
 export default Vue.extend({
-  props: ["show", "close", "title", "err"],
+  props: {
+    show: {
+      type: Boolean,
+      required: true
+    },
+    close: {
+      type: Function,
+      required: true
+    },
+    title: {
+      type: String,
+      required: true
+    },
+    err: {
+      type: String,
+      required: true
+    }
+  },
   data: () => ({
-    isFullscreen: false,
-  }),
-});
+    isFullscreen: false
+  })
+})
 </script>
 
 <style scoped>

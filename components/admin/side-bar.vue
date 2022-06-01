@@ -2,18 +2,20 @@
   <div style="position: sticky; top: 0; z-index: 1000">
     <div class="side-bar white-block d-none d-xl-flex">
       <div class="nav d-block p-5">
-        <img src="../../assets/images/logo.png" class="mb-5 w-100" />
+        <img src="../../assets/images/logo.png" class="mb-5 w-100">
         <!-- <div class="nav-title">İçerikler</div> -->
 
         <NuxtLink
-          class="item"
           v-for="(i, index) in routes"
           :key="index"
+          class="item"
           :class="$route.path.includes(i.path) ? 'active' : ''"
           :to="pathHandler('/admin' + i.path)"
         >
-          <i class="bi" :class="'bi-' + i.icon"></i>
-          <div class="text">{{ i.text }}</div>
+          <i class="bi" :class="'bi-' + i.icon" />
+          <div class="text">
+            {{ i.text }}
+          </div>
         </NuxtLink>
       </div>
     </div>
@@ -23,36 +25,38 @@
       :class="showMobileSideBar ? 'open' : 'close'"
     >
       <div class="nav d-block p-5 text-center mb-5">
-        <img src="../../assets/images/logo.png" class="mb-5 w-50" />
+        <img src="../../assets/images/logo.png" class="mb-5 w-50">
         <!-- <div class="nav-title">İçerikler</div> -->
 
         <NuxtLink
-          class="item"
           v-for="(i, index) in routes"
           :key="index"
+          class="item"
           :class="$route.path.includes(i.path) ? 'active' : ''"
           :to="pathHandler('/admin' + i.path)"
           @click="setMobileSideBarShow(false)"
         >
-          <i class="bi" :class="'bi-' + i.icon"></i>
-          <div class="text">{{ i.text }}</div>
+          <i class="bi" :class="'bi-' + i.icon" />
+          <div class="text">
+            {{ i.text }}
+          </div>
         </NuxtLink>
       </div>
-      <div class="shadow" @click="setMobileSideBarShow(false)"></div>
+      <div class="shadow" @click="setMobileSideBarShow(false)" />
     </div>
 
     <div
       class="open-mobile-side-bar d-flex d-xl-none centered"
       @click="setMobileSideBarShow(true)"
     >
-      <i class="bi bi-list" style="font-size: 30px"></i>
+      <i class="bi bi-list" style="font-size: 30px" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import pathHandler from "../../tools/path-handler";
+import Vue from 'vue'
+import pathHandler from '../../tools/path-handler'
 
 interface IRoute {
   icon: string;
@@ -68,26 +72,26 @@ interface IData {
 export default Vue.extend({
   data: (): IData => ({
     routes: [
-      { icon: "journal-text", path: "/guide", text: "Klavuz" },
-      { icon: "person-heart", path: "/doctor", text: "Doktorlar" },
-      { icon: "box2-heart", path: "/service", text: "Hizmetler" },
-      { icon: "images", path: "/gallery", text: "Galeri" },
-      { icon: "card-text", path: "/blog", text: "Blog" },
-      { icon: "building", path: "/contracts", text: "Kurumlar" },
-      { icon: "body-text", path: "/about", text: "Hakkımızda" },
-      { icon: "house", path: "/home", text: "Anasayfa" },
-      { icon: "telephone", path: "/contact", text: "İletişim" },
+      { icon: 'journal-text', path: '/guide', text: 'Klavuz' },
+      { icon: 'person-heart', path: '/doctor', text: 'Doktorlar' },
+      { icon: 'box2-heart', path: '/service', text: 'Hizmetler' },
+      { icon: 'images', path: '/gallery', text: 'Galeri' },
+      { icon: 'card-text', path: '/blog', text: 'Blog' },
+      { icon: 'building', path: '/contracts', text: 'Kurumlar' },
+      { icon: 'body-text', path: '/about', text: 'Hakkımızda' },
+      { icon: 'house', path: '/home', text: 'Anasayfa' },
+      { icon: 'telephone', path: '/contact', text: 'İletişim' }
     ],
-    showMobileSideBar: false,
+    showMobileSideBar: false
   }),
   methods: {
     pathHandler,
 
-    setMobileSideBarShow(m: boolean = true) {
-      this.showMobileSideBar = m;
-    },
-  },
-});
+    setMobileSideBarShow (m: boolean = true) {
+      this.showMobileSideBar = m
+    }
+  }
+})
 </script>
 
 <style scoped>

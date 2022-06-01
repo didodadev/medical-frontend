@@ -65,18 +65,18 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import pathHandler from "../../tools/path-handler";
-import ServiceCard from "../../components/service-card.vue";
+import Vue from 'vue'
+import pathHandler from '../../tools/path-handler'
+import ServiceCard from '../../components/service-card.vue'
 import PaginationHeader from '../../components/pagination-header.vue'
 
 export default Vue.extend({
-  methods: { pathHandler },
   components: {
     ServiceCard,
     PaginationHeader
   },
-});
+  methods: { pathHandler }
+})
 </script>
 
 <style scoped>

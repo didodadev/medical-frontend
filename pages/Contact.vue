@@ -9,67 +9,73 @@
             <form action="">
               <div class="form-floating mb-3">
                 <input
+                  id="floatingInput"
                   type="text"
                   class="form-control"
-                  id="floatingInput"
                   placeholder="name@example.com"
                   required
                   maxlength="30"
-                />
-                <label for="floatingInput">{{$t('contact-fullname')}}</label>
+                >
+                <label for="floatingInput">{{ $t('contact-fullname') }}</label>
               </div>
 
               <div class="form-floating mb-3">
                 <input
+                  id="floatingInput"
                   type="text"
                   class="form-control"
-                  id="floatingInput"
                   placeholder="name@example.com"
                   required
                   maxlength="30"
-                />
-                <label for="floatingInput">{{$t('contact-fullname')}}</label>
+                >
+                <label for="floatingInput">{{ $t('contact-fullname') }}</label>
               </div>
 
               <div class="form-floating mb-3">
                 <input
-                type="email"
-                  class="form-control"
                   id="floatingInput"
+                  type="email"
+                  class="form-control"
                   placeholder="name@example.com"
                   required
                   maxlength="40"
-                />
+                >
                 <label for="floatingInput">Mail</label>
               </div>
 
               <div class="form-floating mb-3">
                 <textarea
-                  class="form-control"
                   id="floatingInput"
+                  class="form-control"
                   placeholder="name@example.com"
                   style="height: 150px"
                   required
                   maxlength="500"
-                ></textarea>
-                <label for="floatingInput">{{$t('contact-message')}}</label>
+                />
+                <label for="floatingInput">{{ $t('contact-message') }}</label>
               </div>
 
               <button class="btn btn-primary" type="submit">
-                {{$t('contact-send-message')}}
+                {{ $t('contact-send-message') }}
               </button>
             </form>
           </div>
 
           <div class="col-md-6">
-            <h5> <i class="bi bi-telephone-fill"></i> &nbsp; {{$t('phone')}} 1 </h5>
-            <p class="text-muted">0546 789 0567</p>
+            <h5> <i class="bi bi-telephone-fill" /> &nbsp; {{ $t('phone') }} 1 </h5>
+            <p class="text-muted">
+              0546 789 0567
+            </p>
 
-            <h5> <i class="bi bi-telephone-fill"></i> &nbsp; {{$t('phone')}} 2 </h5>
-            <p class="text-muted">0546 789 5678</p>
+            <h5> <i class="bi bi-telephone-fill" /> &nbsp; {{ $t('phone') }} 2 </h5>
+            <p class="text-muted">
+              0546 789 5678
+            </p>
 
-            <h5> <i class="bi bi-envelope"></i> &nbsp; Email </h5>
-            <p class="text-muted">infohospital@gmail.com</p>
+            <h5> <i class="bi bi-envelope" /> &nbsp; Email </h5>
+            <p class="text-muted">
+              infohospital@gmail.com
+            </p>
           </div>
         </div>
 
@@ -82,7 +88,7 @@
           allowfullscreen=""
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
-        ></iframe>
+        />
       </div>
     </div>
   </div>

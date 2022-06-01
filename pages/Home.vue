@@ -18,16 +18,15 @@
       <!-- Text slides with image -->
       <b-carousel-slide
         img-src="https://picsum.photos/1024/480/?image=52"
-      ></b-carousel-slide>
+      />
 
       <!-- Slides with custom text -->
-      <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=54">
-      </b-carousel-slide>
+      <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=54" />
 
       <!-- Slides with image only -->
       <b-carousel-slide
         img-src="https://picsum.photos/1024/480/?image=58"
-      ></b-carousel-slide>
+      />
 
       <!-- Slides with img slot -->
       <!-- Note the classes .d-block and .img-fluid to prevent browser default image alignment -->
@@ -39,7 +38,7 @@
             height="480"
             src="https://picsum.photos/1024/480/?image=55"
             alt="image slot"
-          />
+          >
         </template>
       </b-carousel-slide>
     </b-carousel>
@@ -51,7 +50,9 @@
             <p>Welcome To</p>
 
             <h1>Medianova Conference 2021</h1>
-            <h4 class="mt-5">121 King Street Melbourne</h4>
+            <h4 class="mt-5">
+              121 King Street Melbourne
+            </h4>
 
             <p class="text-muted">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum
@@ -68,26 +69,26 @@
           <div class="col-md-6">
             <div class="row">
               <div class="col-md-5 l-bg-primary p-3 m-1">
-                <h1><i class="bi bi-activity"></i></h1>
+                <h1><i class="bi bi-activity" /></h1>
                 <h3>Event Time</h3>
 
                 <p>Event Date: 11 To 13 Aug Event Time: 9am To 5pm</p>
               </div>
               <div class="col-md-5 l-bg-secondary p-3 m-1">
-                <h1><i class="bi bi-person"></i></h1>
+                <h1><i class="bi bi-person" /></h1>
                 <h3>Speakers</h3>
 
                 <p>Programme Workshop Presentations For Medinova Conference.</p>
               </div>
               <div class="col-md-5 l-bg-secondary p-3 m-1">
-                <h1><i class="bi bi-activity"></i></h1>
+                <h1><i class="bi bi-activity" /></h1>
 
                 <h3>Submit Opinion</h3>
 
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
               </div>
               <div class="col-md-5 l-bg-primary p-3 m-1">
-                <h1><i class="bi bi-person-fill"></i></h1>
+                <h1><i class="bi bi-person-fill" /></h1>
 
                 <h3>Confirm Ticket</h3>
 
@@ -156,7 +157,7 @@
             <div class="ticket text-center">
               <div>
                 <div class="icon">
-                  <i class="bi bi-activity"></i>
+                  <i class="bi bi-activity" />
                 </div>
 
                 <h3>Activity</h3>
@@ -167,8 +168,7 @@
                   <span
                     style="font-size: 40px !important"
                     class="l-text-primary"
-                    >129</span
-                  >
+                  >129</span>
                 </div>
 
                 <b-button variant="primary" class="mt-4">
@@ -182,7 +182,7 @@
             <div class="ticket text-center">
               <div>
                 <div class="icon">
-                  <i class="bi bi-activity"></i>
+                  <i class="bi bi-activity" />
                 </div>
 
                 <h3>Activity</h3>
@@ -193,8 +193,7 @@
                   <span
                     style="font-size: 40px !important"
                     class="l-text-primary"
-                    >129</span
-                  >
+                  >129</span>
                 </div>
 
                 <b-button variant="primary" class="mt-4">
@@ -208,7 +207,7 @@
             <div class="ticket text-center">
               <div>
                 <div class="icon">
-                  <i class="bi bi-activity"></i>
+                  <i class="bi bi-activity" />
                 </div>
 
                 <h3>Activity</h3>
@@ -219,8 +218,7 @@
                   <span
                     style="font-size: 40px !important"
                     class="l-text-primary"
-                    >129</span
-                  >
+                  >129</span>
                 </div>
 
                 <b-button variant="primary" class="mt-4">
@@ -245,10 +243,18 @@
 
         <div class="row justify-content-center mt-5 gallery">
           <div class="categories col-12">
-            <div class="item active">{{ $t("home-all") }}</div>
-            <div class="item">LABARATORY</div>
-            <div class="item">SURGERY</div>
-            <div class="item">ORTHOPEDICS</div>
+            <div class="item active">
+              {{ $t("home-all") }}
+            </div>
+            <div class="item">
+              LABARATORY
+            </div>
+            <div class="item">
+              SURGERY
+            </div>
+            <div class="item">
+              ORTHOPEDICS
+            </div>
           </div>
 
           <div class="col-md-4 item mb-3">
@@ -349,34 +355,34 @@
   </div>
 </template>
 <script lang="ts">
-import Vue from "vue";
-import pathHandler from "../tools/path-handler";
-import ServiceCard from "../components/service-card.vue";
-import GalleryCard from "../components/gallery-card.vue";
-import BLogCard from "../components/blog-card.vue";
+import Vue from 'vue'
+import pathHandler from '../tools/path-handler'
+import ServiceCard from '../components/service-card.vue'
+import GalleryCard from '../components/gallery-card.vue'
+import BLogCard from '../components/blog-card.vue'
 
 export default Vue.extend({
+  name: 'IndexPage',
   components: {
     ServiceCard,
     GalleryCard,
-    BLogCard,
+    BLogCard
   },
-  name: "IndexPage",
   data: () => ({
     slide: 0,
-    sliding: true,
+    sliding: true
   }),
   methods: {
     pathHandler,
 
-    onSlideStart() {
-      this.sliding = true;
+    onSlideStart () {
+      this.sliding = true
     },
-    onSlideEnd() {
-      this.sliding = false;
-    },
-  },
-});
+    onSlideEnd () {
+      this.sliding = false
+    }
+  }
+})
 </script>
 
 <style scoped>

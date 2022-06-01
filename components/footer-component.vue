@@ -7,7 +7,7 @@
       >
         <div class="row m-0">
           <div class="l-bg-primary col-md-4 d-flex info p-4">
-            <i class="bi bi-hospital-fill" style="margin-right: 0.5em"></i>
+            <i class="bi bi-hospital-fill" style="margin-right: 0.5em" />
 
             <div>
               <h3>24 Hours Service</h3>
@@ -16,7 +16,7 @@
           </div>
 
           <div class="l-bg-secondary col-md-4 d-flex info p-4">
-            <i class="bi bi-chat-text" style="margin-right: 0.5em"></i>
+            <i class="bi bi-chat-text" style="margin-right: 0.5em" />
 
             <div>
               <h3>Online Help</h3>
@@ -28,7 +28,7 @@
             <i
               class="bi bi-credit-card-2-back-fill"
               style="margin-right: 0.5em"
-            ></i>
+            />
 
             <div>
               <h3>Online Payment</h3>
@@ -53,41 +53,49 @@
 
             <div class="socials d-flex">
               <div class="item">
-                <i class="bi bi-instagram"></i>
+                <i class="bi bi-instagram" />
               </div>
 
               <div class="item">
-                <i class="bi bi-facebook"></i>
+                <i class="bi bi-facebook" />
               </div>
 
               <div class="item">
-                <i class="bi bi-youtube"></i>
+                <i class="bi bi-youtube" />
               </div>
 
               <div class="item">
-                <i class="bi bi-twitter"></i>
+                <i class="bi bi-twitter" />
               </div>
             </div>
           </div>
 
           <div class="col-md-3">
-            <h3> {{$t('footer-pages')}} </h3>
-            <div class="title-line"></div>
+            <h3> {{ $t('footer-pages') }} </h3>
+            <div class="title-line" />
 
             <p>
-              <NuxtLink :to="pathHandler('/home')"> Home </NuxtLink>
+              <NuxtLink :to="pathHandler('/home')">
+                Home
+              </NuxtLink>
             </p>
 
             <p>
-              <NuxtLink :to="pathHandler('/about')"> About </NuxtLink>
+              <NuxtLink :to="pathHandler('/about')">
+                About
+              </NuxtLink>
             </p>
 
             <p>
-              <NuxtLink :to="pathHandler('/services')"> Services </NuxtLink>
+              <NuxtLink :to="pathHandler('/services')">
+                Services
+              </NuxtLink>
             </p>
 
             <p>
-              <NuxtLink :to="pathHandler('/contact')"> Contact </NuxtLink>
+              <NuxtLink :to="pathHandler('/contact')">
+                Contact
+              </NuxtLink>
             </p>
           </div>
         </div>
@@ -95,7 +103,9 @@
     </div>
 
     <div class="bottom">
-      <div class="container">© 2021 ThemeMascot. All Rights Reserved.</div>
+      <div class="container">
+        © 2021 ThemeMascot. All Rights Reserved.
+      </div>
     </div>
   </footer>
 </template>

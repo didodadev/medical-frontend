@@ -1533,7 +1533,7 @@ const icons: string[] = [
   'bi-displayport-fill',
   'bi-mortarboard-fill',
   'bi-mortarboard',
-  'bi-terminal-x',
+  'bi-terminal-x'
 ]
 
 export default icons

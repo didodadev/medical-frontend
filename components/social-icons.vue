@@ -1,15 +1,15 @@
 <template>
   <div class="socials">
     <div class="item">
-      <i class="bi bi-instagram"></i>
+      <i class="bi bi-instagram" />
     </div>
 
     <div class="item">
-      <i class="bi bi-facebook"></i>
+      <i class="bi bi-facebook" />
     </div>
 
     <div class="item">
-      <i class="bi bi-youtube"></i>
+      <i class="bi bi-youtube" />
     </div>
   </div>
 </template>

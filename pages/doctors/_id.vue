@@ -1,10 +1,12 @@
 <template>
   <div class="doctors">
-    <PaginationHeader title="doctor" subTitle="Maria" />
+    <PaginationHeader title="doctor" sub-title="Maria" />
 
     <div class="white-block">
       <div class="container p-5">
-        <h4 class="text-muted">Doctor</h4>
+        <h4 class="text-muted">
+          Doctor
+        </h4>
 
         <h2>Maria Gear</h2>
 
@@ -21,8 +23,8 @@
             elit. Atque commodi molestiae autem fugit consectetur dolor ullam
             illo ipsa numquam. Lorem ipsum dolor sit amet, consectetur
             adipisicing elit. Atque commodi
-            <br />
-            <br />
+            <br>
+            <br>
             molestiae autem fugit consectetur dolor ullam illo ipsa numquam. One
             of the world’s leading hospitals providing safe & compassionate care
             at its best for everyone. Lorem ipsum dolor sit amet, consectetur
@@ -30,18 +32,18 @@
             dolor ullam illo ipsa numquam. Lorem ipsum dolor sit amet,
             consectetur adipisicing elit. Atque commodi molestiae autem fugit
             consectetur
-            <br />
+            <br>
             dolor ullam illo ipsa numquam. One of the world’s leading hospitals
             providing safe & compassionate care at its best for everyone. Lorem
             ipsum dolor sit amet, consectetur adipisicing elit. Atque commodi
-            <br />
-            <br />
+            <br>
+            <br>
 
             molestiae autem fugit consectetur dolor ullam illo ipsa numquam.
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque
             commodi
-            <br />
-            <br />
+            <br>
+            <br>
             molestiae autem fugit consectetur dolor ullam illo ipsa
             numquam.molestiae autem fugit consectetur dolor ullam illo ipsa
             numquam.molestiae autem fugit consectetur dolor ullam illo ipsa
@@ -83,11 +85,11 @@
 </template>
 
 <script>
-import PaginationHeader from "../../components/pagination-header.vue";
+import PaginationHeader from '../../components/pagination-header.vue'
 
 export default {
   components: {
-    PaginationHeader,
-  },
-};
+    PaginationHeader
+  }
+}
 </script>

@@ -10,11 +10,11 @@
               <i
                 class="bi bi-clock"
                 style="color: var(--primary); margin-right: 0.5em"
-              ></i>
+              />
               {{ $t("about-opening-hours") }}
             </h5>
 
-            <br />
+            <br>
 
             <table>
               <tbody>
@@ -37,52 +37,52 @@
               </tbody>
             </table>
 
-            <br />
+            <br>
 
-            <i class="bi bi-question-circle" style="color: var(--primary)"></i>
-            {{ $t("about-need-help") }} <br />
-            <small class="text-muted"
-              >Just make an appointment to get help from our experts.</small
-            >
+            <i class="bi bi-question-circle" style="color: var(--primary)" />
+            {{ $t("about-need-help") }} <br>
+            <small class="text-muted">Just make an appointment to get help from our experts.</small>
           </div>
           <div class="col-md-8" style="padding-left: 2em">
             <div class="row">
               <div class="col-md-7">
-                <h4 class="text-muted">{{ $t("about") }}</h4>
+                <h4 class="text-muted">
+                  {{ $t("about") }}
+                </h4>
                 <h2>Medinov Hospital</h2>
 
-                <br />
+                <br>
 
                 <p class="text-muted">
                   <i>
                     One of the world’s leading hospitals providing safe &
-                    compassionate care at its best for everyone. <br />
-                    <br />
+                    compassionate care at its best for everyone. <br>
+                    <br>
 
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     Atque commodi molestiae autem fugit consectetur dolor ullam
-                    illo ipsa numquam. <br />
-                    <br />
+                    illo ipsa numquam. <br>
+                    <br>
 
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     Atque commodi molestiae autem fugit consectetur dolor ullam
                     illo ipsa numquam.
                   </i>
 
-                  <br />
-                  <br />
+                  <br>
+                  <br>
 
                   <img
                     src="https://kodesolution.com/html/2015/medinova-b5/images/signature.png"
                     alt=""
-                  />
+                  >
                 </p>
               </div>
               <div class="col-md-5">
                 <img
                   src="https://kodesolution.com/html/2015/medinova-b5/images/about/5.png"
                   alt=""
-                />
+                >
               </div>
             </div>
           </div>
@@ -106,45 +106,53 @@
             <div class="row services mt-5">
               <div class="col-md-6 item">
                 <div class="icon">
-                  <i class="bi bi-activity"></i>
+                  <i class="bi bi-activity" />
                 </div>
 
                 <div class="content">
                   <h5>Activity Service</h5>
-                  <p class="text-muted">consectetur adipisicing elit.</p>
+                  <p class="text-muted">
+                    consectetur adipisicing elit.
+                  </p>
                 </div>
               </div>
 
               <div class="col-md-6 item">
                 <div class="icon">
-                  <i class="bi bi-activity"></i>
+                  <i class="bi bi-activity" />
                 </div>
 
                 <div class="content">
                   <h5>Activity Service</h5>
-                  <p class="text-muted">consectetur adipisicing elit.</p>
+                  <p class="text-muted">
+                    consectetur adipisicing elit.
+                  </p>
                 </div>
               </div>
 
               <div class="col-md-6 item">
                 <div class="icon">
-                  <i class="bi bi-activity"></i>
+                  <i class="bi bi-activity" />
                 </div>
 
                 <div class="content">
                   <h5>Activity Service</h5>
-                  <p class="text-muted">consectetur adipisicing elit.</p>
+                  <p class="text-muted">
+                    consectetur adipisicing elit.
+                  </p>
                 </div>
               </div>
 
               <div class="col-md-6 item">
                 <div class="icon">
-                  <i class="bi bi-activity"></i>
+                  <i class="bi bi-activity" />
                 </div>
 
                 <div class="content">
                   <h5>Activity Service</h5>
-                  <p class="text-muted">consectetur adipisicing elit.</p>
+                  <p class="text-muted">
+                    consectetur adipisicing elit.
+                  </p>
                 </div>
               </div>
             </div>
@@ -153,15 +161,15 @@
             <img
               src="https://kodesolution.com/html/2015/medinova-b5/images/services/sc4.jpg"
               width="100%"
-            />
+            >
 
             <div class="accordion" role="tablist">
               <b-card no-body class="mb-1">
                 <b-card-header header-tag="header" class="p-0" role="tab">
                   <div
+                    v-b-toggle.accordion-1
                     class="accordion-header"
                     block
-                    v-b-toggle.accordion-1
                     variant="info"
                   >
                     Where do I find my Office product key?
@@ -187,9 +195,9 @@
               <b-card no-body class="mb-1">
                 <b-card-header header-tag="header" class="p-0" role="tab">
                   <div
+                    v-b-toggle.accordion-2
                     class="accordion-header"
                     block
-                    v-b-toggle.accordion-2
                     variant="info"
                   >
                     I am having trouble, what else should I do?
@@ -215,9 +223,9 @@
               <b-card no-body class="mb-1">
                 <b-card-header header-tag="header" class="p-0" role="tab">
                   <div
+                    v-b-toggle.accordion-3
                     class="accordion-header"
                     block
-                    v-b-toggle.accordion-3
                     variant="info"
                   >
                     I am having trouble, what else should I do?
@@ -289,6 +297,18 @@
   </div>
 </template>
 
+<script>
+import PaginationHeader from '../components/pagination-header.vue'
+import DoctorCard from '../components/doctor-card.vue'
+
+export default {
+  components: {
+    PaginationHeader,
+    DoctorCard
+  }
+}
+</script>
+
 <style scoped>
 table {
   width: 100%;
@@ -330,15 +350,3 @@ table tr td:last-child {
   color: white;
 }
 </style>
-
-<script>
-import PaginationHeader from "../components/pagination-header.vue";
-import DoctorCard from "../components/doctor-card.vue";
-
-export default {
-  components: {
-    PaginationHeader,
-    DoctorCard,
-  },
-};
-</script>

@@ -1,11 +1,11 @@
 <template>
   <div class="icon-select">
     <div class="selected-icon">
-      <i class="bi" :class="selectedIcon"></i>
+      <i class="bi" :class="selectedIcon" />
     </div>
 
     <div class="cover" @click="showIconsList = !showIconsList">
-      <i class="bi bi-pen-fill" style="color: white"></i>
+      <i class="bi bi-pen-fill" style="color: white" />
     </div>
 
     <div class="icon-list row m-0" :class="showIconsList ? 'open' : 'close'">
@@ -16,21 +16,20 @@
           class="bi bi-x"
           style="font-size: 18px"
           @click="showIconsList = false"
-        ></i>
+        />
       </div>
       <i
-        :class="`${i} ${i === selectedIcon ? 'active' : ''}`"
-        class="icon bi col-1"
         v-for="(i, index) in showIcons"
         :key="index"
+        :class="`${i} ${i === selectedIcon ? 'active' : ''}`"
+        class="icon bi col-1"
         @click="selectIcon(i)"
-      >
-      </i>
+      />
 
       <small
+        v-show="lastMoreIndex < icons.length - 1"
         class="pb-2"
         @click="showMoreIcons"
-        v-show="lastMoreIndex < icons.length - 1"
       >
         Daha fazla göster
       </small>
@@ -39,8 +38,8 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import icons from "../../tools/bootstrap-icons-names";
+import Vue from 'vue'
+import icons from '../../tools/bootstrap-icons-names'
 
 interface IData {
   selectedIcon: string;
@@ -51,32 +50,37 @@ interface IData {
 }
 
 export default Vue.extend({
-  props: ["onSelect"],
+  props: {
+    onSelect: {
+      type: Function,
+      required: true
+    }
+  },
   data: (): IData => ({
-    selectedIcon: "bi-question",
+    selectedIcon: 'bi-question',
     icons,
     showIcons: icons.slice(0, 20),
     lastMoreIndex: 0,
-    showIconsList: false,
+    showIconsList: false
   }),
   methods: {
-    showMoreIcons() {
+    showMoreIcons () {
       this.showIcons.push(
         ...this.icons.slice(this.lastMoreIndex, this.lastMoreIndex + 50)
-      );
+      )
 
-      this.lastMoreIndex += 50;
+      this.lastMoreIndex += 50
     },
-    selectIcon(icon: string) {
-      this.selectedIcon = icon;
+    selectIcon (icon: string) {
+      this.selectedIcon = icon
       this.showIconsList = false
 
       if (this.onSelect) {
-        this.onSelect(icon);
+        this.onSelect(icon)
       }
-    },
-  },
-});
+    }
+  }
+})
 </script>
 
 <style scoped>

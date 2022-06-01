@@ -33,13 +33,13 @@
 </template>
 
 <script>
-import PaginationHeader from "../../components/pagination-header.vue";
-import DoctorCard from "../../components/doctor-card.vue";
+import PaginationHeader from '../../components/pagination-header.vue'
+import DoctorCard from '../../components/doctor-card.vue'
 
 export default {
   components: {
     PaginationHeader,
-    DoctorCard,
-  },
-};
+    DoctorCard
+  }
+}
 </script>

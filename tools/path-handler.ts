@@ -1,4 +1,4 @@
-function pathHandler(path: string): string {
+function pathHandler (path: string): string {
   if (process.client) {
     const basePATH = location.pathname.slice(0, 3)
 

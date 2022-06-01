@@ -3,8 +3,8 @@
     <div class="mt-5">
       <small class="text-muted">
         Eğer haftanın belirli bir günü kapalıysanız işlem kısmındaki seçeneği
-        "Kapalı" hale getirebilirsiniz. <br />
-        <br />
+        "Kapalı" hale getirebilirsiniz. <br>
+        <br>
 
         Hakkımızda sayfası için açılış saatleriniz.
       </small>
@@ -22,42 +22,46 @@
         <tr v-for="(i, index) in openingHours" :key="index">
           <td>{{ i.day }}</td>
           <td>
-            <input type="time" v-model="i.openingHour" />
+            <input v-model="i.openingHour" type="time">
           </td>
           <td>
-            <input type="time" v-model="i.closingHour" />
+            <input v-model="i.closingHour" type="time">
           </td>
           <td>
             <div class="form-check form-switch">
               <input
+                id="flexSwitchCheckChecked"
                 class="form-check-input"
                 type="checkbox"
                 role="switch"
-                id="flexSwitchCheckChecked"
                 :checked="i.offDay"
-              />
+              >
             </div>
           </td>
         </tr>
       </tbody>
     </table>
 
-    <h3 class="mt-5">Hizmetler için açıklama</h3>
+    <h3 class="mt-5">
+      Hizmetler için açıklama
+    </h3>
     <small class="text-muted">
       Hizmetleriniz hakkında genel bir açıklama metni.
     </small>
 
     <div class="form-floating mt-4">
       <textarea
+        id="text"
         class="form-control"
         placeholder="Metin"
-        id="text"
         style="height: 200px"
-      ></textarea>
+      />
       <label for="text">Metin</label>
     </div>
 
-    <h3 class="mt-5">Hakkımızda Metni</h3>
+    <h3 class="mt-5">
+      Hakkımızda Metni
+    </h3>
     <div style="height: 50vh" class="mb-5 pb-5">
       <VueEditor class="h-100" />
     </div>
@@ -65,7 +69,7 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue from 'vue'
 
 interface IOpeningHour {
   day: string;
@@ -82,48 +86,48 @@ export default Vue.extend({
   data: (): IData => ({
     openingHours: [
       {
-        day: "Pazartesi",
+        day: 'Pazartesi',
         openingHour: new Date(),
         closingHour: new Date(),
-        offDay: true,
+        offDay: true
       },
       {
-        day: "Salı",
+        day: 'Salı',
         openingHour: new Date(),
         closingHour: new Date(),
-        offDay: true,
+        offDay: true
       },
       {
-        day: "Çarşamba",
+        day: 'Çarşamba',
         openingHour: new Date(),
         closingHour: new Date(),
-        offDay: true,
+        offDay: true
       },
       {
-        day: "Perşembe",
+        day: 'Perşembe',
         openingHour: new Date(),
         closingHour: new Date(),
-        offDay: true,
+        offDay: true
       },
       {
-        day: "Cuma",
+        day: 'Cuma',
         openingHour: new Date(),
         closingHour: new Date(),
-        offDay: true,
+        offDay: true
       },
       {
-        day: "Cumartesi",
+        day: 'Cumartesi',
         openingHour: new Date(),
         closingHour: new Date(),
-        offDay: false,
+        offDay: false
       },
       {
-        day: "Pazar",
+        day: 'Pazar',
         openingHour: new Date(),
         closingHour: new Date(),
-        offDay: false,
-      },
-    ],
-  }),
-});
+        offDay: false
+      }
+    ]
+  })
+})
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="gallery-card">
-    <img :src="img" width="100%" />
+    <img :src="img" width="100%">
 
     <div class="cover">
       <h3>{{ title }}</h3>
@@ -10,11 +10,24 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue from 'vue'
 
 export default Vue.extend({
-  props: ["img", "title", "text"],
-});
+  props: {
+    img: {
+      type: String,
+      required: true
+    },
+    title: {
+      type: String,
+      required: true
+    },
+    text: {
+      type: String,
+      required: true
+    }
+  }
+})
 </script>
 
 <style scoped>

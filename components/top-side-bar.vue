@@ -3,15 +3,15 @@
     <div class="container-xl">
       <div class="row">
         <div class="item col-md-2">
-          <i class="bi bi-telephone-fill"></i> +440-98-5298
+          <i class="bi bi-telephone-fill" /> +440-98-5298
         </div>
 
         <div class="item col-md-2">
-          <i class="bi bi-envelope-fill"></i> info@example.com
+          <i class="bi bi-envelope-fill" /> info@example.com
         </div>
 
         <div class="item col-md-3">
-          <i class="bi bi-map-fill"></i> 121 King Street, Melbourne
+          <i class="bi bi-map-fill" /> 121 King Street, Melbourne
         </div>
       </div>
     </div>

@@ -49,7 +49,7 @@ const social: ISocial = {
 
 const dataList = { doctor, social }
 
-function cloneData(key: string) {
+function cloneData (key: string) {
   // @ts-expect-error
   const emptyData = dataList[key]
 
