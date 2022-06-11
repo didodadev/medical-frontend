@@ -34,6 +34,10 @@ export default {
     '@/plugins/vue2-editor'
   ],
 
+  axios: {
+    baseURL: 'htpp://localhost:4000/api'
+  },
+
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
