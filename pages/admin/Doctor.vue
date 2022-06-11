@@ -19,24 +19,36 @@
       <tbody>
         <tr v-for="(i, index) in doctors" :key="index">
           <td>{{ index + 1 }}</td>
-          <td>{{ i.fullname.split(" ")[0] }}</td>
-          <td>{{ i.fullname.split(" ")[1] }}</td>
+          <td>{{ i.fullName.split(" ")[0] }}</td>
+          <td>{{ i.fullName.split(" ")[1] }}</td>
           <td>{{ i.branch }}</td>
           <td class="actions">
-            <i class="bi bi-trash" style="margin-right: 1em" />
-            <i class="bi bi-pen-fill" />
+            <div class="d-flex">
+              <div :id="`popover-button-variant${index}`" href="#" :tabindex="index">
+                <i class="bi bi-trash" style="margin-right: 1em" />
+              </div>
+              <i class="bi bi-pen-fill" @click="editDoctor(i)" />
+
+              <b-popover
+                :target="`popover-button-variant${index}`"
+                variant="danger"
+                triggers="focus"
+              >
+                <button class="btn btn-danger" @click="deleteDoctor(i.seourl)">
+                  Onaylıyorum
+                </button>
+              </b-popover>
+            </div>
           </td>
         </tr>
       </tbody>
     </table>
 
     <div v-show="doctors.length === 0">
-      <small class="text-muted">
-        Doktor bulunamadı. &nbsp;&nbsp;
-      </small>
+      <small class="text-muted"> Doktor bulunamadı. &nbsp;&nbsp; </small>
 
       <button class="btn-sm btn btn-primary" @click="setModalShow(true)">
-        Doktor Ekle
+        {{doctor.id ? 'Kaydet' : 'Oluştur'}}
       </button>
     </div>
 
@@ -59,7 +71,8 @@
                 type="text"
                 class="form-control"
                 placeholder="İsim Soyisim"
-              >
+                v-model="doctor.fullName"
+              />
               <label for="fullname">
                 İsim Soyisim
                 <i class="required" />
@@ -74,7 +87,8 @@
                 type="text"
                 class="form-control"
                 placeholder="Alan"
-              >
+                v-model="doctor.branch"
+              />
               <label for="branch">
                 Alan
                 <i class="required" />
@@ -94,6 +108,7 @@
             class="form-control"
             placeholder="Hakkında"
             style="height: 100px"
+            v-model="doctor.about"
           />
           <label for="about">
             Hakkında
@@ -112,7 +127,7 @@
               class="form-control"
               placeholder="name@example.com"
               style="height: 50px"
-            >
+            />
             <label for="floatingInput">Sosyal medya linki</label>
           </div>
 
@@ -133,7 +148,7 @@
         </div>
 
         <div class="row">
-          <div v-for="(i, index) in doctor.socials" :key="index" class="col-1">
+          <div v-for="(i, index) in JSON.parse(doctor.socials)" :key="index" class="col-1">
             <div
               class="icon cover-wrapper centered"
               style="
@@ -159,7 +174,11 @@
       </template>
 
       <template #footer>
-        <button class="btn btn-primary" @click="createDoctor()">
+        <button
+          class="btn btn-primary"
+          @click="createDoctor()"
+          :disabled="loading"
+        >
           Doktoru Ekle
         </button>
       </template>
@@ -168,19 +187,19 @@
 </template>
 
 <script lang='ts'>
-import Vue from 'vue'
-import Modal from '../../components/ui/modal-component.vue'
-import IconSelect from '../../components/ui/icon-select.vue'
+import Vue from "vue";
+import Modal from "../../components/ui/modal-component.vue";
+import IconSelect from "../../components/ui/icon-select.vue";
 import getEmpty, {
   IEmptyDoctor,
   ISocial,
-  IViewDoctor
-} from '../../ts/empty-data-and-types'
-import UploadImage from '../../components/admin/upload-image.vue'
+  IViewDoctor,
+} from "../../ts/empty-data-and-types";
+import UploadImage from "../../components/admin/upload-image.vue";
 
 const errMessages = {
-  addSocialMedia: 'Lütfen bir simge seçiniz ve link ekleyiniz.'
-}
+  addSocialMedia: "Lütfen bir simge seçiniz ve link ekleyiniz.",
+};
 
 interface IData {
   doctors: IViewDoctor[];
@@ -189,57 +208,86 @@ interface IData {
   social: ISocial;
   err: string;
   range: number;
+  loading: boolean;
 }
 
 export default Vue.extend({
   components: {
     Modal,
     IconSelect,
-    UploadImage
+    UploadImage,
   },
   data: (): IData => ({
     doctors: [],
     show: false,
-    doctor: getEmpty('doctor'),
-    social: getEmpty('social'),
-    err: '',
+    doctor: getEmpty("doctor"),
+    social: getEmpty("social"),
+    err: "",
     range: 10,
+    loading: false,
   }),
   created() {
-    this.getDoctors()
+    this.getDoctors();
   },
   methods: {
     async getDoctors() {
-      this.doctors = await this.$axios.get(`/doctor?range=${this.range}`)
-    },
-    setBase64 (base64: string) {
-      console.log(base64)
+      this.doctors = (
+        await this.$axios.get(`/doctor?range=${this.range}`)
+      ).data.data;
 
-      this.doctor.image = base64
+      console.log(this.doctors);
+    },
+    setBase64(base64: string) {
+      this.doctor.image = base64;
     },
 
-    setModalShow (t: boolean) {
-      this.show = t
+    setModalShow(t: boolean) {
+      this.show = t;
     },
-    onSelect (i: string) {
-      this.social.icon = i
+    onSelect(i: string) {
+      this.social.icon = i;
     },
-    addSocialMedia () {
-      if (this.social.icon.trim() === '' || this.social.link.trim() === '') {
-        this.err = errMessages.addSocialMedia
+    addSocialMedia() {
+      if (this.social.icon.trim() === "" || this.social.link.trim() === "") {
+        this.err = errMessages.addSocialMedia;
       } else {
-        if (this.err === errMessages.addSocialMedia) { this.err = '' }
+        if (this.err === errMessages.addSocialMedia) {
+          this.err = "";
+        }
 
-        this.doctor.socials.push(this.social)
-        this.social = getEmpty('social')
+        this.doctor.socials.push(this.social);
+        this.social = getEmpty("social");
       }
     },
-    deleteIcon (index: number) {
-      this.doctor.socials.splice(index, 1)
+    deleteIcon(index: number) {
+      this.doctor.socials.splice(index, 1);
     },
-    createDoctor () {
-      console.log(this.doctor)
+    createDoctor() {
+      this.loading = true;
+
+      this.$axios
+        .post("/doctor", this.doctor)
+        .then(() => {
+          this.doctor = getEmpty("doctor");
+          this.getDoctors();
+          this.show = false
+        })
+        .finally(() => {
+          this.loading = false;
+        });
+    },
+    deleteDoctor(seourl) {
+      this.loading = true;
+
+      this.$axios
+        .delete(`/doctor/${seourl}`)
+        .then(this.getDoctors)
+        .finally(() => (this.loading = false));
+    },
+    editDoctor(doctor) {
+      this.doctor = doctor
+      this.show = true
     }
-  }
-})
+  },
+});
 </script>

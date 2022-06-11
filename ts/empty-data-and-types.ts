@@ -11,7 +11,7 @@ export interface IWorkingHours {
 export interface IViewDoctor {
   id: number
   seourl: string
-  fullname: string
+  fullName: string
   branch: string
   thumbnailURL: string
   about: string
@@ -19,7 +19,7 @@ export interface IViewDoctor {
 }
 
 export interface IDoctor {
-  fullname: string
+  fullName: string
   branch: string
   about: string
   image: string
@@ -27,7 +27,7 @@ export interface IDoctor {
 }
 
 export interface IEmptyDoctor {
-  fullname: string | null
+  fullName: string | null
   branch: string | null
   about: string | null
   image: string | null
@@ -35,11 +35,17 @@ export interface IEmptyDoctor {
 }
 
 const doctor: IEmptyDoctor = {
-  fullname: null,
+  fullName: null,
   branch: null,
   about: null,
   image: null,
   socials: []
+}
+
+const service = {
+  title: null,
+  content: null,
+  image: null
 }
 
 const social: ISocial = {

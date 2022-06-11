@@ -34,8 +34,10 @@ export default {
     '@/plugins/vue2-editor'
   ],
 
-  axios: {
-    baseURL: 'htpp://localhost:4000/api'
+  publicRuntimeConfig: {
+    axios: {
+      browserBaseURL: 'http://localhost:4000/api'
+    }
   },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -69,17 +71,12 @@ export default {
     }
   },
 
-  proxy: {
-    '/api/': 'http://localhost:4000'
-  },
-
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: 'http://localhost:4000/api/',
+    browserBaseURL: 'http://localhost:4000/api/',
     proxyHeaders: false,
-    credentials: false,
-    proxy: true
+    credentials: false
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

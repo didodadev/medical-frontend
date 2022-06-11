@@ -15,33 +15,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(i, index) in doctors" :key="index">
+        <tr v-for="(i, index) in services" :key="index">
           <td>{{ index + 1 }}</td>
-          <td>{{ i.name }}</td>
-          <td class="actions">
-            <i class="bi bi-trash" />
-          </td>
-        </tr>
-
-        <tr>
-          <td>1</td>
-          <td>Kalp ve cerrahi</td>
-          <td class="actions">
-            <i class="bi bi-trash" />
-          </td>
-        </tr>
-
-        <tr>
-          <td>2</td>
-          <td>Saç Ektirme</td>
-          <td class="actions">
-            <i class="bi bi-trash" />
-          </td>
-        </tr>
-
-        <tr>
-          <td>3</td>
-          <td>Doğum</td>
+          <td>{{ i.title }}</td>
           <td class="actions">
             <i class="bi bi-trash" />
           </td>
@@ -49,13 +25,13 @@
       </tbody>
     </table>
 
-    <!-- <small class="text-muted" v-show="doctors.length === 0">
-      Hizmet bulunamadı. &nbsp;&nbsp;
-    </small>
+    <div v-show="services.length === 0">
+      <small class="text-muted"> Hizmet bulunamadı. &nbsp;&nbsp; </small>
 
-    <button class="btn-sm btn btn-primary" @click="setModalShow(true)">
-      Hizmet Ekle
-    </button> -->
+      <button class="btn-sm btn btn-primary" @click="setModalShow(true)">
+        Hizmet Ekle
+      </button>
+    </div>
 
     <Modal
       title="Hizmet Ekle"
@@ -74,18 +50,19 @@
             type="text"
             class="form-control"
             placeholder="Hizmet Adı"
-          >
+            v-model="service.title"
+          />
           <label for="name">
             Hizmet Adı
             <i class="required" />
           </label>
         </div>
 
-        <VueEditor />
+        <VueEditor v-model="service.content" />
       </template>
 
       <template #footer>
-        <button class="btn btn-primary" @click="createDoctor()">
+        <button class="btn btn-primary" @click="createService()">
           Hizmet Ekle
         </button>
       </template>
@@ -93,76 +70,68 @@
   </div>
 </template>
 
-<script lang='ts'>
-import Vue from 'vue'
-import Modal from '../../components/ui/modal-component.vue'
-import IconSelect from '../../components/ui/icon-select.vue'
-import getEmpty, {
-  IEmptyDoctor,
-  ISocial,
-  IViewDoctor
-} from '../../ts/empty-data-and-types'
-import UploadImage from '../../components/admin/upload-image.vue'
+<script>
+import Vue from "vue";
+import Modal from "../../components/ui/modal-component.vue";
+import IconSelect from "../../components/ui/icon-select.vue";
+import getEmpty from "../../ts/empty-data-and-types";
+import UploadImage from "../../components/admin/upload-image.vue";
 
 const errMessages = {
-  addSocialMedia: 'Lütfen bir simge seçiniz ve link ekleyiniz.'
-}
-
-interface IData {
-  doctors: IViewDoctor[];
-  show: boolean;
-  doctor: IEmptyDoctor;
-  social: ISocial;
-  err: string;
-  range: number;
-}
+  addSocialMedia: "Lütfen bir simge seçiniz ve link ekleyiniz.",
+};
 
 export default Vue.extend({
   components: {
     Modal,
     IconSelect,
-    UploadImage
+    UploadImage,
   },
-  data: (): IData => ({
-    doctors: [],
+  data: () => ({
+    services: [],
     show: false,
-    doctor: getEmpty('doctor'),
-    social: getEmpty('social'),
-    err: '',
-    range: 10
+    service: getEmpty("service"),
+    social: getEmpty("social"),
+    err: "",
+    range: 10,
   }),
-  async created () {
-    console.log(this.doctors)
+  async created() {
+    this.getServices();
   },
   methods: {
-    setBase64 (base64: string) {
-      console.log(base64)
+    setBase64(base64) {
+      console.log(base64);
 
-      this.doctor.image = base64
+      this.service.image = base64;
     },
 
-    setModalShow (t: boolean) {
-      this.show = t
+    setModalShow(t) {
+      this.show = t;
     },
-    onSelect (i: string) {
-      this.social.icon = i
+    onSelect(i) {
+      this.social.icon = i;
     },
-    addSocialMedia () {
-      if (this.social.icon.trim() === '' || this.social.link.trim() === '') {
-        this.err = errMessages.addSocialMedia
+    async getServices() {
+      this.services = (await this.$axios.get("/service")).data.data;
+    },
+    addSocialMedia() {
+      if (this.social.icon.trim() === "" || this.social.link.trim() === "") {
+        this.err = errMessages.addSocialMedia;
       } else {
-        if (this.err === errMessages.addSocialMedia) { this.err = '' }
+        if (this.err === errMessages.addSocialMedia) {
+          this.err = "";
+        }
 
-        this.doctor.socials.push(this.social)
-        this.social = getEmpty('social')
+        this.doctor.socials.push(this.social);
+        this.social = getEmpty("social");
       }
     },
-    deleteIcon (index: number) {
-      this.doctor.socials.splice(index, 1)
+    deleteIcon(index) {
+      this.doctor.socials.splice(index, 1);
     },
-    createDoctor () {
-      console.log(this.doctor)
-    }
-  }
-})
+    createService() {
+      this.$axios.post('/service', this.service)
+    },
+  },
+});
 </script>

@@ -121,7 +121,7 @@ export default Vue.extend({
   position: sticky;
   top: 0;
   background: white;
-  z-index: 6;
+  z-index: 999;
 }
 
 .full-screen {
