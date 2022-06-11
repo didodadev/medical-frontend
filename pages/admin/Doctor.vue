@@ -23,39 +23,22 @@
           <td>{{ i.fullname.split(" ")[1] }}</td>
           <td>{{ i.branch }}</td>
           <td class="actions">
-            <i class="bi bi-trash" />
-          </td>
-        </tr>
-
-        <tr>
-          <td>1</td>
-          <td>Koray</td>
-          <td>Çetintaş</td>
-          <td>Kardiyolog</td>
-          <td class="actions">
-            <i class="bi bi-trash" />
-          </td>
-        </tr>
-
-        <tr>
-          <td>2</td>
-          <td>Polat</td>
-          <td>Poyraz</td>
-          <td>Kardiyolog</td>
-          <td class="actions">
-            <i class="bi bi-trash" />
+            <i class="bi bi-trash" style="margin-right: 1em" />
+            <i class="bi bi-pen-fill" />
           </td>
         </tr>
       </tbody>
     </table>
 
-    <!-- <small class="text-muted" v-show="doctors.length === 0">
-      Doktor bulunamadı. &nbsp;&nbsp;
-    </small> -->
+    <div v-show="doctors.length === 0">
+      <small class="text-muted">
+        Doktor bulunamadı. &nbsp;&nbsp;
+      </small>
 
-    <!-- <button class="btn-sm btn btn-primary" @click="setModalShow(true)">
-      Doktor Ekle
-    </button> -->
+      <button class="btn-sm btn btn-primary" @click="setModalShow(true)">
+        Doktor Ekle
+      </button>
+    </div>
 
     <Modal
       title="Doktor Ekle"
@@ -220,12 +203,15 @@ export default Vue.extend({
     doctor: getEmpty('doctor'),
     social: getEmpty('social'),
     err: '',
-    range: 10
+    range: 10,
   }),
-  async mounted () {
-    console.log(this.doctors)
+  created() {
+    this.getDoctors()
   },
   methods: {
+    async getDoctors() {
+      this.doctors = await this.$axios.get(`/doctor?range=${this.range}`)
+    },
     setBase64 (base64: string) {
       console.log(base64)
 
