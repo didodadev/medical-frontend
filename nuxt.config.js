@@ -31,7 +31,7 @@ export default {
   plugins: [
     '@/plugins/antd-ui',
     '@/plugins/bootstrap',
-    '@/plugins/vue2-editor'
+    '@/plugins/vue2-editor',
   ],
 
   publicRuntimeConfig: {

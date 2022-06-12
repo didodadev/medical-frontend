@@ -51,7 +51,7 @@ export default Vue.extend({
         this.mdContent = marked(
           mdContent.replaceAll(
             searchKey,
-            `<span class="mark">${searchKey}</span>`
+            `<span class="marked-text">${searchKey}</span>`
           )
         );
       }
@@ -60,10 +60,9 @@ export default Vue.extend({
 });
 </script>
 
-<style scoped>
-.mark {
-  background: black;
-  color: white;
+<style>
+.marked-text {
+  background: rgb(225, 225, 225) !important;
   padding: 0 !important;
 }
 </style>

@@ -1,23 +1,23 @@
 <template>
   <div>
-    <div v-show="imageBase64 !== ''" class="preview">
-      <input
-        id="uploadInput"
-        type="file"
-        style="display: none"
-        @change="onSelect($event)"
-      >
+    <input
+      id="uploadInput"
+      type="file"
+      style="display: none"
+      @change="onSelect($event)"
+    />
 
+    <div v-if="imageBase64 !== '' || (data !== '' && data)" class="preview">
       <label class="cover-wrapper" for="uploadInput">
         <div class="primary-cover">
           <i class="bi bi-pen-fill" style="font-size: 30px" />
         </div>
 
-        <img ref="image" alt="" class="w-100">
+        <img ref="image" :src="data ? publicURL(data) : imageBase64" alt="" class="w-100" />
       </label>
     </div>
 
-    <div v-show="imageBase64 === ''" class="upload-image centered">
+    <div v-else class="upload-image centered">
       <label for="uploadInput">
         <h4>
           <i class="bi bi-images" />
@@ -32,7 +32,8 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from "vue";
+import publicURL from "../../ts/public-url";
 
 interface IData {
   imageBase64: string;
@@ -42,34 +43,41 @@ export default Vue.extend({
   props: {
     setBase64: {
       type: Function,
-      required: true
-    }
+      required: true,
+    },
+    data: {
+      type: String,
+      required: true,
+    },
   },
   data: (): IData => ({
-    imageBase64: ''
+    imageBase64: "",
   }),
   methods: {
-    onSelect (e: Event) {
+    publicURL,
+    onSelect(e: Event) {
       // @ts-expect-error
-      const file = e.target.files[0]
-      const reader = new FileReader()
+      const file = e.target.files[0];
+      const reader = new FileReader();
 
-      if (!file) { return }
+      if (!file) {
+        return;
+      }
 
-      reader.addEventListener('loadend', () => {
-        this.setBase64(reader.result)
+      reader.addEventListener("loadend", () => {
+        this.setBase64(reader.result);
 
         // @ts-expect-error
-        this.imageBase64 = reader.result
+        this.imageBase64 = reader.result;
 
         // @ts-expect-error
-        this.$refs.image.src = reader.result
-      })
+        this.$refs.image.src = reader.result;
+      });
 
-      reader.readAsDataURL(file)
-    }
-  }
-})
+      reader.readAsDataURL(file);
+    },
+  },
+});
 </script>
 
 <style scoped>

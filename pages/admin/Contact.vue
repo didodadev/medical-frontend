@@ -12,6 +12,8 @@
             type="text"
             class="form-control"
             placeholder="Telefon Numarası"
+            v-model="data.phone1"
+            :disabled="loading"
           >
           <label for="phone1">Telefon Numarası 1</label>
         </div>
@@ -24,6 +26,8 @@
             type="text"
             class="form-control"
             placeholder="Telefon Numarası"
+            v-model="data.phone2"
+            :disabled="loading"
           >
           <label for="phone2">Telefon Numarası 2</label>
         </div>
@@ -36,6 +40,8 @@
             type="text"
             class="form-control"
             placeholder="Mail"
+            v-model="data.mail"
+            :disabled="loading"
           >
           <label for="mail">Mail</label>
         </div>
@@ -52,6 +58,8 @@
             type="text"
             class="form-control"
             placeholder="Konum"
+            v-model="data.location"
+            :disabled="loading"
           >
           <label for="mail">Konum</label>
         </div>
@@ -66,5 +74,34 @@
         </small>
       </div>
     </div>
+
+    <button class="btn btn-dark" @click="save" :disabled="loading">Kaydet</button>
   </div>
 </template>
+
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
+  data: () => ({
+    data: {},
+    loading: false
+  }),
+  created() {
+    this.getData()
+  },
+  methods: {
+    async getData() {
+      this.data = (await this.$axios.get('/contact')).data.data
+
+      console.log(this.data)
+    },
+    save() {
+      this.loading = true
+
+      this.$axios.post('/contact', this.data)
+        .finally(() => this.loading = false)
+    }
+  }
+})
+</script>
