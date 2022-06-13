@@ -80,7 +80,9 @@ export default Vue.extend({
       { icon: 'building', path: '/contracts', text: 'Kurumlar' },
       { icon: 'body-text', path: '/about', text: 'Hakkımızda' },
       { icon: 'house', path: '/home', text: 'Anasayfa' },
-      { icon: 'telephone', path: '/contact', text: 'İletişim' }
+      { icon: 'telephone', path: '/contact', text: 'İletişim' },
+      { icon: 'tag-fill', path: '/price', text: 'Fiyatlandırmalar' },
+      { icon: 'tag-fill', path: '/social', text: 'Sosyal Medya' },
     ],
     showMobileSideBar: false
   }),

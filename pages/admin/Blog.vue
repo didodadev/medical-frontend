@@ -9,13 +9,13 @@
   >
     <template v-slot:item="i">
       <td>
-        <img :src="publicURL(i.data.thumbnailURL)" width="100px">
+        <img :src="publicURL(i.data.thumbnailURL)" width="100px" />
       </td>
       <td>
-        {{i.data.title}}
+        {{ i.data.title }}
       </td>
       <td>
-        {{i.data.coverLetter}}
+        {{ i.data.coverLetter }}
       </td>
     </template>
   </PageLayout>
@@ -24,21 +24,20 @@
 <script lang="ts">
 import Vue from "vue";
 import PageLayout from "../../components/admin/page-layout.vue";
-import { IControllers, IDataField } from '../../ts/global.types'
-import { IBlogData, IBlogView } from '../../ts/data.types'
-import publicURL from '../../ts/public-url'
-
+import { IControllers, IDataField } from "../../ts/global.types";
+import { IBlogData, IBlogView } from "../../ts/data.types";
+import publicURL from "../../ts/public-url";
 
 const emptyData: IBlogView = {
-  title: '',
-  content: '',
-  coverLetter: ''
+  title: "",
+  content: "",
+  coverLetter: "",
 };
 
 const tableHeadKeys = {
   thumbnailURL: "Resim",
-  title: 'Başlık',
-  coverLetter: 'Ön Yazı',
+  title: "Başlık",
+  coverLetter: "Ön Yazı",
 };
 
 const dataFileds: IDataField[] = [
@@ -52,24 +51,26 @@ const dataFileds: IDataField[] = [
     label: "Başlık",
     bind: "title",
     type: "input",
+    EN: true,
   },
   {
     required: true,
     label: "Ön yazı",
     bind: "coverLetter",
     type: "input",
-    textArea: true
+    textArea: true,
+    EN: true
   },
   {
     required: true,
     bind: "content",
     type: "editor",
-    title: 'Blog İçeriği'
+    title: "Blog İçeriği",
+    EN: true
   },
 ];
 
-const controllers: IControllers<IBlogData> = {
-}
+const controllers: IControllers<IBlogData> = {};
 
 export default Vue.extend({
   data() {
@@ -84,7 +85,7 @@ export default Vue.extend({
     PageLayout,
   },
   methods: {
-    publicURL
-  }
+    publicURL,
+  },
 });
 </script>

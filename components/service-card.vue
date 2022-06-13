@@ -11,7 +11,7 @@
         {{ cover }}
       </p>
 
-      <NuxtLink :to="pathHandler('/services/example-service')">
+      <NuxtLink :to="pathHandler(`/services/${seourl}`)">
         <b-button variant="primary">
           {{ $t('read-more') }}
         </b-button>
@@ -37,7 +37,8 @@ export default Vue.extend({
     cover: {
       type: String,
       required: true
-    }
+    },
+    seourl: String
   },
   methods: {
     pathHandler

@@ -7,8 +7,7 @@
         <hr>
 
         <i class="bi bi-calendar2-week" />
-        <small>Jul 20, 2021</small> &nbsp;&nbsp;&nbsp;&nbsp;
-        <i class="bi bi-chat-text" /> <small>Comments</small>
+        <small> {{date}} </small> &nbsp;&nbsp;&nbsp;&nbsp;
 
         <p class="mt-3">
           <small class="text-muted">{{ cover }} </small>
@@ -38,6 +37,9 @@ export default Vue.extend({
     cover: {
       type: String,
       default: ''
+    },
+    date: {
+      type: String
     }
   }
 })

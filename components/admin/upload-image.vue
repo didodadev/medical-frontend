@@ -47,7 +47,6 @@ export default Vue.extend({
     },
     data: {
       type: String,
-      required: true,
     },
   },
   data: (): IData => ({

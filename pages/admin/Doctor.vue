@@ -59,12 +59,14 @@ const dataFileds: IDataField[] = [
     label: "Alan",
     bind: "branch",
     type: "input",
+    EN: true
   },
   {
     required: true,
     label: "Doktor Hakkında Açıklama Metni",
     bind: "about",
     type: "editor",
+    EN: true
   },
   {
     title: "Sosyal Medya Linkleri",

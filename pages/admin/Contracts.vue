@@ -5,14 +5,14 @@
     :tableHeadKeys="tableHeadKeys"
     :dataFields="dataFileds"
     :controllers="controllers"
-    url="/blog"
+    url="/contract"
   >
     <template v-slot:item="i">
       <td>
         <img :src="publicURL(i.data.thumbnailURL)" width="100px">
       </td>
       <td>
-        {{i.data.title}}
+        {{i.data.name}}
       </td>
     </template>
   </PageLayout>
@@ -46,7 +46,7 @@ const dataFileds: IDataField[] = [
   {
     required: true,
     label: "Kurum Adı",
-    bind: "title",
+    bind: "name",
     type: "input",
   },
   {
@@ -54,6 +54,7 @@ const dataFileds: IDataField[] = [
     title: "Kurum Açıklaması",
     bind: "content",
     type: "editor",
+    EN: true
   },
 ];
 

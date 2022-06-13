@@ -14,34 +14,16 @@
               {{ $t("about-opening-hours") }}
             </h5>
 
-            <br>
+            <br />
 
             <table>
               <tbody>
-                <tr>
-                  <td>Monday - Thrushday &nbsp;&nbsp;&nbsp;&nbsp;</td>
-                  <td>9:00 - 17:00</td>
-                </tr>
-                <tr>
-                  <td>Friday</td>
-                  <td>9:00 - 16:00</td>
-                </tr>
-                <tr>
-                  <td>Saturday</td>
-                  <td>0:00 - 16:00</td>
-                </tr>
-                <tr>
-                  <td>Sunday</td>
-                  <td>Closed</td>
+                <tr v-for="(i, key) in data.workingHours" :key="key">
+                  <td>{{ key }} &nbsp;&nbsp;&nbsp;&nbsp;</td>
+                  <td>{{ i.openingHour }} - {{ i.closingHour }}</td>
                 </tr>
               </tbody>
             </table>
-
-            <br>
-
-            <i class="bi bi-question-circle" style="color: var(--primary)" />
-            {{ $t("about-need-help") }} <br>
-            <small class="text-muted">Just make an appointment to get help from our experts.</small>
           </div>
           <div class="col-md-8" style="padding-left: 2em">
             <div class="row">
@@ -49,40 +31,24 @@
                 <h4 class="text-muted">
                   {{ $t("about") }}
                 </h4>
-                <h2>Medinov Hospital</h2>
-
-                <br>
 
                 <p class="text-muted">
-                  <i>
-                    One of the world’s leading hospitals providing safe &
-                    compassionate care at its best for everyone. <br>
-                    <br>
+                  <i v-html="isEn ? data.aboutTextEN : data.aboutText"></i>
 
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Atque commodi molestiae autem fugit consectetur dolor ullam
-                    illo ipsa numquam. <br>
-                    <br>
-
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Atque commodi molestiae autem fugit consectetur dolor ullam
-                    illo ipsa numquam.
-                  </i>
-
-                  <br>
-                  <br>
+                  <br />
+                  <br />
 
                   <img
                     src="https://kodesolution.com/html/2015/medinova-b5/images/signature.png"
                     alt=""
-                  >
+                  />
                 </p>
               </div>
               <div class="col-md-5">
                 <img
                   src="https://kodesolution.com/html/2015/medinova-b5/images/about/5.png"
                   alt=""
-                >
+                />
               </div>
             </div>
           </div>
@@ -93,66 +59,17 @@
             <h1>{{ $t("about-our-services") }}</h1>
 
             <p class="text-muted">
-              Eaque libero unde corrupti deleniti maxime ratione doloremque
-              suscipit perferendis aperiam labore debitis atque odit neque
-              possimus optio quo. Eaque libero unde corrupti deleniti maxime
-              ratione doloremque suscipit perferendis aperiam labore suscipit
-              perferendis aperiam labore debitis atque odit neque Eaque libero
-              unde corrupti deleniti maxime ratione doloremque suscipit
-              perferendis aperiam labore debitis atque odit neque possimus optio
-              quo.
+              {{ isEn ? data.servicesTextEN : data.servicesText }}
             </p>
 
             <div class="row services mt-5">
-              <div class="col-md-6 item">
+              <div class="col-md-6 item" v-for="(i, index) in services" :key="index">
                 <div class="icon">
                   <i class="bi bi-activity" />
                 </div>
 
                 <div class="content">
-                  <h5>Activity Service</h5>
-                  <p class="text-muted">
-                    consectetur adipisicing elit.
-                  </p>
-                </div>
-              </div>
-
-              <div class="col-md-6 item">
-                <div class="icon">
-                  <i class="bi bi-activity" />
-                </div>
-
-                <div class="content">
-                  <h5>Activity Service</h5>
-                  <p class="text-muted">
-                    consectetur adipisicing elit.
-                  </p>
-                </div>
-              </div>
-
-              <div class="col-md-6 item">
-                <div class="icon">
-                  <i class="bi bi-activity" />
-                </div>
-
-                <div class="content">
-                  <h5>Activity Service</h5>
-                  <p class="text-muted">
-                    consectetur adipisicing elit.
-                  </p>
-                </div>
-              </div>
-
-              <div class="col-md-6 item">
-                <div class="icon">
-                  <i class="bi bi-activity" />
-                </div>
-
-                <div class="content">
-                  <h5>Activity Service</h5>
-                  <p class="text-muted">
-                    consectetur adipisicing elit.
-                  </p>
+                  <h5> {{isEn ? i.titleEN : i.title}} </h5>
                 </div>
               </div>
             </div>
@@ -161,9 +78,9 @@
             <img
               src="https://kodesolution.com/html/2015/medinova-b5/images/services/sc4.jpg"
               width="100%"
-            >
+            />
 
-            <div class="accordion" role="tablist">
+            <!-- <div class="accordion" role="tablist">
               <b-card no-body class="mb-1">
                 <b-card-header header-tag="header" class="p-0" role="tab">
                   <div
@@ -247,7 +164,7 @@
                   </b-card-body>
                 </b-collapse>
               </b-card>
-            </div>
+            </div> -->
           </div>
         </div>
 
@@ -259,35 +176,15 @@
                 $t("about-our-doctors")
               }}</strong>
             </h1>
-
-            <p class="text-muted">
-              Explore Our Completed Services! Consectetur adipiscing elitt elit
-              tellus, luctus pulvinar dapibus leoconsectetur luctus nec.
-            </p>
           </div>
 
           <div class="row mt-5">
-            <div class="col-md-4">
+            <div class="col-md-6 col-xl-4" v-for="(i, index) in doctors" :key="index">
               <DoctorCard
-                img="https://kodesolution.com/html/2015/medinova-b5/images/team/t1.jpg"
-                name="Maria"
-                branch="Cardiolog"
-              />
-            </div>
-
-            <div class="col-md-4">
-              <DoctorCard
-                img="https://kodesolution.com/html/2015/medinova-b5/images/team/t1.jpg"
-                name="Maria"
-                branch="Cardiolog"
-              />
-            </div>
-
-            <div class="col-md-4">
-              <DoctorCard
-                img="https://kodesolution.com/html/2015/medinova-b5/images/team/t1.jpg"
-                name="Maria"
-                branch="Cardiolog"
+                :img="publicURL(i.thumbnailURL)"
+                :name="i.fullName"
+                :branch="isEn ? i.branchEN : i.branch"
+                :socials="i.socials"
               />
             </div>
           </div>
@@ -298,15 +195,40 @@
 </template>
 
 <script>
-import PaginationHeader from '../components/pagination-header.vue'
-import DoctorCard from '../components/doctor-card.vue'
+import PaginationHeader from "../components/pagination-header.vue";
+import DoctorCard from "../components/doctor-card.vue";
+import publicURL from '../ts/public-url'
 
 export default {
   components: {
     PaginationHeader,
-    DoctorCard
-  }
-}
+    DoctorCard,
+  },
+  data() {
+    return {
+      data: {},
+      isEn: false,
+      services: [],
+      doctors: [],
+    };
+  },
+  methods: {
+    publicURL
+  },
+  async created() {
+    if (this.$i18n._localeChainCache.en) {
+      this.isEn = true;
+    }
+
+    this.data = (await this.$axios.get("/about")).data.data;
+    this.services = (await this.$axios.get("/service?range=4")).data.data;
+    this.doctors = (await this.$axios.get("/doctor?range=3")).data.data.map(d => {
+      d.socials = JSON.parse(d.socials)
+      return d
+    });
+    this.data.workingHours = JSON.parse(this.data.workingHours);
+  },
+};
 </script>
 
 <style scoped>

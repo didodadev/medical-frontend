@@ -1,4 +1,4 @@
-export type IDataFieldTypes = 'input' | 'editor' | 'image' | 'icon'
+export type IDataFieldTypes = 'input' | 'editor' | 'image' | 'icon' | 'single-icon'
 
 export interface IDataField {
   title?: string
@@ -8,6 +8,7 @@ export interface IDataField {
   label?: string
   inputType?: string
   textArea?: boolean
+  EN?: boolean
 }
 
 export type IController<T> = (d: T) => {

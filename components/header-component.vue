@@ -3,10 +3,7 @@
     <div class="container">
       <div class="row justify-content-between align-items-center">
         <div class="col-2">
-          <img
-            src="../assets/images/logo.png"
-            width="100%"
-          >
+          <img src="../assets/images/logo.png" width="100%" />
         </div>
 
         <div class="col-xl-10 d-none d-xl-block">
@@ -37,27 +34,40 @@
         </div>
 
         <div class="d-block d-xl-none col-2 mt-2">
-          <i class="bi bi-list" style="font-size: 30px" @click="changeShowDrawer(true)" />
+          <i
+            class="bi bi-list"
+            style="font-size: 30px"
+            @click="changeShowDrawer(true)"
+          />
         </div>
 
-        <div class="bottom d-flex justify-content-center col-1 m-auto mb-3">
-          <i
-            class="bi bi-search"
-            style="font-size: 18px"
-            @click="openSearch()"
+        <div
+          class="
+            bottom
+            d-flex
+            align-items-center
+            justify-content-center
+            col-1
+            m-auto
+            mb-3
+          "
+          style="cursor: pointer"
+        >
+          <img
+            src="../assets/images/en.webp"
+            alt="en"
+            width="30"
+            height="20"
+            @click="changeLang('en')"
           />
-
-          <!-- @ts-expected-error -->
-          <a-modal v-model:visible="showSearch" centered footer="">
-            <div class="search-input">
-              <input
-                type="text"
-                :placeholder="$t('header-search-placeholder')"
-              >
-
-              <i class="bi bi-search" />
-            </div>
-          </a-modal>
+          &nbsp;&nbsp;&nbsp;
+          <img
+            src="../assets/images/tr.svg"
+            alt="tr"
+            width="30"
+            height="20"
+            @click="changeLang('tr')"
+          />
         </div>
       </div>
     </div>
@@ -73,7 +83,10 @@
           :class="isActive(i.path, i.extraKey)"
         >
           <div class="title">
-            <NuxtLink :to="pathHandler(i.path)" @click="changeShowDrawer(false)">
+            <NuxtLink
+              :to="pathHandler(i.path)"
+              @click="changeShowDrawer(false)"
+            >
               {{ $t(i.i18nTitle) }}
             </NuxtLink>
 
@@ -94,98 +107,108 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import pathHandler from '../tools/path-handler'
-
-interface IListItem {
-  i18nTitle: string;
-  path: string;
-}
-
-interface IList {
-  i18nTitle: string;
-  path: string;
-  list?: IListItem[];
-  extraKey?: string
-}
-
-interface IData {
-  headerNavs: IList[];
-  showSearch: boolean;
-  showDrawer: boolean;
-}
+import Vue from "vue";
+import pathHandler from "../tools/path-handler";
 
 export default Vue.extend({
-  data (): IData {
+  data() {
     return {
       headerNavs: [
         {
-          i18nTitle: 'header-home',
-          path: '/home'
+          i18nTitle: "header-home",
+          path: "/home",
         },
         {
-          i18nTitle: 'header-about',
-          path: '/about'
+          i18nTitle: "header-about",
+          path: "/about",
         },
         {
-          i18nTitle: 'header-services',
-          path: '/services',
-          extraKey: 'service'
+          i18nTitle: "header-services",
+          path: "/services",
+          extraKey: "service",
         },
         {
-          i18nTitle: 'header-contact',
-          path: '/contact'
+          i18nTitle: "header-contact",
+          path: "/contact",
         },
         {
-          i18nTitle: 'header-doctors',
-          path: '/doctors',
-          extraKey: 'doctor'
+          i18nTitle: "header-doctors",
+          path: "/doctors",
+          extraKey: "doctor",
         },
         {
-          i18nTitle: 'header-contract',
-          path: '/contracts',
-          extraKey: 'contract'
-        }
+          i18nTitle: "header-contract",
+          path: "/contracts",
+          extraKey: "contract",
+        },
       ],
       showSearch: false,
-      showDrawer: false
-    }
+      showDrawer: false,
+      isEn: false,
+    };
   },
-  mounted () {
-    this.$forceUpdate()
+  mounted() {
+    // @ts-expect-error
+    if (this.$i18n._localeChainCache.en) {
+      this.isEn = true;
+    }
+
+    this.$forceUpdate();
   },
   methods: {
     pathHandler,
 
-    openSearch () {
-      this.showSearch = true
+    openSearch() {
+      this.showSearch = true;
     },
 
-    changeShowDrawer (t: boolean) {
-      this.showDrawer = t
+    changeShowDrawer(t: boolean) {
+      this.showDrawer = t;
     },
 
-    isActive (p: string, e: string = 'unknow'): string {
-      const handlePath = pathHandler(p)
-      let rootPath = this.$route.path
+    isActive(p: string, e: string = "unknow"): string {
+      const handlePath = pathHandler(p);
+      let rootPath = this.$route.path;
 
-      if (rootPath.endsWith('/')) { rootPath = rootPath.slice(0, rootPath.length - 1) }
+      if (rootPath.endsWith("/")) {
+        rootPath = rootPath.slice(0, rootPath.length - 1);
+      }
 
-      if (rootPath === handlePath || rootPath.includes(e)) { return 'active' }
+      if (rootPath === handlePath || rootPath.includes(e)) {
+        return "active";
+      }
 
-      return ''
-    }
-  }
-})
+      return "";
+    },
+
+    changeLang(lang: string) {
+      this.$i18n.setLocale(lang);
+    },
+  },
+});
 </script>
 
 <style scoped>
+/* .lang-select {
+  padding: 6px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+}
+
+div[class="lang-select active-lang"] {
+  background-color: var(--secondary);
+  opacity: .4;
+} */
+
 .header {
   background: white;
   z-index: 990999;
   position: sticky;
   top: 0;
-  border-bottom: 1px solid var(--border-1)
+  border-bottom: 1px solid var(--border-2);
 }
 
 .search-input {
@@ -217,7 +240,7 @@ export default Vue.extend({
 }
 
 .nav-item {
-  margin: .6em;
+  margin: 0.6em;
   position: relative;
 }
 
@@ -283,7 +306,7 @@ export default Vue.extend({
   z-index: 999;
   opacity: 0;
   visibility: hidden;
-  transition: .2s;
+  transition: 0.2s;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -297,7 +320,7 @@ export default Vue.extend({
   position: absolute;
   right: -20em;
   top: 0;
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .drawer .shadow {
@@ -307,7 +330,7 @@ export default Vue.extend({
   bottom: 0;
   left: 0;
   background: black;
-  opacity: .3;
+  opacity: 0.3;
   z-index: -1 !important;
 }
 

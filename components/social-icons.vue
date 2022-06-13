@@ -1,18 +1,25 @@
 <template>
   <div class="socials">
-    <div class="item">
-      <i class="bi bi-instagram" />
-    </div>
-
-    <div class="item">
-      <i class="bi bi-facebook" />
-    </div>
-
-    <div class="item">
-      <i class="bi bi-youtube" />
+    <div class="item" v-for="(i, index) in data" :key="index">
+      <a :href="i.link">
+        <i class="bi" :class="i.icon" />
+      </a>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      data: []
+    }
+  },
+  async created() {
+    this.data = (await this.$axios.get('/social')).data.data
+  }
+}
+</script>
 
 <style scoped>
 .socials {

@@ -64,24 +64,24 @@
           <div class="col-md-6">
             <h5> <i class="bi bi-telephone-fill" /> &nbsp; {{ $t('phone') }} 1 </h5>
             <p class="text-muted">
-              0546 789 0567
+              {{data.phone1}}
             </p>
 
             <h5> <i class="bi bi-telephone-fill" /> &nbsp; {{ $t('phone') }} 2 </h5>
             <p class="text-muted">
-              0546 789 5678
+              {{data.phone2}}
             </p>
 
             <h5> <i class="bi bi-envelope" /> &nbsp; Email </h5>
             <p class="text-muted">
-              infohospital@gmail.com
+              {{data.mail}}
             </p>
           </div>
         </div>
 
         <iframe
           class="mt-5"
-          src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d24032.45208615568!2d29.042556698949795!3d41.15511822241542!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1str!2str!4v1653470364070!5m2!1str!2str"
+          :src="data.location"
           width="100%"
           height="450"
           style="border: 0"
@@ -100,6 +100,14 @@ import PaginationHeader from '../components/pagination-header.vue'
 export default {
   components: {
     PaginationHeader
+  },
+  data() {
+    return {
+      data: {}
+    }
+  },
+  async created() {
+    this.data = (await this.$axios.get('/contact')).data.data
   }
 }
 </script>

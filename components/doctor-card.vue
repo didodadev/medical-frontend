@@ -1,9 +1,12 @@
 <template>
-  <b-card
-    :img-src="img"
-    style="border: none; border-radius: 5px"
-    class="shadow"
-  >
+  <b-card style="border: none; border-radius: 5px" class="shadow">
+    <div class="text-center">
+      <img
+        class="card-img img-fluid"
+        :src="img"
+        style="max-width: 100%; max-height: 300px; width: auto; height: auto"
+      />
+    </div>
     <b-card-body class="p-3">
       <h2>{{ name }}</h2>
       <p class="text-muted">
@@ -24,20 +27,17 @@
         </tbody>
       </table>
 
-      <br>
+      <br />
 
       <div class="socials">
-        <div class="item">
-          <i class="bi bi-instagram" />
-        </div>
-
-        <div class="item">
-          <i class="bi bi-facebook" />
-        </div>
-
-        <div class="item">
-          <i class="bi bi-twitter" />
-        </div>
+        <a
+          :href="i.link"
+          class="item"
+          v-for="(i, index) in socials"
+          :key="index"
+        >
+          <i class="bi" :class="i.icon" style="color: white;" />
+        </a>
       </div>
     </b-card-body>
   </b-card>
@@ -48,18 +48,19 @@ export default {
   props: {
     img: {
       type: String,
-      required: true
+      required: true,
     },
     name: {
       type: String,
-      required: true
+      required: true,
     },
     branch: {
       type: String,
-      required: true
-    }
-  }
-}
+      required: true,
+    },
+    socials: Array,
+  },
+};
 </script>
 
 <style scoped>

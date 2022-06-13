@@ -15,52 +15,25 @@
       @sliding-start="onSlideStart"
       @sliding-end="onSlideEnd"
     >
-      <!-- Text slides with image -->
-      <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=52" />
-
-      <!-- Slides with custom text -->
-      <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=54" />
-
-      <!-- Slides with image only -->
-      <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=58" />
-
-      <!-- Slides with img slot -->
-      <!-- Note the classes .d-block and .img-fluid to prevent browser default image alignment -->
-      <b-carousel-slide>
-        <template #img>
-          <img
-            class="d-block img-fluid w-100"
-            width="1024"
-            height="480"
-            src="https://picsum.photos/1024/480/?image=55"
-            alt="image slot"
-          />
-        </template>
-      </b-carousel-slide>
+      <b-carousel-slide
+        v-for="(i, index) in data.slide"
+        :key="index"
+        :img-src="publicURL(i)"
+      />
     </b-carousel>
 
     <div class="white-block p-4">
       <div class="container">
         <div class="row justify-content-between">
           <div class="col-md-5">
-            <p>Welcome To</p>
-
-            <h1>Medianova Conference 2021</h1>
-            <h4 class="mt-5">121 King Street Melbourne</h4>
+            <h1>{{ data[isEn ? "welcomeTitleEN" : "welcomeTitle"] }}</h1>
 
             <p class="text-muted">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum
-              nisi unde tempora osim aspernatur est excepturi quiaam debitis
-              sequi voluptatem ab tenetur repellat amet dicta facere quas quos
-              ut, illum iste sed cupiditate sunt, laboriosam. Voluptas pariat
-              voluptatem, Cum veritatis, nemo minima deserunt molestias. Lorem
-              ipsum dolor sit amet, consectetur adipisicing elit cum elit. Amet
-              dignissimos atque voluptas pariatur excepturi quiaam debitis sequi
-              voluptatem ab tenetur repellat.
+              {{ data[isEn ? "welcomeTextEN" : "welcomeText"] }}
             </p>
           </div>
 
-          <div class="col-md-6">
+          <!-- <div class="col-md-6">
             <div class="row">
               <div class="col-md-5 l-bg-primary p-3 m-1">
                 <h1><i class="bi bi-activity" /></h1>
@@ -89,7 +62,7 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
 
         <div class="text-center mt-5">
@@ -97,38 +70,10 @@
             {{ $t("home-our") }}
             <strong class="l-text-primary"> {{ $t("home-services") }} </strong>
           </h1>
-          <p class="text-muted">
-            Explore Our Completed Services! Consectetur adipiscing elitt elit
-            tellus, luctus pulvinar dapibus leoconsectetur luctus nec.
-          </p>
         </div>
-
         <div class="row services">
-          <div class="col-md-4">
-            <ServiceCard
-              img="https://kodesolution.com/html/2015/medinova-b5/images/services/ws1.jpg"
-              cover="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem
-                  autem voluptatem obcaecati!"
-              name="Activity Service"
-            />
-          </div>
-
-          <div class="col-md-4">
-            <ServiceCard
-              img="https://kodesolution.com/html/2015/medinova-b5/images/services/ws1.jpg"
-              cover="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem
-                  autem voluptatem obcaecati!"
-              name="Activity Service"
-            />
-          </div>
-
-          <div class="col-md-4">
-            <ServiceCard
-              img="https://kodesolution.com/html/2015/medinova-b5/images/services/ws1.jpg"
-              cover="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem
-                  autem voluptatem obcaecati!"
-              name="Activity Service"
-            />
+          <div class="col-md-4" v-for="(i, index) in services" :key="index">
+            <ServiceCard :img="publicURL(i.thumbnailURL)" :name="isEn ? i.titleEN : i.title" />
           </div>
         </div>
       </div>
@@ -140,87 +85,27 @@
             <strong class="l-text-primary"> {{ $t("home-pricing") }} </strong>
             {{ $t("home-fees") }}
           </h1>
-          <p class="text-muted">
-            Explore Our Completed Services! Consectetur adipiscing elitt elit
-            tellus, luctus pulvinar dapibus leoconsectetur luctus nec.
-          </p>
         </div>
 
         <div class="row">
-          <div class="col-md-4 mb-4">
+          <div class="col-md-3 mb-4 shadow" v-for="(i, index) in price" :key="index">
             <div class="ticket text-center">
               <div>
                 <div class="icon">
                   <i class="bi bi-activity" />
                 </div>
 
-                <h3>Activity</h3>
-                <small class="text-muted"> Hurry to gap your offer now </small>
+                <h3> {{isEn ? i.titleEN : i.title}} </h3>
+                <small class="text-muted"> {{isEn ? i.explanationEN : i.explanation }} </small>
 
                 <div class="price mt-3">
-                  <span class="text-muted">$</span>
+                  <span class="text-muted"> {{isEn ? '$' : '₺'}} </span>
                   <span
                     style="font-size: 40px !important"
                     class="l-text-primary"
-                    >129</span
+                    > {{i.price}} </span
                   >
                 </div>
-
-                <b-button variant="primary" class="mt-4">
-                  {{ $t("home-get-offer") }}
-                </b-button>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 mb-4">
-            <div class="ticket text-center">
-              <div>
-                <div class="icon">
-                  <i class="bi bi-activity" />
-                </div>
-
-                <h3>Activity</h3>
-                <small class="text-muted"> Hurry to gap your offer now </small>
-
-                <div class="price mt-3">
-                  <span class="text-muted">$</span>
-                  <span
-                    style="font-size: 40px !important"
-                    class="l-text-primary"
-                    >129</span
-                  >
-                </div>
-
-                <b-button variant="primary" class="mt-4">
-                  {{ $t("home-get-offer") }}
-                </b-button>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 mb-4">
-            <div class="ticket text-center">
-              <div>
-                <div class="icon">
-                  <i class="bi bi-activity" />
-                </div>
-
-                <h3>Activity</h3>
-                <small class="text-muted"> Hurry to gap your offer now </small>
-
-                <div class="price mt-3">
-                  <span class="text-muted">$</span>
-                  <span
-                    style="font-size: 40px !important"
-                    class="l-text-primary"
-                    >129</span
-                  >
-                </div>
-
-                <b-button variant="primary" class="mt-4">
-                  {{ $t("home-get-offer") }}
-                </b-button>
               </div>
             </div>
           </div>
@@ -233,66 +118,13 @@
           {{ $t("home-our") }}
           <strong class="l-text-primary"> {{ $t("home-gallery") }} </strong>
         </h1>
-        <p class="text-muted">
-          Explore Our Completed Services! Consectetur adipiscing elitt elit
-          tellus, luctus pulvinar dapibus leoconsectetur luctus nec.
-        </p>
 
         <div class="row justify-content-center mt-5 gallery">
-          <div class="categories col-12">
-            <div class="item active">
-              {{ $t("home-all") }}
-            </div>
-            <div class="item">LABARATORY</div>
-            <div class="item">SURGERY</div>
-            <div class="item">ORTHOPEDICS</div>
-          </div>
-
-          <div class="col-md-4 item mb-3">
+          <div class="col-md-4 item mb-3" v-for="(i, index) in gallery" :key="index">
             <GalleryCard
-              img="https://kodesolution.com/html/2015/medinova-b5/images/gallery/1.jpg"
-              title="Title"
-              text="tellus, luctus pulvinar dapibus leoconsectetur luctus nec."
-            />
-          </div>
-
-          <div class="col-md-4 item mb-3">
-            <GalleryCard
-              img="https://kodesolution.com/html/2015/medinova-b5/images/gallery/1.jpg"
-              title="Title"
-              text="tellus, luctus pulvinar dapibus leoconsectetur luctus nec."
-            />
-          </div>
-
-          <div class="col-md-4 item mb-3">
-            <GalleryCard
-              img="https://kodesolution.com/html/2015/medinova-b5/images/gallery/1.jpg"
-              title="Title"
-              text="tellus, luctus pulvinar dapibus leoconsectetur luctus nec."
-            />
-          </div>
-
-          <div class="col-md-4 item mb-3">
-            <GalleryCard
-              img="https://kodesolution.com/html/2015/medinova-b5/images/gallery/1.jpg"
-              title="Title"
-              text="tellus, luctus pulvinar dapibus leoconsectetur luctus nec."
-            />
-          </div>
-
-          <div class="col-md-4 item mb-3">
-            <GalleryCard
-              img="https://kodesolution.com/html/2015/medinova-b5/images/gallery/1.jpg"
-              title="Title"
-              text="tellus, luctus pulvinar dapibus leoconsectetur luctus nec."
-            />
-          </div>
-
-          <div class="col-md-4 item mb-3">
-            <GalleryCard
-              img="https://kodesolution.com/html/2015/medinova-b5/images/gallery/1.jpg"
-              title="Title"
-              text="tellus, luctus pulvinar dapibus leoconsectetur luctus nec."
+              :img="publicURL(i.thumbnailURL)"
+              :title="isEn ? i.titleEN : i.title"
+              :text="isEn ? i.subTitleEN : i.subTitle"
             />
           </div>
         </div>
@@ -307,42 +139,16 @@
             <strong class="l-text-primary"> {{ $t("home-latest") }} </strong>
             {{ $t("home-news") }}
           </h1>
-          <p class="text-muted">
-            Explore Our Completed Services! Consectetur adipiscing elitt elit
-            tellus, luctus pulvinar dapibus leoconsectetur luctus nec.
-          </p>
         </div>
 
         <div class="row blogs">
           <div class="col-md-4 mb-4">
-            <NuxtLink :to="pathHandler('/blog/test')">
+            <NuxtLink :to="pathHandler(`/blog/${i.seourl}`)" v-for="(i, index) in blog" :key="index">
               <BLogCard
-                img="https://kodesolution.com/html/2015/medinova-b5/images/blog/b1.jpg"
-                title="Capitalize on low hanging fruit to identify a ballpark test"
-                cover="Lorem ipsum dolor sit amet, consectetur adipisi cing elit.
-                    Molestias eius illum libero dolor nobis...."
-              />
-            </NuxtLink>
-          </div>
-
-          <div class="col-md-4 mb-4">
-            <NuxtLink :to="pathHandler('/blog/test')">
-              <BLogCard
-                img="https://kodesolution.com/html/2015/medinova-b5/images/blog/b1.jpg"
-                title="Capitalize on low hanging fruit to identify a ballpark test"
-                cover="Lorem ipsum dolor sit amet, consectetur adipisi cing elit.
-                    Molestias eius illum libero dolor nobis...."
-              />
-            </NuxtLink>
-          </div>
-
-          <div class="col-md-4 mb-4">
-            <NuxtLink :to="pathHandler('/blog/test')">
-              <BLogCard
-                img="https://kodesolution.com/html/2015/medinova-b5/images/blog/b1.jpg"
-                title="Capitalize on low hanging fruit to identify a ballpark test"
-                cover="Lorem ipsum dolor sit amet, consectetur adipisi cing elit.
-                    Molestias eius illum libero dolor nobis...."
+                :date="i.createdDate"
+                :img="publicURL(i.thumbnailURL)"
+                :title="isEn ? i.titleEN : i.title"
+                :cover="isEn ? i.coverLetterEN : i.coverLetter"
               />
             </NuxtLink>
           </div>
@@ -357,6 +163,7 @@ import pathHandler from "../tools/path-handler";
 import ServiceCard from "../components/service-card.vue";
 import GalleryCard from "../components/gallery-card.vue";
 import BLogCard from "../components/blog-card.vue";
+import publicURL from "../ts/public-url";
 
 export default Vue.extend({
   name: "IndexPage",
@@ -367,10 +174,17 @@ export default Vue.extend({
   },
   data: () => ({
     slide: 0,
+    data: {},
     sliding: true,
+    isEn: false,
+    services: [],
+    gallery: [],
+    blog: [],
+    price: []
   }),
   methods: {
     pathHandler,
+    publicURL,
 
     onSlideStart() {
       this.sliding = true;
@@ -378,6 +192,21 @@ export default Vue.extend({
     onSlideEnd() {
       this.sliding = false;
     },
+  },
+  async created() {
+    console.log(this);
+    // @ts-expect-error
+    if (this.$i18n._localeChainCache.en) {
+      this.isEn = true;
+    }
+
+    this.data = (await this.$axios.get("/home")).data.data;
+    this.services = (await this.$axios.get("/service?range=3")).data.data;
+    this.gallery = (await this.$axios.get("/image?range=6")).data.data;
+    this.blog = (await this.$axios.get("/blog?range=3")).data.data;
+    this.price = (await this.$axios.get("/price?range=3")).data.data;
+    // @ts-expect-error
+    this.data.slide = JSON.parse(this.data.slide);
   },
 });
 </script>

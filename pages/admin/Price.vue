@@ -1,18 +1,21 @@
 <template>
   <PageLayout
-    name="Hizmet"
+    name="Fiyatlandırma"
     :emptyData="emptyData"
     :tableHeadKeys="tableHeadKeys"
     :dataFields="dataFileds"
     :controllers="controllers"
-    url="/service"
+    url="/price"
   >
     <template v-slot:item="i">
       <td>
-        <img :src="publicURL(i.data.thumbnailURL)" width="100px">
+        {{i.data.title}}
       </td>
       <td>
-        {{i.data.title}}
+        {{i.data.explanation}}
+      </td>
+      <td>
+        {{i.data.price}}
       </td>
     </template>
   </PageLayout>
@@ -33,37 +36,34 @@ const emptyData = {
 };
 
 const tableHeadKeys = {
-  thumbnailURL: "Resim",
   title: "İsim",
+  explanation: "Açıklama",
+  price: "Fiyat"
 };
 
 const dataFileds: IDataField[] = [
   {
-    title: "Hizmet Ön Resmi",
-    type: "image",
-    bind: "image",
+    title: "Fiyat Adı",
+    type: "input",
+    bind: "title",
+    EN: true
   },
   {
     required: true,
-    label: "Hizmet Adı",
-    bind: "title",
+    label: "Fiyat Açıklaması (Kısa bir cümle olması gerekir)",
+    bind: "explanation",
     type: "input",
     EN: true
   },
   {
-    title: "Hizmet Açıklaması",
-    bind: "content",
-    type: "editor",
+    title: "Fiyat",
+    bind: "price",
+    type: "input",
     EN: true
   },
 ];
 
 const controllers: IControllers<IServiceData> = {
-  title: (d) => d.title === '' ? { err: 'Hizmet adı doldurulması zorunlu bir alandır.' } : {},
-  image: (d) => {
-    if (d.thumbnailURL) return {}
-    return (d.image === '' || !d.image) ? { err: 'Hizmet için resim yüklenmelidir' } : {}
-  }
 }
 
 export default Vue.extend({

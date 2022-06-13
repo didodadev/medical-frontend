@@ -1,18 +1,18 @@
 <template>
   <PageLayout
-    name="Hizmet"
+    name="Sosyal Medya"
     :emptyData="emptyData"
     :tableHeadKeys="tableHeadKeys"
     :dataFields="dataFileds"
     :controllers="controllers"
-    url="/service"
+    url="/social"
   >
     <template v-slot:item="i">
       <td>
-        <img :src="publicURL(i.data.thumbnailURL)" width="100px">
+        <i class="bi" :class="i.data.icon"></i>
       </td>
       <td>
-        {{i.data.title}}
+        {{i.data.link}}
       </td>
     </template>
   </PageLayout>
@@ -22,48 +22,35 @@
 import Vue from "vue";
 import PageLayout from "../../components/admin/page-layout.vue";
 import { IControllers, IDataField } from '../../ts/global.types'
-import { IServiceView, IServiceData } from '../../ts/data.types'
+import { IServiceData } from '../../ts/data.types'
 import publicURL from '../../ts/public-url'
 
 
 const emptyData = {
-  title: "",
-  content: "",
-  image: "",
+  link: '',
+  icon: ''
 };
 
 const tableHeadKeys = {
-  thumbnailURL: "Resim",
-  title: "İsim",
+  icon: "İkon",
+  link: "Bağlantı",
 };
 
 const dataFileds: IDataField[] = [
   {
-    title: "Hizmet Ön Resmi",
-    type: "image",
-    bind: "image",
-  },
-  {
     required: true,
-    label: "Hizmet Adı",
-    bind: "title",
-    type: "input",
-    EN: true
+    label: "Link",
+    bind: "link",
+    type: "input"
   },
   {
-    title: "Hizmet Açıklaması",
-    bind: "content",
-    type: "editor",
-    EN: true
+    title: "İkon",
+    type: "single-icon",
+    bind: "icon",
   },
 ];
 
 const controllers: IControllers<IServiceData> = {
-  title: (d) => d.title === '' ? { err: 'Hizmet adı doldurulması zorunlu bir alandır.' } : {},
-  image: (d) => {
-    if (d.thumbnailURL) return {}
-    return (d.image === '' || !d.image) ? { err: 'Hizmet için resim yüklenmelidir' } : {}
-  }
 }
 
 export default Vue.extend({

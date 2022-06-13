@@ -44,7 +44,7 @@
                 variant="danger"
                 triggers="focus"
               >
-                <button class="btn btn-danger" @click="remove(i.seourl)">
+                <button class="btn btn-danger" @click="remove(i.seourl || i.id)">
                   Onaylıyorum
                 </button>
               </b-popover>
@@ -72,6 +72,20 @@
         <div class="field mb-3" v-for="(i, index) in dataFields" :key="index">
           <h5>{{ i.title }}</h5>
 
+          <div class="form-check form-switch" v-if="i.EN">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              role="switch"
+              id="flexSwitchCheckChecked"
+              :checked="enFiled[i.bind]"
+              @change="changeEnFiled(i.bind)"
+            />
+            <label class="form-check-label" for="flexSwitchCheckChecked">
+              {{ i.label }} {{ enFiled[i.bind] ? "İngilizce" : "Türkçe" }}
+            </label>
+          </div>
+
           <!-- Image Field -->
           <div v-if="i.type === 'image'">
             <UploadImage :setBase64="setImage" :data="data.thumbnailURL" />
@@ -84,7 +98,7 @@
                 :id="`filed-input${index}`"
                 class="form-control"
                 :placeholder="i.label"
-                v-model.trim="data[i.bind]"
+                v-model.trim="data[enFiled[i.bind] ? i.bind + 'EN' : i.bind]"
                 v-if="i.textArea"
                 style="height: 200px"
               ></textarea>
@@ -93,10 +107,10 @@
                 class="form-control"
                 :placeholder="i.label"
                 :type="i.inputType"
-                v-model.trim="data[i.bind]"
+                v-model.trim="data[enFiled[i.bind] ? i.bind + 'EN' : i.bind]"
                 v-else
               />
-              <label :for="`filed-input${index}`">
+              <label :for="`filed-input${index}`" v-if="i.label">
                 {{ i.label }}
 
                 <i class="required" v-if="i.required" />
@@ -106,7 +120,7 @@
 
           <!-- Editor Filed -->
           <div v-else-if="i.type === 'editor'">
-            <VueEditor v-model.trim="data[i.bind]" />
+            <VueEditor v-model.trim="data[enFiled[i.bind] ? i.bind + 'EN' : i.bind]" />
           </div>
 
           <!-- Icon Field -->
@@ -156,12 +170,20 @@
                     v-b-tooltip.hover
                     class="red-cover"
                     :title="k.link"
+                    style="z-index: 9999"
                     @click="deleteSocial(i.bind, index)"
                   >
                     <i class="bi bi-trash-fill" />
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+
+          <!-- Single Icon -->
+          <div v-else-if="i.type === 'single-icon'">
+            <div class="d-flex align-items-center">
+              <IconSelect :on-select="(ic) => (data[i.bind] = ic)" />
             </div>
           </div>
         </div>
@@ -181,6 +203,7 @@ import Vue from "vue";
 import Modal from "../../components/ui/modal-component.vue";
 import IconSelect from "../../components/ui/icon-select.vue";
 import UploadImage from "../../components/admin/upload-image.vue";
+import { IDataField } from "~/ts/global.types";
 
 export default Vue.extend({
   props: [
@@ -195,6 +218,7 @@ export default Vue.extend({
     return {
       dataList: [],
       data: this.emptyData,
+      enFiled: {},
       err: "",
       range: 10,
       show: false,
@@ -212,6 +236,10 @@ export default Vue.extend({
   },
   created() {
     this.reloadList();
+    this.dataFields.forEach((filed: IDataField) => {
+      // @ts-expect-error
+      this.enFiled[filed.bind] = false;
+    });
   },
   methods: {
     controller() {
@@ -228,18 +256,25 @@ export default Vue.extend({
 
       return false;
     },
+
+    changeEnFiled(bindName: string) {
+      // @ts-expect-error
+      this.enFiled[bindName] = !this.enFiled[bindName];
+
+      this.$forceUpdate();
+    },
     // Create And Save one function
     save() {
       console.log("CONTROLLER RESULT", this.controller());
       if (this.controller()) return;
 
-      const isUpdate = this.data.seourl;
+      const isUpdate = this.data.seourl || this.data.id;
 
       this.err = "";
       this.loading = true;
 
       this.$axios[isUpdate ? "put" : "post"](
-        isUpdate ? `${this.url}/${this.data.seourl}` : this.url,
+        isUpdate ? `${this.url}/${this.data.seourl || this.data.id}` : this.url,
         this.data
       )
         .then(() => {
@@ -287,16 +322,11 @@ export default Vue.extend({
       this.data[bindName].splice(index, 1);
     },
     socialsConvert() {
-      if (typeof this.data.socials === 'object') return this.data.socials
+      if (typeof this.data.socials === "object") return this.data.socials;
+      else if (typeof this.data.socials === "string") return JSON.parse(this.data.socials);
 
-      let a = JSON.parse(this.data.socials)
-
-      if (typeof a === 'string') {
-        a = JSON.parse(a)
-      }
-
-      return a
-    }
+      return this.data.socials
+    },
   },
 });
 </script>

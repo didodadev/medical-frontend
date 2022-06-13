@@ -5,57 +5,12 @@
     <div class="white-block p-5">
       <div class="container">
         <div class="row services">
-          <div class="col-md-4">
+          <div class="col-md-4" v-for="(i, index) in data" :key="index">
             <ServiceCard
-              img="https://kodesolution.com/html/2015/medinova-b5/images/services/ws1.jpg"
-              name="Activity Service"
-              cover="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem
-                  autem voluptatem obcaecati!"
-            />
-          </div>
-
-          <div class="col-md-4">
-            <ServiceCard
-              img="https://kodesolution.com/html/2015/medinova-b5/images/services/ws1.jpg"
-              name="Activity Service"
-              cover="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem
-                  autem voluptatem obcaecati!"
-            />
-          </div>
-
-          <div class="col-md-4">
-            <ServiceCard
-              img="https://kodesolution.com/html/2015/medinova-b5/images/services/ws1.jpg"
-              name="Activity Service"
-              cover="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem
-                  autem voluptatem obcaecati!"
-            />
-          </div>
-
-          <div class="col-md-4">
-            <ServiceCard
-              img="https://kodesolution.com/html/2015/medinova-b5/images/services/ws1.jpg"
-              name="Activity Service"
-              cover="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem
-                  autem voluptatem obcaecati!"
-            />
-          </div>
-
-          <div class="col-md-4">
-            <ServiceCard
-              img="https://kodesolution.com/html/2015/medinova-b5/images/services/ws1.jpg"
-              name="Activity Service"
-              cover="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem
-                  autem voluptatem obcaecati!"
-            />
-          </div>
-
-          <div class="col-md-4">
-            <ServiceCard
-              img="https://kodesolution.com/html/2015/medinova-b5/images/services/ws1.jpg"
-              name="Activity Service"
-              cover="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem
-                  autem voluptatem obcaecati!"
+              :img="publicURL(i.thumbnailURL)"
+              :name="isEn ? i.titleEN : i.title"
+              :cover="isEn ? i.coverLetterEN : i.coverLetter"
+              :seourl="i.seourl"
             />
           </div>
         </div>
@@ -69,13 +24,26 @@ import Vue from 'vue'
 import pathHandler from '../../tools/path-handler'
 import ServiceCard from '../../components/service-card.vue'
 import PaginationHeader from '../../components/pagination-header.vue'
+import publicURL from '../../ts/public-url'
 
 export default Vue.extend({
   components: {
     ServiceCard,
     PaginationHeader
   },
-  methods: { pathHandler }
+  data: () => ({
+    data: {},
+    isEn: false
+  }),
+  methods: { pathHandler, publicURL },
+  async created() {
+    // @ts-expect-error
+    if (this.$i18n._localeChainCache.en) {
+      this.isEn = true;
+    }
+
+    this.data = (await this.$axios.get('/service')).data.data
+  }
 })
 </script>
 

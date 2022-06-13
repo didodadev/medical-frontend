@@ -111,10 +111,10 @@ export default Vue.extend({
   border-radius: 6px;
   /* top: 0; */
   left: 50px;
-  height: 200px;
+  height: 400px;
   overflow: auto;
   bottom: 0;
-  width: 240px;
+  width: 300px;
   z-index: 99;
   transition: .2s;
 }

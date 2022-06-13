@@ -4,32 +4,13 @@
 
     <div class="container p-5 pt-0">
       <div class="row mt-5">
-        <div class="col-md-4">
-          <NuxtLink :to="pathHandler('/doctors/test')">
+        <div class="col-md-4" v-for="(i, index) in data" :key="index">
+          <NuxtLink :to="pathHandler(`/doctors/${i.seourl}`)">
             <DoctorCard
-              img="https://kodesolution.com/html/2015/medinova-b5/images/team/t1.jpg"
-              name="Maria"
-              branch="Cardiolog"
-            />
-          </NuxtLink>
-        </div>
-
-        <div class="col-md-4">
-          <NuxtLink :to="pathHandler('/doctors/test')">
-            <DoctorCard
-              img="https://kodesolution.com/html/2015/medinova-b5/images/team/t1.jpg"
-              name="Maria"
-              branch="Cardiolog"
-            />
-          </NuxtLink>
-        </div>
-
-        <div class="col-md-4">
-          <NuxtLink :to="pathHandler('/doctors/test')">
-            <DoctorCard
-              img="https://kodesolution.com/html/2015/medinova-b5/images/team/t1.jpg"
-              name="Maria"
-              branch="Cardiolog"
+              :img="publicURL(i.thumbnailURL)"
+              :name="i.fullName"
+              :branch="isEn ? i.branchEN : i.branch"
+              :socials="i.socials"
             />
           </NuxtLink>
         </div>
@@ -41,7 +22,8 @@
 <script>
 import PaginationHeader from "../../components/pagination-header.vue";
 import DoctorCard from "../../components/doctor-card.vue";
-import pathHandler from '../../tools/path-handler'
+import pathHandler from "../../tools/path-handler";
+import publicURL from '../../ts/public-url'
 
 export default {
   components: {
@@ -49,13 +31,23 @@ export default {
     DoctorCard,
   },
   methods: {
-    pathHandler
-  }
+    pathHandler,
+    publicURL
+  },
+  data: () => ({ data: {} }),
+  async created() {
+    this.data = (await this.$axios.get("/doctor?range=3")).data.data.map(
+      (d) => {
+        d.socials = JSON.parse(d.socials);
+        return d;
+      }
+    );
+  },
 };
 </script>
 
 <style scoped>
 .row > div {
-  cursor: pointer
+  cursor: pointer;
 }
 </style>
