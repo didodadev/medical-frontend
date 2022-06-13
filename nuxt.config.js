@@ -32,6 +32,7 @@ export default {
     '@/plugins/antd-ui',
     '@/plugins/bootstrap',
     '@/plugins/vue2-editor',
+    '@/plugins/axios',
   ],
 
   publicRuntimeConfig: {
@@ -56,6 +57,8 @@ export default {
     '@nuxtjs/i18n'
   ],
   i18n: {
+    fallbackWarn: false,
+    missingWarn: false,
     locales: [
       {
         code: 'en',

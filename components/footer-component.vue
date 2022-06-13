@@ -1,44 +1,5 @@
 <template>
   <footer>
-    <div class="top" style="background: white">
-      <div
-        class="container-xxl p-xxl-4 p-sm-0 p-0"
-        style="padding-top: 0 !important; padding-bottom: 0 !important"
-      >
-        <div class="row m-0">
-          <div class="l-bg-primary col-md-4 d-flex info p-4">
-            <i class="bi bi-hospital-fill" style="margin-right: 0.5em" />
-
-            <div>
-              <h3>24 Hours Service</h3>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            </div>
-          </div>
-
-          <div class="l-bg-secondary col-md-4 d-flex info p-4">
-            <i class="bi bi-chat-text" style="margin-right: 0.5em" />
-
-            <div>
-              <h3>Online Help</h3>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            </div>
-          </div>
-
-          <div class="l-bg-primary col-md-4 d-flex info p-4">
-            <i
-              class="bi bi-credit-card-2-back-fill"
-              style="margin-right: 0.5em"
-            />
-
-            <div>
-              <h3>Online Payment</h3>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div class="footer-content">
       <div class="container">
         <div class="row m-0 text-muted">
@@ -71,7 +32,7 @@
           </div>
 
           <div class="col-md-3">
-            <h3> {{ $t('footer-pages') }} </h3>
+            <h3> {{ $t('footer pages') }} </h3>
             <div class="title-line" />
 
             <p>

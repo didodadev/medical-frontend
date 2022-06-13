@@ -2,7 +2,6 @@
   <div style="position: sticky; top: 0; z-index: 1000">
     <div class="side-bar white-block d-none d-xl-flex">
       <div class="nav d-block p-5">
-        <img src="../../assets/images/logo.png" class="mb-5 w-100">
         <!-- <div class="nav-title">İçerikler</div> -->
 
         <NuxtLink
@@ -17,6 +16,11 @@
             {{ i.text }}
           </div>
         </NuxtLink>
+
+        <div class="item" @click="exit">
+          <i class="bi bi-door-open-fill"></i>
+          <div class="text"> Çıkış Yap </div>
+        </div>
       </div>
     </div>
 
@@ -25,7 +29,6 @@
       :class="showMobileSideBar ? 'open' : 'close'"
     >
       <div class="nav d-block p-5 text-center mb-5">
-        <img src="../../assets/images/logo.png" class="mb-5 w-50">
         <!-- <div class="nav-title">İçerikler</div> -->
 
         <NuxtLink
@@ -41,6 +44,11 @@
             {{ i.text }}
           </div>
         </NuxtLink>
+
+        <div class="item" @click="exit">
+          <i class="bi bi-door-open-fill"></i>
+          <div class="text"> Çıkış Yap </div>
+        </div>
       </div>
       <div class="shadow" @click="setMobileSideBarShow(false)" />
     </div>
@@ -82,7 +90,7 @@ export default Vue.extend({
       { icon: 'house', path: '/home', text: 'Anasayfa' },
       { icon: 'telephone', path: '/contact', text: 'İletişim' },
       { icon: 'tag-fill', path: '/price', text: 'Fiyatlandırmalar' },
-      { icon: 'tag-fill', path: '/social', text: 'Sosyal Medya' },
+      { icon: 'globe', path: '/social', text: 'Sosyal Medya' },
     ],
     showMobileSideBar: false
   }),
@@ -91,6 +99,10 @@ export default Vue.extend({
 
     setMobileSideBarShow (m: boolean = true) {
       this.showMobileSideBar = m
+    },
+    exit() {
+      localStorage.removeItem('token')
+      this.$router.replace('/tr/admin/login')
     }
   }
 })
@@ -135,8 +147,8 @@ export default Vue.extend({
   display: flex;
   justify-content: center;
   padding-top: 3em;
-  background: black;
-  color: white;
+  background: white;
+  /* color: white; */
 }
 
 .mobile-side-bar .shadow {
@@ -146,8 +158,8 @@ export default Vue.extend({
   top: 0;
   bottom: 0;
   z-index: -1;
-  background-color: black;
   opacity: 0.3;
+  background: black;
 }
 
 .nav .item {
@@ -157,7 +169,9 @@ export default Vue.extend({
   padding: 0.3em 1em;
   border-radius: 30px;
   overflow: hidden;
-  margin-bottom: 0.5em;
+  font-size: 18px;
+  margin-bottom: 1em;
+  width: max-content;
 }
 
 .nav .active {
@@ -170,13 +184,13 @@ export default Vue.extend({
 
 .nav .active::before {
   content: " ";
-  background: white;
+  background: var(--secondary);
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
-  opacity: 0.2;
+  opacity: 0.3;
   z-index: -1;
 }
 

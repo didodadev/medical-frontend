@@ -1,10 +1,10 @@
 <template>
   <div class="default-template container-fluid p-0">
-    <TopSideBarVue v-if="!$route.path.includes('admin')" />
+    <!-- <TopSideBarVue v-if="!$route.path.includes('admin')" /> -->
     <HeaderVue v-if="!$route.path.includes('admin')" />
     <SocialsVue v-if="!$route.path.includes('admin')" />
 
-    <div v-if="$route.path.includes('admin')" class="admin">
+    <div v-if="$route.path.includes('admin') && !$route.path.includes('login')" class="admin">
       <div class="row p-0 m-0 white-block">
         <div class="col-xl-2 p-0">
           <AdminSideBar />
@@ -18,8 +18,33 @@
               {{ title }}
             </h3>
           </div>
+<!-- 
+          <button
+            @click="
+              addNotification({
+                name: 'test',
+                message: 'Hello',
+              })
+            "
+          >
+            Addd
+          </button> -->
 
           <div class="container-xl mb-5">
+            <div
+              v-for="(i, index) in notifications"
+              :key="index"
+              class="toast d-block"
+              role="alert"
+            >
+              <div class="toast-header">
+                <strong class="me-auto"> {{ i.title }} </strong>
+              </div>
+              <div class="toast-body">
+                {{ i.message }}
+              </div>
+            </div>
+
             <Nuxt />
           </div>
         </div>
@@ -34,14 +59,26 @@
   </div>
 </template>
 
+<style lang="css">
+.toast {
+  position: fixed;
+  top: 1em;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  z-index: 99999;
+}
+</style>
+
 <script lang="ts">
-import Vue from 'vue'
-import TopSideBarVue from '../components/top-side-bar.vue'
-import HeaderVue from '../components/header-component.vue'
-import SocialsVue from '../components/social-icons.vue'
-import FooterVue from '../components/footer-component.vue'
-import AdminSideBar from '../components/admin/side-bar.vue'
-import pathHandler from '../tools/path-handler'
+import Vue from "vue";
+import TopSideBarVue from "../components/top-side-bar.vue";
+import HeaderVue from "../components/header-component.vue";
+import SocialsVue from "../components/social-icons.vue";
+import FooterVue from "../components/footer-component.vue";
+import AdminSideBar from "../components/admin/side-bar.vue";
+import pathHandler from "../tools/path-handler";
+import { mapState, mapActions } from "vuex";
 
 interface RouteTitleAndName {
   [key: string]: {
@@ -51,43 +88,43 @@ interface RouteTitleAndName {
 }
 
 const routeTitleAndNames: RouteTitleAndName = {
-  [pathHandler('/admin/blog')]: {
-    title: 'Blog',
-    icon: 'bi-card-text'
+  [pathHandler("/admin/blog")]: {
+    title: "Blog",
+    icon: "bi-card-text",
   },
-  [pathHandler('/admin/guide')]: {
-    title: 'Klavuz',
-    icon: 'bi-journal-text'
+  [pathHandler("/admin/guide")]: {
+    title: "Klavuz",
+    icon: "bi-journal-text",
   },
-  [pathHandler('/admin/doctor')]: {
-    title: 'Doktorlar',
-    icon: 'bi-person-heart'
+  [pathHandler("/admin/doctor")]: {
+    title: "Doktorlar",
+    icon: "bi-person-heart",
   },
-  [pathHandler('/admin/gallery')]: {
-    title: 'Galeri',
-    icon: 'bi-images'
+  [pathHandler("/admin/gallery")]: {
+    title: "Galeri",
+    icon: "bi-images",
   },
-  [pathHandler('/admin/service')]: {
-    title: 'Hizmetler',
-    icon: 'bi-box2-heart'
+  [pathHandler("/admin/service")]: {
+    title: "Hizmetler",
+    icon: "bi-box2-heart",
   },
-  [pathHandler('/admin/contact')]: {
-    title: 'İletişim',
-    icon: 'bi-telephone'
+  [pathHandler("/admin/contact")]: {
+    title: "İletişim",
+    icon: "bi-telephone",
   },
-  [pathHandler('/admin/contracts')]: {
-    title: 'Kurumlar',
-    icon: 'bi-building'
+  [pathHandler("/admin/contracts")]: {
+    title: "Kurumlar",
+    icon: "bi-building",
   },
-  [pathHandler('/admin/about')]: {
-    title: 'Hakkımızda',
-    icon: 'bi-body-text'
+  [pathHandler("/admin/about")]: {
+    title: "Hakkımızda",
+    icon: "bi-body-text",
   },
-  [pathHandler('/admin/home')]: {
-    title: 'Anasayfa',
-    icon: 'bi-house'
-  }
-}
+  [pathHandler("/admin/home")]: {
+    title: "Anasayfa",
+    icon: "bi-house",
+  },
+};
 
 interface IData {
   title: string;
@@ -95,34 +132,38 @@ interface IData {
 }
 
 export default Vue.extend({
+  computed: {
+    ...mapState(["notifications"]),
+  },
   components: {
     TopSideBarVue,
     HeaderVue,
     SocialsVue,
     FooterVue,
-    AdminSideBar
+    AdminSideBar,
   },
   data: (): IData => ({
-    title: '',
-    icon: ''
+    title: "",
+    icon: "",
   }),
-  updated () {
-    this.changeTitleAndIcon()
+  updated() {
+    this.changeTitleAndIcon();
   },
-  created () {
-    this.changeTitleAndIcon()
+  created() {
+    this.changeTitleAndIcon();
 
-    this.$forceUpdate()
+    this.$forceUpdate();
   },
   methods: {
-    changeTitleAndIcon () {
-      const routeData = routeTitleAndNames[this.$route.fullPath]
+    ...mapActions(["addNotification"]),
+    changeTitleAndIcon() {
+      const routeData = routeTitleAndNames[this.$route.fullPath];
 
       if (routeData) {
-        this.icon = routeData.icon
-        this.title = routeData.title
+        this.icon = routeData.icon;
+        this.title = routeData.title;
       }
-    }
-  }
-})
+    },
+  },
+});
 </script>

@@ -15,7 +15,7 @@ export default {
       data: []
     }
   },
-  async created() {
+  async mounted() {
     this.data = (await this.$axios.get('/social')).data.data
   }
 }

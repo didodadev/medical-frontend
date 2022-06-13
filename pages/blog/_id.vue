@@ -1,81 +1,38 @@
 <template>
   <div class="white-block">
-    <PaginationHeader
-      title="Blog"
-      sub-title="Blog Adı"
-    />
+    <PaginationHeader title="Blog" sub-title="Blog Adı" />
 
     <div class="container p-5">
-      <img
-        src="https://kodesolution.com/html/2015/medinova-b5/images/blog/b1.jpg"
-        style="margin-right: 1em"
-      />
+      <img :src="publicURL(data.thumbnailURL)" style="margin-right: 1em; max-width: 100%" width="400" />
 
-      <h1 class="mt-5">Blog Başlığı</h1>
+      <h1 class="mt-5">{{ isEn ? data.titleEN : data.title }}</h1>
 
-      <p class="mt-4">
-        One of the world’s leading hospitals providing safe & compassionate care
-        at its best for everyone. Lorem ipsum dolor sit amet, consectetur
-        adipisicing elit. Atque commodi molestiae autem fugit consectetur dolor
-        ullam illo ipsa numquam.One of the world’s leading hospitals providing
-        safe & compassionate care at its best for everyone. Lorem ipsum dolor
-        sit amet, consectetur adipisicing elit. Atque commodi molestiae autem
-        fugit consectetur dolor ullam illo ipsa numquam.One of the world’s
-        leading hospitals providing safe & compassionate care at its best for
-        everyone. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-        Atque commodi molestiae autem fugit consectetur dolor ullam illo ipsa
-        numquam.One of the world’s leading hospitals providing safe &
-        compassionate care at its best for everyone. Lorem ipsum dolor sit amet,
-        consectetur adipisicing elit. Atque commodi molestiae autem fugit
-        consectetur dolor ullam illo ipsa numquam.One of the world’s leading
-        hospitals providing safe & compassionate care at its best for everyone.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque commodi
-        molestiae autem fugit consectetur dolor ullam illo ipsa numquam.One of
-        the world’s leading hospitals providing safe & compassionate care at its
-      </p>
-      <div style="float: left; margin-left: 0 !important" class="m-3">
-        <img
-          src="https://kodesolution.com/html/2015/medinova-b5/images/services/sc4.jpg"
-          alt=""
-        />
-      </div>
-
-      best for everyone. Lorem ipsum dolor sit amet, consectetur adipisicing
-      elit. Atque commodi molestiae autem fugit consectetur dolor ullam illo
-      ipsa numquam.One of the world’s leading hospitals providing safe &
-      compassionate care at its best for everyone. Lorem ipsum dolor sit amet,
-      consectetur adipisicing elit. Atque commodi molestiae autem fugit
-      consectetur dolor ullam illo ipsa numquam.One of the world’s leading
-      hospitals providing safe & compassionate care at its best for everyone.
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque commodi
-      molestiae autem fugit consectetur dolor ullam illo ipsa numquam.One of the
-      world’s leading hospitals providing safe & compassionate care at its best
-      for everyone. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-      Atque commodi molestiae autem fugit consectetur dolor ullam illo ipsa
-      numquam.One of the world’s leading hospitals providing safe &
-      compassionate care at its best for everyone. Lorem ipsum dolor sit amet,
-      consectetur adipisicing elit. Atque commodi molestiae autem fugit
-      consectetur dolor ullam illo ipsa numquam.m illo ipsa numquam.One of the world’s leading
-      hospitals providing safe & compassionate care at its best for everyone.
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque commodi
-      molestiae autem fugit consectetur dolor ullam illo ipsa numquam.One of the
-      world’s leading hospitals providing safe & compassionate care at its best
-      for everyone. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-      Atque commodi molestiae autem fugit consectetur dolor ullam illo ipsa
-      numquam.One of the world’s leading hospitals providing safe &
-      compassionate care at its best for everyone. Lorem ipsum dolor sit amet,
-      consectetur adipisicing elit. Atque commodi molestiae autem fugit
-      consectetur dolor ullam illo ipsa numquam.m illo ipsa numquam.One of the world’s leading
-      hospitals providing safe & compassionate care at its best for everyone.
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque commodi
-      molestiae autem fugit consectetur dolor ullam illo ipsa numquam.One of the
-      world’s leading hospitals providing safe & compassionate care at its best
-      for everyone. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-      Atque commodi molestiae autem fugit consectetur dolor ullam illo ipsa
-      numquam.One of the world’s leading hospitals providing safe &
-      compassionate care at its best for everyone. Lorem ipsum dolor sit amet,
-      consectetur adipisicing elit. Atque commodi molestiae autem fugit
-      consectetur dolor ullam illo ipsa numquam.
+      <p v-html="isEn ? data.contentEN : data.content"></p>
     </div>
   </div>
 </template>
+
+<script>
+import publicURL from "../../ts/public-url";
+
+export default {
+  data() {
+    return {
+      data: {},
+      isEn: false,
+    };
+  },
+  methods: {
+    publicURL,
+  },
+  async created() {
+    if (this.$i18n._localeChainCache.en) {
+      this.isEn = true;
+    }
+
+    this.data = (
+      await this.$axios.get(`/blog/${this.$route.params.id}`)
+    ).data.data;
+  },
+};
+</script>

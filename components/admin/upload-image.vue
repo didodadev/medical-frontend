@@ -1,14 +1,14 @@
 <template>
   <div>
     <input
-      id="uploadInput"
+      :id="`upload-image${id}`"
       type="file"
       style="display: none"
       @change="onSelect($event)"
     />
 
-    <div v-if="imageBase64 !== '' || (data !== '' && data)" class="preview">
-      <label class="cover-wrapper" for="uploadInput">
+    <div v-if="(imageBase64 !== '' || (data !== '' && data)) && noPreview" class="preview">
+      <label class="cover-wrapper" :for="`upload-image${id}`">
         <div class="primary-cover">
           <i class="bi bi-pen-fill" style="font-size: 30px" />
         </div>
@@ -17,8 +17,8 @@
       </label>
     </div>
 
-    <div v-else class="upload-image centered">
-      <label for="uploadInput">
+    <div v-else-if="!noPreview" class="upload-image centered">
+      <label :for="`upload-image${id}`">
         <h4>
           <i class="bi bi-images" />
 
@@ -40,15 +40,7 @@ interface IData {
 }
 
 export default Vue.extend({
-  props: {
-    setBase64: {
-      type: Function,
-      required: true,
-    },
-    data: {
-      type: String,
-    },
-  },
+  props: ['setBase64', 'data', 'id', 'noPreview'],
   data: (): IData => ({
     imageBase64: "",
   }),
@@ -89,6 +81,15 @@ export default Vue.extend({
 
 .preview {
   max-height: 400px;
+  min-width: 200px;
+  min-height: 200px;
   overflow: hidden;
+  border: 1px solid var(--border-2);
+  border-radius: 5px;
+  display: flex;
+}
+
+.cover-wrapper {
+  width: 100%;
 }
 </style>

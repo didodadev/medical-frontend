@@ -13,20 +13,7 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  props: {
-    img: {
-      type: String,
-      required: true
-    },
-    title: {
-      type: String,
-      required: true
-    },
-    text: {
-      type: String,
-      required: true
-    }
-  }
+  props: ['img', 'title', 'text']
 })
 </script>
 

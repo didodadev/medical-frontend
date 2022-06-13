@@ -124,6 +124,13 @@ export default Vue.extend({
   z-index: 999;
 }
 
+.modal-footer {
+  position: sticky;
+  bottom: 0;
+  background: white;
+  z-index: 99;
+}
+
 .full-screen {
   position: absolute;
   left: 0;

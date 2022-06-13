@@ -19,20 +19,18 @@
         v-for="(i, index) in data.slide"
         :key="index"
         :img-src="publicURL(i)"
+        style="max-height: 82.5vh"
       />
     </b-carousel>
 
     <div class="white-block p-4">
-      <div class="container">
-        <div class="row justify-content-between">
-          <div class="col-md-5">
-            <h1>{{ data[isEn ? "welcomeTitleEN" : "welcomeTitle"] }}</h1>
+      <div class="container mt-5">
+        <div class="row justify-content-between text-center">
+          <h1>{{ data[isEn ? "welcomeTitleEN" : "welcomeTitle"] }}</h1>
 
-            <p class="text-muted">
-              {{ data[isEn ? "welcomeTextEN" : "welcomeText"] }}
-            </p>
-          </div>
-
+          <p class="text-muted">
+            {{ data[isEn ? "welcomeTextEN" : "welcomeText"] }}
+          </p>
           <!-- <div class="col-md-6">
             <div class="row">
               <div class="col-md-5 l-bg-primary p-3 m-1">
@@ -67,44 +65,55 @@
 
         <div class="text-center mt-5">
           <h1>
-            {{ $t("home-our") }}
-            <strong class="l-text-primary"> {{ $t("home-services") }} </strong>
+            {{ $t("homeOur") }}
+            <strong class="l-text-primary"> {{ $t("homeServices") }} </strong>
           </h1>
         </div>
-        <div class="row services">
+        <div class="row justify-content-center services mt-5">
           <div class="col-md-4" v-for="(i, index) in services" :key="index">
-            <ServiceCard :img="publicURL(i.thumbnailURL)" :name="isEn ? i.titleEN : i.title" />
+            <ServiceCard
+              :img="publicURL(i.thumbnailURL)"
+              :name="isEn ? i.titleEN : i.title"
+            />
           </div>
         </div>
       </div>
 
-      <div class="container mt-5">
+      <div class="container mt-5 pt-5">
         <div class="text-center">
           <h1>
-            {{ $t("home-our") }}
-            <strong class="l-text-primary"> {{ $t("home-pricing") }} </strong>
-            {{ $t("home-fees") }}
+            {{ $t("homeOur") }}
+            <strong class="l-text-primary"> {{ $t("homePricing") }} </strong>
+            {{ $t("homeFees") }}
           </h1>
         </div>
 
-        <div class="row">
-          <div class="col-md-3 mb-4 shadow" v-for="(i, index) in price" :key="index">
+        <div class="row justify-content-center mt-5">
+          <div
+            class="col-md-3 mb-4"
+            style="height: 100%;"
+            v-for="(i, index) in price"
+            :key="index"
+          >
             <div class="ticket text-center">
               <div>
                 <div class="icon">
                   <i class="bi bi-activity" />
                 </div>
 
-                <h3> {{isEn ? i.titleEN : i.title}} </h3>
-                <small class="text-muted"> {{isEn ? i.explanationEN : i.explanation }} </small>
+                <h3>{{ isEn ? i.titleEN : i.title }}</h3>
+                <small class="text-muted">
+                  {{ isEn ? i.explanationEN : i.explanation }}
+                </small>
 
                 <div class="price mt-3">
-                  <span class="text-muted"> {{isEn ? '$' : '₺'}} </span>
+                  <span class="text-muted"> {{ isEn ? "$" : "₺" }} </span>
                   <span
                     style="font-size: 40px !important"
                     class="l-text-primary"
-                    > {{i.price}} </span
                   >
+                    {{ i.price }}
+                  </span>
                 </div>
               </div>
             </div>
@@ -113,14 +122,18 @@
       </div>
     </div>
     <div class="container">
-      <div class="text-center mt-5">
+      <div class="text-center mt-5 pb-5">
         <h1>
-          {{ $t("home-our") }}
-          <strong class="l-text-primary"> {{ $t("home-gallery") }} </strong>
+          {{ $t("homeOur") }}
+          <strong class="l-text-primary"> {{ $t("homeGallery") }} </strong>
         </h1>
 
         <div class="row justify-content-center mt-5 gallery">
-          <div class="col-md-4 item mb-3" v-for="(i, index) in gallery" :key="index">
+          <div
+            class="col-md-4 item mb-3"
+            v-for="(i, index) in gallery"
+            :key="index"
+          >
             <GalleryCard
               :img="publicURL(i.thumbnailURL)"
               :title="isEn ? i.titleEN : i.title"
@@ -135,15 +148,19 @@
       <div class="container">
         <div class="text-center pt-5 mb-5">
           <h1>
-            {{ $t("home-our") }}
-            <strong class="l-text-primary"> {{ $t("home-latest") }} </strong>
-            {{ $t("home-news") }}
+            {{ $t("homeOur") }}
+            <strong class="l-text-primary"> {{ $t("homeLatest") }} </strong>
+            {{ $t("homeNews") }}
           </h1>
         </div>
 
-        <div class="row blogs">
+        <div class="row blogs justify-content-center">
           <div class="col-md-4 mb-4">
-            <NuxtLink :to="pathHandler(`/blog/${i.seourl}`)" v-for="(i, index) in blog" :key="index">
+            <NuxtLink
+              :to="pathHandler(`/blog/${i.seourl}`)"
+              v-for="(i, index) in blog"
+              :key="index"
+            >
               <BLogCard
                 :date="i.createdDate"
                 :img="publicURL(i.thumbnailURL)"
@@ -180,7 +197,7 @@ export default Vue.extend({
     services: [],
     gallery: [],
     blog: [],
-    price: []
+    price: [],
   }),
   methods: {
     pathHandler,

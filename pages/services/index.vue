@@ -1,6 +1,6 @@
 <template>
   <div>
-    <PaginationHeader title="service-services" />
+    <PaginationHeader title="serviceServices" />
 
     <div class="white-block p-5">
       <div class="container">

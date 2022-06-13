@@ -8,7 +8,7 @@
       <i class="bi bi-pen-fill" style="color: white" />
     </div>
 
-    <div class="icon-list row m-0" :class="showIconsList ? 'open' : 'close'">
+    <div class="icon-list" :class="showIconsList ? 'open' : 'close'">
       <div class="header">
         Simgeler
 
@@ -18,13 +18,16 @@
           @click="showIconsList = false"
         />
       </div>
-      <i
-        v-for="(i, index) in showIcons"
-        :key="index"
-        :class="`${i} ${i === selectedIcon ? 'active' : ''}`"
-        class="icon bi col-1"
-        @click="selectIcon(i)"
-      />
+
+      <div class="row m-0 p-0 w-100 mt-2">
+        <div class="col-1 d-flex align-items-center justify-content-center" v-for="(i, index) in showIcons" :key="index">
+          <i
+            :class="`${i} ${i === selectedIcon ? 'active' : ''}`"
+            class="icon bi"
+            @click="selectIcon(i)"
+          />
+        </div>
+      </div>
 
       <small
         v-show="lastMoreIndex < icons.length - 1"
@@ -38,8 +41,8 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import icons from '../../tools/bootstrap-icons-names'
+import Vue from "vue";
+import icons from "../../tools/bootstrap-icons-names";
 
 interface IData {
   selectedIcon: string;
@@ -53,34 +56,34 @@ export default Vue.extend({
   props: {
     onSelect: {
       type: Function,
-      required: true
-    }
+      required: true,
+    },
   },
   data: (): IData => ({
-    selectedIcon: 'bi-question',
+    selectedIcon: "bi-question",
     icons,
-    showIcons: icons.slice(0, 20),
+    showIcons: icons.slice(0, 100),
     lastMoreIndex: 0,
-    showIconsList: false
+    showIconsList: false,
   }),
   methods: {
-    showMoreIcons () {
+    showMoreIcons() {
       this.showIcons.push(
-        ...this.icons.slice(this.lastMoreIndex, this.lastMoreIndex + 50)
-      )
+        ...this.icons.slice(this.lastMoreIndex, this.lastMoreIndex + 150)
+      );
 
-      this.lastMoreIndex += 50
+      this.lastMoreIndex += 150;
     },
-    selectIcon (icon: string) {
-      this.selectedIcon = icon
-      this.showIconsList = false
+    selectIcon(icon: string) {
+      this.selectedIcon = icon;
+      this.showIconsList = false;
 
       if (this.onSelect) {
-        this.onSelect(icon)
+        this.onSelect(icon);
       }
-    }
-  }
-})
+    },
+  },
+});
 </script>
 
 <style scoped>
@@ -112,28 +115,31 @@ export default Vue.extend({
   /* top: 0; */
   left: 50px;
   height: 400px;
+  width: 400px;
   overflow: auto;
   bottom: 0;
-  width: 300px;
   z-index: 99;
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .icon-list .header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background: white;
   border-bottom: 1px solid var(--border-2);
   position: sticky;
   top: 0;
+  height: 40px;
 }
 
 .icon-list .icon {
-  padding: 0.3em 1em;
+  padding: 1em .5em;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: 0.2s;
+  height: 20px;
 }
 
 .icon-list .icon:hover {

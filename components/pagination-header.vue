@@ -12,15 +12,6 @@
 
 <script>
 export default {
-  props: {
-    title: {
-      type: String,
-      required: true
-    },
-    subTitle: {
-      type: String,
-      required: true
-    },
-  }
+  props: ['title', 'subTitle']
 }
 </script>

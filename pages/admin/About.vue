@@ -43,6 +43,12 @@
       </tbody>
     </table>
 
+    <h3> Hakkımızda Sayfasındaki Doktor resmi </h3>
+    <UploadImage :setBase64="setBase64" :data="data.doctorImage" />
+
+    <h3 class="mt-5"> Hakkımızda Sayfasındaki Hizmetler Kısmına Ait Resim </h3>
+    <UploadImage :setBase64="setBase642" :data="data.servicesImage" :id="1" />
+
     <h3 class="mt-5">Hizmetler için açıklama</h3>
     <small class="text-muted">
       Hizmetleriniz hakkında genel bir açıklama metni.
@@ -99,62 +105,33 @@
 
 <script lang="ts">
 import Vue from "vue";
+import UploadImage from '../../components/admin/upload-image.vue'
 
 export default Vue.extend({
+  components: {
+    UploadImage
+  },
   data: () => ({
     data: {},
     loading: false,
     servicesTextEN: false,
     aboutTextEN: false,
-    openingHours: [
-      {
-        day: "Pazartesi",
-        openingHour: new Date(),
-        closingHour: new Date(),
-        offDay: true,
-      },
-      {
-        day: "Salı",
-        openingHour: new Date(),
-        closingHour: new Date(),
-        offDay: true,
-      },
-      {
-        day: "Çarşamba",
-        openingHour: new Date(),
-        closingHour: new Date(),
-        offDay: true,
-      },
-      {
-        day: "Perşembe",
-        openingHour: new Date(),
-        closingHour: new Date(),
-        offDay: true,
-      },
-      {
-        day: "Cuma",
-        openingHour: new Date(),
-        closingHour: new Date(),
-        offDay: true,
-      },
-      {
-        day: "Cumartesi",
-        openingHour: new Date(),
-        closingHour: new Date(),
-        offDay: false,
-      },
-      {
-        day: "Pazar",
-        openingHour: new Date(),
-        closingHour: new Date(),
-        offDay: false,
-      },
-    ],
+    
   }),
   created() {
     this.getData();
   },
   methods: {
+    setBase64(base64: string) {
+      // @ts-expect-error
+      this.data.image = base64
+    },
+
+    setBase642(base64: string) {
+      // @ts-expect-error
+      this.data.imageS = base64
+    },
+
     save() {
       this.loading = true;
 

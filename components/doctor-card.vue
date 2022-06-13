@@ -13,20 +13,6 @@
         {{ branch }}
       </p>
 
-      <table>
-        <tbody>
-          <tr>
-            <td>Monday Friday</td>
-            <td>9:00 - 16:00</td>
-          </tr>
-
-          <tr>
-            <td>Saturday</td>
-            <td>9:00 - 16:00</td>
-          </tr>
-        </tbody>
-      </table>
-
       <br />
 
       <div class="socials">
@@ -45,21 +31,7 @@
 
 <script>
 export default {
-  props: {
-    img: {
-      type: String,
-      required: true,
-    },
-    name: {
-      type: String,
-      required: true,
-    },
-    branch: {
-      type: String,
-      required: true,
-    },
-    socials: Array,
-  },
+  props: ['img', 'name', 'branch', 'socials']
 };
 </script>
 

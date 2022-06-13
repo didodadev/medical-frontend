@@ -4,14 +4,14 @@
 
     <div class="white-block p-5">
       <div class="container">
-        <div class="row m-0">
+        <div class="row m-0 align-items-start">
           <div class="col-xl-4 p-4 mb-3" style="border: 7px solid #f6f6f6">
             <h5>
               <i
                 class="bi bi-clock"
                 style="color: var(--primary); margin-right: 0.5em"
               />
-              {{ $t("about-opening-hours") }}
+              {{ $t("aboutOpeningHours") }}
             </h5>
 
             <br />
@@ -20,7 +20,12 @@
               <tbody>
                 <tr v-for="(i, key) in data.workingHours" :key="key">
                   <td>{{ key }} &nbsp;&nbsp;&nbsp;&nbsp;</td>
-                  <td>{{ i.openingHour }} - {{ i.closingHour }}</td>
+                  <td>
+                    <span v-if="i.isClose">
+                      {{i.openingHour}} - {{i.closingHour}}
+                    </span>
+                    <i v-else class="bi bi-x-circle"></i>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -37,16 +42,11 @@
 
                   <br />
                   <br />
-
-                  <img
-                    src="https://kodesolution.com/html/2015/medinova-b5/images/signature.png"
-                    alt=""
-                  />
                 </p>
               </div>
               <div class="col-md-5">
                 <img
-                  src="https://kodesolution.com/html/2015/medinova-b5/images/about/5.png"
+                  :src="publicURL(data.doctorImage)"
                   alt=""
                 />
               </div>
@@ -56,7 +56,7 @@
 
         <div class="row" style="padding-top: 12em">
           <div class="col-md-6">
-            <h1>{{ $t("about-our-services") }}</h1>
+            <h1>{{ $t("aboutOurServices") }}</h1>
 
             <p class="text-muted">
               {{ isEn ? data.servicesTextEN : data.servicesText }}
@@ -76,7 +76,7 @@
           </div>
           <div class="col-md-6" style="padding-left: 2em">
             <img
-              src="https://kodesolution.com/html/2015/medinova-b5/images/services/sc4.jpg"
+              :src="publicURL(data.servicesImage)"
               width="100%"
             />
 
@@ -173,19 +173,21 @@
             <h1>
               Our
               <strong style="color: var(--primary)">{{
-                $t("about-our-doctors")
+                $t("aboutOurDoctors")
               }}</strong>
             </h1>
           </div>
 
           <div class="row mt-5">
             <div class="col-md-6 col-xl-4" v-for="(i, index) in doctors" :key="index">
-              <DoctorCard
+              <NuxtLink :to="pathHandler(`/doctors/${i.seourl}`)">
+                <DoctorCard
                 :img="publicURL(i.thumbnailURL)"
                 :name="i.fullName"
                 :branch="isEn ? i.branchEN : i.branch"
                 :socials="i.socials"
               />
+              </NuxtLink>
             </div>
           </div>
         </div>
@@ -198,6 +200,7 @@
 import PaginationHeader from "../components/pagination-header.vue";
 import DoctorCard from "../components/doctor-card.vue";
 import publicURL from '../ts/public-url'
+import pathHandler from '../tools/path-handler'
 
 export default {
   components: {
@@ -213,7 +216,8 @@ export default {
     };
   },
   methods: {
-    publicURL
+    publicURL,
+    pathHandler
   },
   async created() {
     if (this.$i18n._localeChainCache.en) {

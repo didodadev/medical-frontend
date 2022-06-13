@@ -2,7 +2,7 @@
   <b-card
     :img-src="img"
     class="shadow"
-    style="border: none; border-radius: 7px"
+    style="border: none; border-radius: 7px; height: 100%"
   >
     <b-body class="p-5">
       <h4> {{ name }} </h4>
@@ -13,7 +13,7 @@
 
       <NuxtLink :to="pathHandler(`/services/${seourl}`)">
         <b-button variant="primary">
-          {{ $t('read-more') }}
+          {{ $t('readMore') }}
         </b-button>
       </NuxtLink>
     </b-body>
@@ -25,21 +25,7 @@ import Vue from 'vue'
 import pathHandler from '../tools/path-handler'
 
 export default Vue.extend({
-  props: {
-    img: {
-      type: String,
-      required: true
-    },
-    name: {
-      type: String,
-      required: true
-    },
-    cover: {
-      type: String,
-      required: true
-    },
-    seourl: String
-  },
+  props: ['img', 'name', 'cover', 'seourl'],
   methods: {
     pathHandler
   }

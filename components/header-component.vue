@@ -115,29 +115,29 @@ export default Vue.extend({
     return {
       headerNavs: [
         {
-          i18nTitle: "header-home",
+          i18nTitle: "headerHome",
           path: "/home",
         },
         {
-          i18nTitle: "header-about",
+          i18nTitle: "headerAbout",
           path: "/about",
         },
         {
-          i18nTitle: "header-services",
+          i18nTitle: "headerServices",
           path: "/services",
           extraKey: "service",
         },
         {
-          i18nTitle: "header-contact",
+          i18nTitle: "headerContact",
           path: "/contact",
         },
         {
-          i18nTitle: "header-doctors",
+          i18nTitle: "headerDoctors",
           path: "/doctors",
           extraKey: "doctor",
         },
         {
-          i18nTitle: "header-contract",
+          i18nTitle: "headerContract",
           path: "/contracts",
           extraKey: "contract",
         },

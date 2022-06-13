@@ -25,22 +25,6 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  props: {
-    img: {
-      type: String,
-      required: true
-    },
-    title: {
-      type: String,
-      required: true
-    },
-    cover: {
-      type: String,
-      default: ''
-    },
-    date: {
-      type: String
-    }
-  }
+  props: ['img', 'title', 'cover', 'date']
 })
 </script>

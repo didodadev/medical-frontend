@@ -44,7 +44,10 @@
                 variant="danger"
                 triggers="focus"
               >
-                <button class="btn btn-danger" @click="remove(i.seourl || i.id)">
+                <button
+                  class="btn btn-danger"
+                  @click="remove(i.seourl || i.id)"
+                >
                   Onaylıyorum
                 </button>
               </b-popover>
@@ -120,7 +123,9 @@
 
           <!-- Editor Filed -->
           <div v-else-if="i.type === 'editor'">
-            <VueEditor v-model.trim="data[enFiled[i.bind] ? i.bind + 'EN' : i.bind]" />
+            <VueEditor
+              v-model.trim="data[enFiled[i.bind] ? i.bind + 'EN' : i.bind]"
+            />
           </div>
 
           <!-- Icon Field -->
@@ -217,7 +222,7 @@ export default Vue.extend({
   data() {
     return {
       dataList: [],
-      data: this.emptyData,
+      data: { ...this.emptyData },
       enFiled: {},
       err: "",
       range: 10,
@@ -265,7 +270,6 @@ export default Vue.extend({
     },
     // Create And Save one function
     save() {
-      console.log("CONTROLLER RESULT", this.controller());
       if (this.controller()) return;
 
       const isUpdate = this.data.seourl || this.data.id;
@@ -284,7 +288,7 @@ export default Vue.extend({
         .finally(() => (this.loading = false));
     },
     finallyAndCloseModal(closeModal?: boolean) {
-      this.data = this.emptyData;
+      this.clearData()
       this.loading = false;
 
       if (closeModal) this.show = false;
@@ -298,7 +302,13 @@ export default Vue.extend({
         .finally(this.finallyAndCloseModal);
     },
     async reloadList() {
-      this.dataList = (await this.$axios.get(this.url)).data.data;
+      this.dataList = (await this.$axios.get(this.url)).data.data.map(
+        (d: any) => {
+          if (d.socials) d.socials = JSON.parse(d.socials);
+
+          return d;
+        }
+      );
 
       return this.dataList;
     },
@@ -309,11 +319,13 @@ export default Vue.extend({
       this.show = m;
 
       if (!m) {
-        this.data = this.emptyData;
+        this.clearData()
         this.err = "";
       }
     },
     addSocial(bindName: string) {
+      console.log("data", this.data);
+      console.log("bind name", bindName);
       this.data[bindName].push(this.iconData);
 
       this.iconData = { icon: "", link: "" };
@@ -321,11 +333,18 @@ export default Vue.extend({
     deleteSocial(bindName: string, index: number) {
       this.data[bindName].splice(index, 1);
     },
+    clearData() {
+      this.data = { ...this.emptyData }
+      this.data.socials = []
+
+      this.$forceUpdate()
+    },
     socialsConvert() {
       if (typeof this.data.socials === "object") return this.data.socials;
-      else if (typeof this.data.socials === "string") return JSON.parse(this.data.socials);
+      else if (typeof this.data.socials === "string")
+        return JSON.parse(this.data.socials);
 
-      return this.data.socials
+      return this.data.socials;
     },
   },
 });

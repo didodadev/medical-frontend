@@ -1,6 +1,6 @@
 <template>
   <div class="white-block">
-    <PaginationHeader title="contracted-institutions" sub-title="Contract Name" />
+    <PaginationHeader title="contractedInstitutions" sub-title="Contract Name" />
 
     <div class="container p-5">
       <div class="d-flex">

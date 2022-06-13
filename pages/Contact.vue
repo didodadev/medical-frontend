@@ -16,7 +16,7 @@
                   required
                   maxlength="30"
                 >
-                <label for="floatingInput">{{ $t('contact-fullname') }}</label>
+                <label for="floatingInput">{{ $t('contactFullname') }}</label>
               </div>
 
               <div class="form-floating mb-3">
@@ -28,7 +28,7 @@
                   required
                   maxlength="30"
                 >
-                <label for="floatingInput">{{ $t('contact-fullname') }}</label>
+                <label for="floatingInput">{{ $t('contactFullname') }}</label>
               </div>
 
               <div class="form-floating mb-3">
@@ -52,11 +52,11 @@
                   required
                   maxlength="500"
                 />
-                <label for="floatingInput">{{ $t('contact-message') }}</label>
+                <label for="floatingInput">{{ $t('contactMessage') }}</label>
               </div>
 
               <button class="btn btn-primary" type="submit">
-                {{ $t('contact-send-message') }}
+                {{ $t('contactSendMessage') }}
               </button>
             </form>
           </div>
@@ -79,16 +79,7 @@
           </div>
         </div>
 
-        <iframe
-          class="mt-5"
-          :src="data.location"
-          width="100%"
-          height="450"
-          style="border: 0"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-        />
+        <div v-html="data.location"></div>
       </div>
     </div>
   </div>
@@ -111,3 +102,9 @@ export default {
   }
 }
 </script>
+
+<style>
+iframe {
+  width: 100% !important
+}
+</style>
