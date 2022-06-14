@@ -1,5 +1,5 @@
 <template>
-  <b-card style="border: none; border-radius: 5px" class="shadow">
+  <b-card style="border-radius: 5px" class="doctor-card shadow">
     <div class="text-center">
       <img
         class="card-img img-fluid"
@@ -7,7 +7,7 @@
         style="max-width: 100%; max-height: 300px; width: auto; height: auto"
       />
     </div>
-    <b-card-body class="p-3">
+    <b-card-body class="p-3 mt-5">
       <h2>{{ name }}</h2>
       <p class="text-muted">
         {{ branch }}
@@ -36,6 +36,11 @@ export default {
 </script>
 
 <style scoped>
+.doctor-card {
+  border: 1px solid var(--border-2);
+  height: 100%;
+}
+
 .socials {
   display: flex;
   margin-top: 1em;

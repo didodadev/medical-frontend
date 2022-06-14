@@ -1,8 +1,14 @@
 <template>
   <div class="gallery-card">
-    <img :src="img" width="100%">
+    <img :src="img" width="100%" />
 
-    <div class="cover">
+    <Modal :show="show" :close="() => (show = false)">
+      <template v-slot:body>
+        <img :src="img" width="100%" @click="show = !show" />
+      </template>
+    </Modal>
+
+    <div class="cover" @click="show = !show">
       <h3>{{ title }}</h3>
       <p>{{ text }}</p>
     </div>
@@ -10,11 +16,18 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from "vue";
+import Modal from "./ui/modal-component.vue";
 
 export default Vue.extend({
-  props: ['img', 'title', 'text']
-})
+  props: ["img", "title", "text"],
+  components: {
+    Modal,
+  },
+  data: () => ({
+    show: false,
+  }),
+});
 </script>
 
 <style scoped>

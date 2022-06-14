@@ -20,7 +20,7 @@
     <div v-else-if="!noPreview" class="upload-image centered">
       <label :for="`upload-image${id}`">
         <h4>
-          <i class="bi bi-images" />
+          <i class="bi bi-images" /> 
 
           <small class="text-muted">
             Resim yüklemek için lütfen tıklayınız

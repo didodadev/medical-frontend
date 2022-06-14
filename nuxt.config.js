@@ -21,6 +21,8 @@ export default {
     ]
   },
 
+  // loading: './components/loading.vue', 
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     'ant-design-vue/dist/antd.css',
@@ -34,6 +36,12 @@ export default {
     '@/plugins/vue2-editor',
     '@/plugins/axios',
   ],
+
+  loadingIndicator: {
+    name: 'rotating-plane',
+    color: 'blue',
+    background: 'red'
+  },
 
   publicRuntimeConfig: {
     axios: {

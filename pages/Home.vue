@@ -26,9 +26,9 @@
     <div class="white-block p-4">
       <div class="container mt-5">
         <div class="row justify-content-between text-center">
-          <h1>{{ data[isEn ? "welcomeTitleEN" : "welcomeTitle"] }}</h1>
+          <h1 style="font-size: 50px">{{ data[isEn ? "welcomeTitleEN" : "welcomeTitle"] }}</h1>
 
-          <p class="text-muted">
+          <p class="text-muted mt-3">
             {{ data[isEn ? "welcomeTextEN" : "welcomeText"] }}
           </p>
           <!-- <div class="col-md-6">
@@ -74,6 +74,7 @@
             <ServiceCard
               :img="publicURL(i.thumbnailURL)"
               :name="isEn ? i.titleEN : i.title"
+              :seourl="i.seourl"
             />
           </div>
         </div>

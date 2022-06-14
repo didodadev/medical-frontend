@@ -1,6 +1,6 @@
 <template>
   <div class="blog-card">
-    <b-card :img-src="img" tag="article" img="top">
+    <b-card :img-src="img" tag="article" img="top" style="border-radius: 13px; overflow: hidden;">
       <b-card-body>
         <h5>{{ title }}</h5>
 

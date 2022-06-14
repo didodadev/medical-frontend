@@ -2,7 +2,7 @@
   <b-card
     :img-src="img"
     class="shadow"
-    style="border: none; border-radius: 7px; height: 100%"
+    style="border-radius: 13px; height: 100%; border: 1px solid var(--border-2); overflow: hidden;"
   >
     <b-body class="p-5">
       <h4> {{ name }} </h4>

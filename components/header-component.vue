@@ -183,6 +183,10 @@ export default Vue.extend({
 
     changeLang(lang: string) {
       this.$i18n.setLocale(lang);
+
+      setTimeout(() => {
+        location.reload()
+      }, 500)
     },
   },
 });
