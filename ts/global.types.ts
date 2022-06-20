@@ -9,6 +9,7 @@ export interface IDataField {
   inputType?: string
   textArea?: boolean
   EN?: boolean
+  social?: boolean
 }
 
 export type IController<T> = (d: T) => {

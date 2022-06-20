@@ -4,7 +4,10 @@
     <HeaderVue v-if="!$route.path.includes('admin')" />
     <SocialsVue v-if="!$route.path.includes('admin')" />
 
-    <div v-if="$route.path.includes('admin') && !$route.path.includes('login')" class="admin">
+    <div
+      v-if="$route.path.includes('admin') && !$route.path.includes('login')"
+      class="admin"
+    >
       <div class="row p-0 m-0 white-block">
         <div class="col-xl-2 p-0">
           <AdminSideBar />
@@ -18,7 +21,7 @@
               {{ title }}
             </h3>
           </div>
-<!-- 
+          <!-- 
           <button
             @click="
               addNotification({
@@ -31,20 +34,6 @@
           </button> -->
 
           <div class="container-xl mb-5">
-            <div
-              v-for="(i, index) in notifications"
-              :key="index"
-              class="toast d-block"
-              role="alert"
-            >
-              <div class="toast-header">
-                <strong class="me-auto"> {{ i.title }} </strong>
-              </div>
-              <div class="toast-body">
-                {{ i.message }}
-              </div>
-            </div>
-
             <Nuxt />
           </div>
         </div>
@@ -53,6 +42,20 @@
 
     <div v-else>
       <Nuxt />
+    </div>
+
+    <div
+      v-for="(i, index) in notifications"
+      :key="index"
+      class="toast d-block"
+      role="alert"
+    >
+      <div class="toast-header">
+        <strong class="me-auto"> {{ i.title }} </strong>
+      </div>
+      <div class="toast-body">
+        {{ i.message }}
+      </div>
     </div>
 
     <FooterVue v-if="!$route.path.includes('admin')" />
