@@ -6,10 +6,10 @@
       </button>
     </div>
 
-    <table class="table tabe-responsive table-striped table-bordered w-100">
+    <table class="table tabe-responsive  w-100">
       <thead>
         <tr>
-          <td>#</td>
+          <!-- <td>#</td> -->
           <td v-for="(i, index) in tableHeadKeys" :key="index">
             {{ i }}
           </td>
@@ -18,7 +18,7 @@
       </thead>
       <tbody>
         <tr v-for="(i, index) in dataList" :key="index">
-          <td>{{ index + 1 }}</td>
+          <!-- <td>{{ index + 1 }}</td> -->
 
           <slot name="item" :data="i"></slot>
 
@@ -131,7 +131,7 @@
           <!-- Icon Field -->
           <div v-else-if="i.type === 'icon'">
             <div class="d-flex align-items-center">
-              <IconSelect :on-select="(i) => (iconData.icon = i)" />
+              <IconSelect :on-select="(i) => (iconData.icon = i)" :social="i.social" />
 
               <div class="form-floating" style="margin-right: 0.5em">
                 <input
@@ -154,11 +154,11 @@
               </button>
             </div>
 
-            <div class="row mt-4">
               <div
                 v-for="(k, index) in socialsConvert()"
                 :key="index"
-                class="col-1"
+                class="d-inline-block mt-3"
+                style="margin-right: .5em;"
               >
                 <div
                   class="icon cover-wrapper centered"
@@ -181,14 +181,13 @@
                     <i class="bi bi-trash-fill" />
                   </div>
                 </div>
-              </div>
             </div>
           </div>
 
           <!-- Single Icon -->
           <div v-else-if="i.type === 'single-icon'">
             <div class="d-flex align-items-center">
-              <IconSelect :on-select="(ic) => (data[i.bind] = ic)" />
+              <IconSelect :on-select="(ic) => (data[i.bind] = ic)" :social="i.social" />
             </div>
           </div>
         </div>

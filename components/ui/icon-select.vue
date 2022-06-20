@@ -19,8 +19,26 @@
         />
       </div>
 
-      <div class="row m-0 p-0 w-100 mt-2">
-        <div class="col-1 d-flex align-items-center justify-content-center" v-for="(i, index) in showIcons" :key="index">
+      <div v-if="social" class="row m-0 p-0 w-100 mt-2">
+        <div
+          class="col-1 d-flex align-items-center justify-content-center"
+          v-for="(i, index) in socialIcons"
+          :key="index"
+        >
+          <i
+            :class="`${i} ${i === selectedIcon ? 'active' : ''}`"
+            class="icon bi"
+            @click="selectIcon(i)"
+          />
+        </div>
+      </div>
+
+      <div v-else class="row m-0 p-0 w-100 mt-2">
+        <div
+          class="col-1 d-flex align-items-center justify-content-center"
+          v-for="(i, index) in showIcons"
+          :key="index"
+        >
           <i
             :class="`${i} ${i === selectedIcon ? 'active' : ''}`"
             class="icon bi"
@@ -34,7 +52,7 @@
         class="pb-2"
         @click="showMoreIcons"
       >
-        Daha fazla göster
+        &nbsp; Daha fazla göster
       </small>
     </div>
   </div>
@@ -50,7 +68,19 @@ interface IData {
   showIcons: string[];
   lastMoreIndex: number;
   showIconsList: boolean;
+  socialIcons: string[];
 }
+
+const socialIcons: string[] = [
+  "bi-instagram",
+  "bi-facebook",
+  "bi-youtube",
+  "bi-linkedin",
+  "bi-spotify",
+  "bi-twitter",
+  "bi-reddit",
+  "bi-google"
+];
 
 export default Vue.extend({
   props: {
@@ -58,6 +88,7 @@ export default Vue.extend({
       type: Function,
       required: true,
     },
+    social: Boolean,
   },
   data: (): IData => ({
     selectedIcon: "bi-question",
@@ -65,6 +96,7 @@ export default Vue.extend({
     showIcons: icons.slice(0, 100),
     lastMoreIndex: 0,
     showIconsList: false,
+    socialIcons,
   }),
   methods: {
     showMoreIcons() {
@@ -114,10 +146,10 @@ export default Vue.extend({
   border-radius: 6px;
   /* top: 0; */
   left: 50px;
-  height: 400px;
+  max-height: 250px;
   width: 400px;
   overflow: auto;
-  bottom: 0;
+  top: 0;
   z-index: 99;
   transition: 0.2s;
 }
@@ -131,10 +163,11 @@ export default Vue.extend({
   position: sticky;
   top: 0;
   height: 40px;
+  padding: 0 1em;
 }
 
 .icon-list .icon {
-  padding: 1em .5em;
+  padding: 1em 0.5em;
   display: flex;
   align-items: center;
   justify-content: center;

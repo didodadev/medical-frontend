@@ -12,7 +12,7 @@
         <i class="bi" :class="i.data.icon"></i>
       </td>
       <td>
-        {{i.data.link}}
+        {{ i.data.link }}
       </td>
     </template>
   </PageLayout>
@@ -21,14 +21,13 @@
 <script lang="ts">
 import Vue from "vue";
 import PageLayout from "../../components/admin/page-layout.vue";
-import { IControllers, IDataField } from '../../ts/global.types'
-import { IServiceData } from '../../ts/data.types'
-import publicURL from '../../ts/public-url'
-
+import { IControllers, IDataField } from "../../ts/global.types";
+import { IServiceData } from "../../ts/data.types";
+import publicURL from "../../ts/public-url";
 
 const emptyData = {
-  link: '',
-  icon: ''
+  link: "",
+  icon: "",
 };
 
 const tableHeadKeys = {
@@ -41,17 +40,17 @@ const dataFileds: IDataField[] = [
     required: true,
     label: "Link",
     bind: "link",
-    type: "input"
+    type: "input",
   },
   {
     title: "İkon",
     type: "single-icon",
     bind: "icon",
+    social: true
   },
 ];
 
-const controllers: IControllers<IServiceData> = {
-}
+const controllers: IControllers<IServiceData> = {};
 
 export default Vue.extend({
   data() {
@@ -66,7 +65,7 @@ export default Vue.extend({
     PageLayout,
   },
   methods: {
-    publicURL
-  }
+    publicURL,
+  },
 });
 </script>

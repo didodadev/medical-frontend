@@ -72,7 +72,8 @@ const dataFileds: IDataField[] = [
     title: "Sosyal Medya Linkleri",
     bind: "socials",
     type: "icon",
-    label: 'Link'
+    label: 'Link',
+    social: true
   },
 ];
 
