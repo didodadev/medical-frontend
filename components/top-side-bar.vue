@@ -37,7 +37,7 @@
 
 @media screen and (max-width: 768px) {
   .top-side-bar .item {
-    padding: .5em 0;
+    padding: 0.5em 0;
     width: max-content !important;
     margin-right: 1em;
   }

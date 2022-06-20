@@ -43,10 +43,10 @@
       </tbody>
     </table>
 
-    <h3> Hakkımızda Sayfasındaki Doktor resmi </h3>
+    <h3>Hakkımızda Sayfasındaki Doktor resmi</h3>
     <UploadImage :setBase64="setBase64" :data="data.doctorImage" />
 
-    <h3 class="mt-5"> Hakkımızda Sayfasındaki Hizmetler Kısmına Ait Resim </h3>
+    <h3 class="mt-5">Hakkımızda Sayfasındaki Hizmetler Kısmına Ait Resim</h3>
     <UploadImage :setBase64="setBase642" :data="data.servicesImage" :id="1" />
 
     <h3 class="mt-5">Hizmetler için açıklama</h3>
@@ -105,18 +105,17 @@
 
 <script lang="ts">
 import Vue from "vue";
-import UploadImage from '../../components/admin/upload-image.vue'
+import UploadImage from "../../components/admin/upload-image.vue";
 
 export default Vue.extend({
   components: {
-    UploadImage
+    UploadImage,
   },
   data: () => ({
     data: {},
     loading: false,
     servicesTextEN: false,
     aboutTextEN: false,
-    
   }),
   created() {
     this.getData();
@@ -124,12 +123,12 @@ export default Vue.extend({
   methods: {
     setBase64(base64: string) {
       // @ts-expect-error
-      this.data.image = base64
+      this.data.image = base64;
     },
 
     setBase642(base64: string) {
       // @ts-expect-error
-      this.data.imageS = base64
+      this.data.imageS = base64;
     },
 
     save() {

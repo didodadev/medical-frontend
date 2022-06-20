@@ -19,7 +19,7 @@
 
         <div class="item" @click="exit">
           <i class="bi bi-door-open-fill"></i>
-          <div class="text"> Çıkış Yap </div>
+          <div class="text">Çıkış Yap</div>
         </div>
       </div>
     </div>
@@ -47,11 +47,11 @@
 
         <div class="item" @click="exit">
           <i class="bi bi-door-open-fill"></i>
-          <div class="text"> Çıkış Yap </div>
+          <div class="text">Çıkış Yap</div>
         </div>
       </div>
     </div>
-      <div class="shadow" @click="setMobileSideBarShow(false)" />
+    <div class="shadow" @click="setMobileSideBarShow(false)" />
 
     <div
       class="open-mobile-side-bar d-flex d-xl-none centered"
@@ -63,8 +63,8 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import pathHandler from '../../tools/path-handler'
+import Vue from "vue";
+import pathHandler from "../../tools/path-handler";
 
 interface IRoute {
   icon: string;
@@ -80,32 +80,32 @@ interface IData {
 export default Vue.extend({
   data: (): IData => ({
     routes: [
-      { icon: 'journal-text', path: '/guide', text: 'Klavuz' },
-      { icon: 'person-heart', path: '/doctor', text: 'Doktorlar' },
-      { icon: 'box2-heart', path: '/service', text: 'Hizmetler' },
-      { icon: 'images', path: '/gallery', text: 'Galeri' },
-      { icon: 'card-text', path: '/blog', text: 'Blog' },
-      { icon: 'building', path: '/contracts', text: 'Kurumlar' },
-      { icon: 'body-text', path: '/about', text: 'Hakkımızda' },
-      { icon: 'house', path: '/home', text: 'Anasayfa' },
-      { icon: 'telephone', path: '/contact', text: 'İletişim' },
-      { icon: 'tag-fill', path: '/price', text: 'Fiyatlandırmalar' },
-      { icon: 'globe', path: '/social', text: 'Sosyal Medya' },
+      { icon: "journal-text", path: "/guide", text: "Klavuz" },
+      { icon: "person-heart", path: "/doctor", text: "Doktorlar" },
+      { icon: "box2-heart", path: "/service", text: "Hizmetler" },
+      { icon: "images", path: "/gallery", text: "Galeri" },
+      { icon: "card-text", path: "/blog", text: "Blog" },
+      { icon: "building", path: "/contracts", text: "Kurumlar" },
+      { icon: "body-text", path: "/about", text: "Hakkımızda" },
+      { icon: "house", path: "/home", text: "Anasayfa" },
+      { icon: "telephone", path: "/contact", text: "İletişim" },
+      { icon: "tag-fill", path: "/price", text: "Fiyatlandırmalar" },
+      { icon: "globe", path: "/social", text: "Sosyal Medya" },
     ],
-    showMobileSideBar: false
+    showMobileSideBar: false,
   }),
   methods: {
     pathHandler,
 
-    setMobileSideBarShow (m: boolean = true) {
-      this.showMobileSideBar = m
+    setMobileSideBarShow(m: boolean = true) {
+      this.showMobileSideBar = m;
     },
     exit() {
-      localStorage.removeItem('token')
-      this.$router.replace('/tr/admin/login')
-    }
-  }
-})
+      localStorage.removeItem("token");
+      this.$router.replace("/tr/admin/login");
+    },
+  },
+});
 </script>
 
 <style scoped>
@@ -152,7 +152,7 @@ export default Vue.extend({
 }
 
 .open + .shadow {
-  transition: .2s;
+  transition: 0.2s;
   position: fixed;
   left: 0;
   right: 0;

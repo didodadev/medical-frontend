@@ -1,9 +1,16 @@
 <template>
   <div class="white-block">
-    <PaginationHeader title="Blog" :sub-title="isEn ? data.titleEN : data.title" />
+    <PaginationHeader
+      title="Blog"
+      :sub-title="isEn ? data.titleEN : data.title"
+    />
 
     <div class="container p-5">
-      <img :src="publicURL(data.thumbnailURL)" style="margin-right: 1em; max-width: 100%" width="400" />
+      <img
+        :src="publicURL(data.thumbnailURL)"
+        style="margin-right: 1em; max-width: 100%"
+        width="400"
+      />
 
       <h1 class="mt-5">{{ isEn ? data.titleEN : data.title }}</h1>
 

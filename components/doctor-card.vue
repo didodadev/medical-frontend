@@ -22,7 +22,7 @@
           v-for="(i, index) in socials"
           :key="index"
         >
-          <i class="bi" :class="i.icon" style="color: white;" />
+          <i class="bi" :class="i.icon" style="color: white" />
         </a>
       </div>
     </b-card-body>
@@ -31,7 +31,7 @@
 
 <script>
 export default {
-  props: ['img', 'name', 'branch', 'socials']
+  props: ["img", "name", "branch", "socials"],
 };
 </script>
 

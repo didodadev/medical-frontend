@@ -22,7 +22,7 @@
                   <td>{{ key }} &nbsp;&nbsp;&nbsp;&nbsp;</td>
                   <td>
                     <span v-if="i.isClose">
-                      {{i.openingHour}} - {{i.closingHour}}
+                      {{ i.openingHour }} - {{ i.closingHour }}
                     </span>
                     <i v-else class="bi bi-x-circle"></i>
                   </td>
@@ -45,10 +45,7 @@
                 </p>
               </div>
               <div class="col-md-5">
-                <img
-                  :src="publicURL(data.doctorImage)"
-                  alt=""
-                />
+                <img :src="publicURL(data.doctorImage)" alt="" />
               </div>
             </div>
           </div>
@@ -63,22 +60,23 @@
             </p>
 
             <div class="row services mt-5">
-              <div class="col-md-6 item" v-for="(i, index) in services" :key="index">
+              <div
+                class="col-md-6 item"
+                v-for="(i, index) in services"
+                :key="index"
+              >
                 <div class="icon">
                   <i class="bi bi-activity" />
                 </div>
 
                 <div class="content">
-                  <h5> {{isEn ? i.titleEN : i.title}} </h5>
+                  <h5>{{ isEn ? i.titleEN : i.title }}</h5>
                 </div>
               </div>
             </div>
           </div>
           <div class="col-md-6" style="padding-left: 2em">
-            <img
-              :src="publicURL(data.servicesImage)"
-              width="100%"
-            />
+            <img :src="publicURL(data.servicesImage)" width="100%" />
 
             <!-- <div class="accordion" role="tablist">
               <b-card no-body class="mb-1">
@@ -179,14 +177,18 @@
           </div>
 
           <div class="row mt-5">
-            <div class="col-md-6 col-xl-4" v-for="(i, index) in doctors" :key="index">
+            <div
+              class="col-md-6 col-xl-4"
+              v-for="(i, index) in doctors"
+              :key="index"
+            >
               <NuxtLink :to="pathHandler(`/doctors/${i.seourl}`)">
                 <DoctorCard
-                :img="publicURL(i.thumbnailURL)"
-                :name="i.fullName"
-                :branch="isEn ? i.branchEN : i.branch"
-                :socials="i.socials"
-              />
+                  :img="publicURL(i.thumbnailURL)"
+                  :name="i.fullName"
+                  :branch="isEn ? i.branchEN : i.branch"
+                  :socials="i.socials"
+                />
               </NuxtLink>
             </div>
           </div>
@@ -199,8 +201,8 @@
 <script>
 import PaginationHeader from "../components/pagination-header.vue";
 import DoctorCard from "../components/doctor-card.vue";
-import publicURL from '../ts/public-url'
-import pathHandler from '../tools/path-handler'
+import publicURL from "../ts/public-url";
+import pathHandler from "../tools/path-handler";
 
 export default {
   components: {
@@ -217,7 +219,7 @@ export default {
   },
   methods: {
     publicURL,
-    pathHandler
+    pathHandler,
   },
   async created() {
     if (this.$i18n._localeChainCache.en) {
@@ -226,10 +228,12 @@ export default {
 
     this.data = (await this.$axios.get("/about")).data.data;
     this.services = (await this.$axios.get("/service?range=4")).data.data;
-    this.doctors = (await this.$axios.get("/doctor?range=3")).data.data.map(d => {
-      d.socials = JSON.parse(d.socials)
-      return d
-    });
+    this.doctors = (await this.$axios.get("/doctor?range=3")).data.data.map(
+      (d) => {
+        d.socials = JSON.parse(d.socials);
+        return d;
+      }
+    );
     this.data.workingHours = JSON.parse(this.data.workingHours);
   },
 };

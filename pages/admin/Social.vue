@@ -46,7 +46,7 @@ const dataFileds: IDataField[] = [
     title: "İkon",
     type: "single-icon",
     bind: "icon",
-    social: true
+    social: true,
   },
 ];
 

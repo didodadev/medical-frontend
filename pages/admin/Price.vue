@@ -9,13 +9,13 @@
   >
     <template v-slot:item="i">
       <td>
-        {{i.data.title}}
+        {{ i.data.title }}
       </td>
       <td>
-        {{i.data.explanation}}
+        {{ i.data.explanation }}
       </td>
       <td>
-        {{i.data.price}}
+        {{ i.data.price }}
       </td>
     </template>
   </PageLayout>
@@ -24,10 +24,9 @@
 <script lang="ts">
 import Vue from "vue";
 import PageLayout from "../../components/admin/page-layout.vue";
-import { IControllers, IDataField } from '../../ts/global.types'
-import { IServiceView, IServiceData } from '../../ts/data.types'
-import publicURL from '../../ts/public-url'
-
+import { IControllers, IDataField } from "../../ts/global.types";
+import { IServiceView, IServiceData } from "../../ts/data.types";
+import publicURL from "../../ts/public-url";
 
 const emptyData = {
   title: "",
@@ -38,7 +37,7 @@ const emptyData = {
 const tableHeadKeys = {
   title: "İsim",
   explanation: "Açıklama",
-  price: "Fiyat"
+  price: "Fiyat",
 };
 
 const dataFileds: IDataField[] = [
@@ -46,25 +45,24 @@ const dataFileds: IDataField[] = [
     title: "Fiyat Adı",
     type: "input",
     bind: "title",
-    EN: true
+    EN: true,
   },
   {
     required: true,
     label: "Fiyat Açıklaması (Kısa bir cümle olması gerekir)",
     bind: "explanation",
     type: "input",
-    EN: true
+    EN: true,
   },
   {
     title: "Fiyat",
     bind: "price",
     type: "input",
-    EN: true
+    EN: true,
   },
 ];
 
-const controllers: IControllers<IServiceData> = {
-}
+const controllers: IControllers<IServiceData> = {};
 
 export default Vue.extend({
   data() {
@@ -79,7 +77,7 @@ export default Vue.extend({
     PageLayout,
   },
   methods: {
-    publicURL
-  }
+    publicURL,
+  },
 });
 </script>

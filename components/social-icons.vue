@@ -12,13 +12,13 @@
 export default {
   data() {
     return {
-      data: []
-    }
+      data: [],
+    };
   },
   async mounted() {
-    this.data = (await this.$axios.get('/social')).data.data
-  }
-}
+    this.data = (await this.$axios.get("/social")).data.data;
+  },
+};
 </script>
 
 <style scoped>

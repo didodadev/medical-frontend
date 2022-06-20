@@ -1,8 +1,6 @@
 <template>
   <div class="contact">
-    <h2 class="mb-5">
-      İletişim ve harita
-    </h2>
+    <h2 class="mb-5">İletişim ve harita</h2>
 
     <div class="row">
       <div class="col-md-6">
@@ -14,7 +12,7 @@
             placeholder="Telefon Numarası"
             v-model="data.phone1"
             :disabled="loading"
-          >
+          />
           <label for="phone1">Telefon Numarası 1</label>
         </div>
       </div>
@@ -28,7 +26,7 @@
             placeholder="Telefon Numarası"
             v-model="data.phone2"
             :disabled="loading"
-          >
+          />
           <label for="phone2">Telefon Numarası 2</label>
         </div>
       </div>
@@ -42,12 +40,13 @@
             placeholder="Mail"
             v-model="data.mail"
             :disabled="loading"
-          >
+          />
           <label for="mail">Mail</label>
         </div>
 
         <small class="text-muted">
-          "Medion Premium" sitesindeki iletişim bölümünden gönderilen mail mesajları, yukarıda girdiğiniz mail adresine gönderilir.
+          "Medion Premium" sitesindeki iletişim bölümünden gönderilen mail
+          mesajları, yukarıda girdiğiniz mail adresine gönderilir.
         </small>
       </div>
 
@@ -60,14 +59,15 @@
             placeholder="Konum"
             v-model="data.location"
             :disabled="loading"
-          >
+          />
           <label for="mail">Konum</label>
         </div>
-        <small class="text-muted">Google haritalardan konumunuzu işaretleyip ardından "Menü" ye girin,
+        <small class="text-muted"
+          >Google haritalardan konumunuzu işaretleyip ardından "Menü" ye girin,
           sonrasında "Paylaşın veya harita yerleştirin" kısmına girin. Burada
           üst kısımdan "harita yerleştirme" kısmına gelin ve "HTML'yi kopyala"
-          yapın ve yukarıdaki bölüme yapıştırın. <br>
-          <br>
+          yapın ve yukarıdaki bölüme yapıştırın. <br />
+          <br />
 
           Eğer yapamadıysanız klavuzdan "Harita" veya "harita" diye aratarak
           daha detaylı bir açıklama bulabilirsiniz.
@@ -75,33 +75,36 @@
       </div>
     </div>
 
-    <button class="btn btn-dark" @click="save" :disabled="loading">Kaydet</button>
+    <button class="btn btn-dark" @click="save" :disabled="loading">
+      Kaydet
+    </button>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from "vue";
 
 export default Vue.extend({
   data: () => ({
     data: {},
-    loading: false
+    loading: false,
   }),
   created() {
-    this.getData()
+    this.getData();
   },
   methods: {
     async getData() {
-      this.data = (await this.$axios.get('/contact')).data.data
+      this.data = (await this.$axios.get("/contact")).data.data;
 
-      console.log(this.data)
+      console.log(this.data);
     },
     save() {
-      this.loading = true
+      this.loading = true;
 
-      this.$axios.post('/contact', this.data)
-        .finally(() => this.loading = false)
-    }
-  }
-})
+      this.$axios
+        .post("/contact", this.data)
+        .finally(() => (this.loading = false));
+    },
+  },
+});
 </script>

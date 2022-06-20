@@ -38,31 +38,31 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from "vue";
 
 export default Vue.extend({
   props: {
     show: {
       type: Boolean,
-      required: true
+      required: true,
     },
     close: {
       type: Function,
-      required: true
+      required: true,
     },
     title: {
       type: String,
-      required: true
+      required: true,
     },
     err: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   data: () => ({
-    isFullscreen: false
-  })
-})
+    isFullscreen: false,
+  }),
+});
 </script>
 
 <style scoped>
@@ -119,7 +119,6 @@ export default Vue.extend({
 
 .modal-body {
   min-height: 40vh;
-
 }
 
 .modal-header {

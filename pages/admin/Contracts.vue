@@ -9,10 +9,10 @@
   >
     <template v-slot:item="i">
       <td>
-        <img :src="publicURL(i.data.thumbnailURL)" width="100px">
+        <img :src="publicURL(i.data.thumbnailURL)" width="100px" />
       </td>
       <td>
-        {{i.data.name}}
+        {{ i.data.name }}
       </td>
     </template>
   </PageLayout>
@@ -21,20 +21,19 @@
 <script lang="ts">
 import Vue from "vue";
 import PageLayout from "../../components/admin/page-layout.vue";
-import { IControllers, IDataField } from '../../ts/global.types'
-import { IBlogData, IBlogView } from '../../ts/data.types'
-import publicURL from '../../ts/public-url'
-
+import { IControllers, IDataField } from "../../ts/global.types";
+import { IBlogData, IBlogView } from "../../ts/data.types";
+import publicURL from "../../ts/public-url";
 
 const emptyData: IBlogView = {
-  title: '',
-  content: '',
-  coverLetter: ''
+  title: "",
+  content: "",
+  coverLetter: "",
 };
 
 const tableHeadKeys = {
   thumbnailURL: "Resim",
-  title: 'Kurum Adı',
+  title: "Kurum Adı",
 };
 
 const dataFileds: IDataField[] = [
@@ -54,12 +53,11 @@ const dataFileds: IDataField[] = [
     title: "Kurum Açıklaması",
     bind: "content",
     type: "editor",
-    EN: true
+    EN: true,
   },
 ];
 
-const controllers: IControllers<IBlogData> = {
-}
+const controllers: IControllers<IBlogData> = {};
 
 export default Vue.extend({
   data() {
@@ -74,7 +72,7 @@ export default Vue.extend({
     PageLayout,
   },
   methods: {
-    publicURL
-  }
+    publicURL,
+  },
 });
 </script>

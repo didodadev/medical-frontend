@@ -26,9 +26,14 @@
     <div class="white-block p-4">
       <div class="container mt-5">
         <div class="row justify-content-between text-center">
-          <h1 style="font-size: 50px">{{ data[isEn ? "welcomeTitleEN" : "welcomeTitle"] }}</h1>
+          <h1 style="font-size: 50px">
+            {{ data[isEn ? "welcomeTitleEN" : "welcomeTitle"] }}
+          </h1>
 
-          <p class="text-muted mt-3" v-html="data[isEn ? 'welcomeTextEN' : 'welcomeText']"></p>
+          <p
+            class="text-muted mt-3"
+            v-html="data[isEn ? 'welcomeTextEN' : 'welcomeText']"
+          ></p>
           <!-- <div class="col-md-6">
             <div class="row">
               <div class="col-md-5 l-bg-primary p-3 m-1">
@@ -90,7 +95,7 @@
         <div class="row justify-content-center mt-5">
           <div
             class="col-md-3 mb-4 h-100"
-            style="height: 100%;"
+            style="height: 100%"
             v-for="(i, index) in price"
             :key="index"
           >

@@ -7,20 +7,30 @@
       @change="onSelect($event)"
     />
 
-    <div v-if="(imageBase64 !== '' || (data !== '' && data)) && noPreview === undefined" class="preview">
+    <div
+      v-if="
+        (imageBase64 !== '' || (data !== '' && data)) && noPreview === undefined
+      "
+      class="preview"
+    >
       <label class="cover-wrapper" :for="`upload-image${id}`">
         <div class="primary-cover">
           <i class="bi bi-pen-fill" style="font-size: 30px" />
         </div>
 
-        <img ref="image" :src="data ? publicURL(data) : imageBase64" alt="" style="max-width: 300px;" />
+        <img
+          ref="image"
+          :src="data ? publicURL(data) : imageBase64"
+          alt=""
+          style="max-width: 300px"
+        />
       </label>
     </div>
 
     <div v-else-if="!noPreview" class="upload-image centered">
       <label :for="`upload-image${id}`">
         <h4>
-          <i class="bi bi-images" /> 
+          <i class="bi bi-images" />
 
           <small class="text-muted">
             Resim yüklemek için lütfen tıklayınız
@@ -40,7 +50,7 @@ interface IData {
 }
 
 export default Vue.extend({
-  props: ['setBase64', 'data', 'id', 'noPreview'],
+  props: ["setBase64", "data", "id", "noPreview"],
   data: (): IData => ({
     imageBase64: "",
   }),

@@ -23,7 +23,7 @@
 import PaginationHeader from "../../components/pagination-header.vue";
 import DoctorCard from "../../components/doctor-card.vue";
 import pathHandler from "../../tools/path-handler";
-import publicURL from '../../ts/public-url'
+import publicURL from "../../ts/public-url";
 
 export default {
   components: {
@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     pathHandler,
-    publicURL
+    publicURL,
   },
   data: () => ({ data: {} }),
   async created() {

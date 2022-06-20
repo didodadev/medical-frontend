@@ -79,7 +79,7 @@ const socialIcons: string[] = [
   "bi-spotify",
   "bi-twitter",
   "bi-reddit",
-  "bi-google"
+  "bi-google",
 ];
 
 export default Vue.extend({

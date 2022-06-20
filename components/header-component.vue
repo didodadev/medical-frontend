@@ -187,8 +187,8 @@ export default Vue.extend({
       this.$i18n.setLocale(lang);
 
       setTimeout(() => {
-        location.reload()
-      }, 500)
+        location.reload();
+      }, 500);
     },
   },
 });

@@ -6,7 +6,7 @@
       </button>
     </div>
 
-    <table class="table tabe-responsive  w-100">
+    <table class="table tabe-responsive w-100">
       <thead>
         <tr>
           <!-- <td>#</td> -->
@@ -131,7 +131,10 @@
           <!-- Icon Field -->
           <div v-else-if="i.type === 'icon'">
             <div class="d-flex align-items-center">
-              <IconSelect :on-select="(i) => (iconData.icon = i)" :social="i.social" />
+              <IconSelect
+                :on-select="(i) => (iconData.icon = i)"
+                :social="i.social"
+              />
 
               <div class="form-floating" style="margin-right: 0.5em">
                 <input
@@ -154,40 +157,43 @@
               </button>
             </div>
 
+            <div
+              v-for="(k, index) in socialsConvert()"
+              :key="index"
+              class="d-inline-block mt-3"
+              style="margin-right: 0.5em"
+            >
               <div
-                v-for="(k, index) in socialsConvert()"
-                :key="index"
-                class="d-inline-block mt-3"
-                style="margin-right: .5em;"
+                class="icon cover-wrapper centered"
+                style="
+                  width: 30px;
+                  height: 30px;
+                  border: 1px solid var(--border-2);
+                  border-radius: 6px;
+                "
               >
-                <div
-                  class="icon cover-wrapper centered"
-                  style="
-                    width: 30px;
-                    height: 30px;
-                    border: 1px solid var(--border-2);
-                    border-radius: 6px;
-                  "
-                >
-                  <i class="bi" :class="k.icon" />
+                <i class="bi" :class="k.icon" />
 
-                  <div
-                    v-b-tooltip.hover
-                    class="red-cover"
-                    :title="k.link"
-                    style="z-index: 9999"
-                    @click="deleteSocial(i.bind, index)"
-                  >
-                    <i class="bi bi-trash-fill" />
-                  </div>
+                <div
+                  v-b-tooltip.hover
+                  class="red-cover"
+                  :title="k.link"
+                  style="z-index: 9999"
+                  @click="deleteSocial(i.bind, index)"
+                >
+                  <i class="bi bi-trash-fill" />
                 </div>
+              </div>
             </div>
           </div>
 
           <!-- Single Icon -->
           <div v-else-if="i.type === 'single-icon'">
             <div class="d-flex align-items-center">
-              <IconSelect :on-select="(ic) => (data[i.bind] = ic)" :social="i.social" />
+              <IconSelect
+                :on-select="(ic) => (data[i.bind] = ic)"
+                :social="i.social"
+              />
             </div>
           </div>
         </div>
@@ -287,7 +293,7 @@ export default Vue.extend({
         .finally(() => (this.loading = false));
     },
     finallyAndCloseModal(closeModal?: boolean) {
-      this.clearData()
+      this.clearData();
       this.loading = false;
 
       if (closeModal) this.show = false;
@@ -318,7 +324,7 @@ export default Vue.extend({
       this.show = m;
 
       if (!m) {
-        this.clearData()
+        this.clearData();
         this.err = "";
       }
     },
@@ -333,10 +339,10 @@ export default Vue.extend({
       this.data[bindName].splice(index, 1);
     },
     clearData() {
-      this.data = { ...this.emptyData }
-      this.data.socials = []
+      this.data = { ...this.emptyData };
+      this.data.socials = [];
 
-      this.$forceUpdate()
+      this.$forceUpdate();
     },
     socialsConvert() {
       if (typeof this.data.socials === "object") return this.data.socials;

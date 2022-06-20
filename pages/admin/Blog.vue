@@ -59,14 +59,14 @@ const dataFileds: IDataField[] = [
     bind: "coverLetter",
     type: "input",
     textArea: true,
-    EN: true
+    EN: true,
   },
   {
     required: true,
     bind: "content",
     type: "editor",
     title: "Blog İçeriği",
-    EN: true
+    EN: true,
   },
 ];
 

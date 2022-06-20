@@ -1,6 +1,9 @@
 <template>
   <div class="white-block">
-    <PaginationHeader title="contractedInstitutions" sub-title="Contract Name" />
+    <PaginationHeader
+      title="contractedInstitutions"
+      sub-title="Contract Name"
+    />
 
     <div class="container p-5">
       <div class="d-flex">
@@ -8,10 +11,10 @@
           :src="publicURL(data.thumbnailURL)"
           style="margin-right: 1em"
           :alt="data.name"
-        >
+        />
 
         <div>
-          <h3> {{data.name}} </h3>
+          <h3>{{ data.name }}</h3>
         </div>
       </div>
 
@@ -21,16 +24,16 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import publicURL from '../../ts/public-url'
+import Vue from "vue";
+import publicURL from "../../ts/public-url";
 
 export default Vue.extend({
   data: () => ({
     data: {},
-    isEn: false
+    isEn: false,
   }),
   methods: {
-    publicURL
+    publicURL,
   },
   async created() {
     // @ts-expect-error
@@ -38,7 +41,9 @@ export default Vue.extend({
       this.isEn = true;
     }
 
-    this.data = (await this.$axios.get(`/contract/${this.$route.params.id}`)).data.data
-  }
-})
+    this.data = (
+      await this.$axios.get(`/contract/${this.$route.params.id}`)
+    ).data.data;
+  },
+});
 </script>

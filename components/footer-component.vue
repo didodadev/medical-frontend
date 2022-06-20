@@ -4,7 +4,7 @@
       <div class="container">
         <div class="row m-0 text-muted">
           <div class="col-md-3 mb-4 text-center">
-            <img src="../assets/images/logo.png" alt="" width="100%">
+            <img src="../assets/images/logo.png" alt="" width="100%" />
 
             <div class="socials d-flex justify-content-center">
               <div class="item">
@@ -26,31 +26,23 @@
           </div>
 
           <div class="col-md-3">
-            <h3> {{ $t('footer pages') }} </h3>
+            <h3>{{ $t("footer pages") }}</h3>
             <div class="title-line" />
 
             <p>
-              <NuxtLink :to="pathHandler('/home')">
-                Home
-              </NuxtLink>
+              <NuxtLink :to="pathHandler('/home')"> Home </NuxtLink>
             </p>
 
             <p>
-              <NuxtLink :to="pathHandler('/about')">
-                About
-              </NuxtLink>
+              <NuxtLink :to="pathHandler('/about')"> About </NuxtLink>
             </p>
 
             <p>
-              <NuxtLink :to="pathHandler('/services')">
-                Services
-              </NuxtLink>
+              <NuxtLink :to="pathHandler('/services')"> Services </NuxtLink>
             </p>
 
             <p>
-              <NuxtLink :to="pathHandler('/contact')">
-                Contact
-              </NuxtLink>
+              <NuxtLink :to="pathHandler('/contact')"> Contact </NuxtLink>
             </p>
           </div>
         </div>
@@ -58,22 +50,20 @@
     </div>
 
     <div class="bottom">
-      <div class="container">
-        © 2021 ThemeMascot. All Rights Reserved.
-      </div>
+      <div class="container">© 2021 ThemeMascot. All Rights Reserved.</div>
     </div>
   </footer>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import pathHandler from '../tools/path-handler'
+import Vue from "vue";
+import pathHandler from "../tools/path-handler";
 
 export default Vue.extend({
   methods: {
-    pathHandler
-  }
-})
+    pathHandler,
+  },
+});
 </script>
 
 <style scoped>

@@ -1,11 +1,11 @@
 <template>
   <b-card
     :img-src="img"
-    style="border-radius: 13px; height: 100%; border: none; overflow: hidden;"
+    style="border-radius: 13px; height: 100%; border: none; overflow: hidden"
     class="service-card"
   >
     <b-body class="p-5">
-      <h4> {{ name }} </h4>
+      <h4>{{ name }}</h4>
 
       <p class="text-muted">
         {{ cover }}
@@ -13,7 +13,7 @@
 
       <NuxtLink :to="pathHandler(`/services/${seourl}`)">
         <b-button variant="primary">
-          {{ $t('readMore') }}
+          {{ $t("readMore") }}
         </b-button>
       </NuxtLink>
     </b-body>
@@ -21,15 +21,15 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import pathHandler from '../tools/path-handler'
+import Vue from "vue";
+import pathHandler from "../tools/path-handler";
 
 export default Vue.extend({
-  props: ['img', 'name', 'cover', 'seourl'],
+  props: ["img", "name", "cover", "seourl"],
   methods: {
-    pathHandler
-  }
-})
+    pathHandler,
+  },
+});
 </script>
 
 <style scoped>
@@ -47,13 +47,13 @@ export default Vue.extend({
 }
 
 .service-card::before {
-  content: ' ';
+  content: " ";
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
   height: 100%;
   background-color: black;
-  opacity: .5;
+  opacity: 0.5;
 }
 </style>

@@ -21,17 +21,6 @@
               {{ title }}
             </h3>
           </div>
-          <!-- 
-          <button
-            @click="
-              addNotification({
-                name: 'test',
-                message: 'Hello',
-              })
-            "
-          >
-            Addd
-          </button> -->
 
           <div class="container-xl mb-5">
             <Nuxt />

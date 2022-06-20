@@ -9,10 +9,10 @@
   >
     <template v-slot:item="i">
       <td>
-        <img :src="publicURL(i.data.thumbnailURL)" width="100px">
+        <img :src="publicURL(i.data.thumbnailURL)" width="100px" />
       </td>
       <td>
-        {{i.data.title}}
+        {{ i.data.title }}
       </td>
     </template>
   </PageLayout>
@@ -21,10 +21,9 @@
 <script lang="ts">
 import Vue from "vue";
 import PageLayout from "../../components/admin/page-layout.vue";
-import { IControllers, IDataField } from '../../ts/global.types'
-import { IServiceView, IServiceData } from '../../ts/data.types'
-import publicURL from '../../ts/public-url'
-
+import { IControllers, IDataField } from "../../ts/global.types";
+import { IServiceView, IServiceData } from "../../ts/data.types";
+import publicURL from "../../ts/public-url";
 
 const emptyData = {
   title: "",
@@ -48,23 +47,28 @@ const dataFileds: IDataField[] = [
     label: "Hizmet Adı",
     bind: "title",
     type: "input",
-    EN: true
+    EN: true,
   },
   {
     title: "Hizmet Açıklaması",
     bind: "content",
     type: "editor",
-    EN: true
+    EN: true,
   },
 ];
 
 const controllers: IControllers<IServiceData> = {
-  title: (d) => d.title === '' ? { err: 'Hizmet adı doldurulması zorunlu bir alandır.' } : {},
+  title: (d) =>
+    d.title === ""
+      ? { err: "Hizmet adı doldurulması zorunlu bir alandır." }
+      : {},
   image: (d) => {
-    if (d.thumbnailURL) return {}
-    return (d.image === '' || !d.image) ? { err: 'Hizmet için resim yüklenmelidir' } : {}
-  }
-}
+    if (d.thumbnailURL) return {};
+    return d.image === "" || !d.image
+      ? { err: "Hizmet için resim yüklenmelidir" }
+      : {};
+  },
+};
 
 export default Vue.extend({
   data() {
@@ -79,7 +83,7 @@ export default Vue.extend({
     PageLayout,
   },
   methods: {
-    publicURL
-  }
+    publicURL,
+  },
 });
 </script>

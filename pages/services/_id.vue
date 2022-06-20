@@ -1,7 +1,9 @@
 <template>
   <div>
-    <PaginationHeader title="service" :sub-title="isEn ? data.titleEN : data.title" />
-    
+    <PaginationHeader
+      title="service"
+      :sub-title="isEn ? data.titleEN : data.title"
+    />
 
     <div class="white-block p-5">
       <div class="container">

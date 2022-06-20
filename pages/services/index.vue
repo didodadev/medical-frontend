@@ -20,20 +20,20 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import pathHandler from '../../tools/path-handler'
-import ServiceCard from '../../components/service-card.vue'
-import PaginationHeader from '../../components/pagination-header.vue'
-import publicURL from '../../ts/public-url'
+import Vue from "vue";
+import pathHandler from "../../tools/path-handler";
+import ServiceCard from "../../components/service-card.vue";
+import PaginationHeader from "../../components/pagination-header.vue";
+import publicURL from "../../ts/public-url";
 
 export default Vue.extend({
   components: {
     ServiceCard,
-    PaginationHeader
+    PaginationHeader,
   },
   data: () => ({
     data: {},
-    isEn: false
+    isEn: false,
   }),
   methods: { pathHandler, publicURL },
   async created() {
@@ -42,9 +42,9 @@ export default Vue.extend({
       this.isEn = true;
     }
 
-    this.data = (await this.$axios.get('/service')).data.data
-  }
-})
+    this.data = (await this.$axios.get("/service")).data.data;
+  },
+});
 </script>
 
 <style scoped>

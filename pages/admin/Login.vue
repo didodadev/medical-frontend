@@ -41,15 +41,13 @@ export default Vue.extend({
   }),
   methods: {
     login() {
-      this.$axios.post('/login', this.data)
-        .then((d) => {
-          localStorage.setItem('token', d.data.data.token)
-          // @ts-expect-error
-          const lang = this.$i18n._localeChainCache.en ? 'en' : 'tr'
+      this.$axios.post("/login", this.data).then((d) => {
+        localStorage.setItem("token", d.data.data.token);
+        // @ts-expect-error
+        const lang = this.$i18n._localeChainCache.en ? "en" : "tr";
 
-          this.$router.replace(`/${lang}/admin/guide`)
-          
-        });
+        this.$router.replace(`/${lang}/admin/guide`);
+      });
     },
   },
 });
