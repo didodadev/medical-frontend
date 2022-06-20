@@ -50,8 +50,8 @@
           <div class="text"> Çıkış Yap </div>
         </div>
       </div>
-      <div class="shadow" @click="setMobileSideBarShow(false)" />
     </div>
+      <div class="shadow" @click="setMobileSideBarShow(false)" />
 
     <div
       class="open-mobile-side-bar d-flex d-xl-none centered"
@@ -151,7 +151,8 @@ export default Vue.extend({
   /* color: white; */
 }
 
-.mobile-side-bar .shadow {
+.open + .shadow {
+  transition: .2s;
   position: fixed;
   left: 0;
   right: 0;

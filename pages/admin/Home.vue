@@ -45,9 +45,9 @@
         id="flexSwitchCheckChecked"
         v-model="onWelcomeTitleEN"
       />
-      <label class="form-check-label" for="flexSwitchCheckChecked"
-        > {{onWelcomeTitleEN ? 'İngilizce' : 'Türkçe'}} </label
-      >
+      <label class="form-check-label" for="flexSwitchCheckChecked">
+        {{ onWelcomeTitleEN ? "İngilizce" : "Türkçe" }}
+      </label>
     </div>
     <div class="form-floating mb-3">
       <input
@@ -68,23 +68,15 @@
         id="flexSwitchCheckChecked"
         v-model="onWelcomeTextEN"
       />
-      <label class="form-check-label" for="flexSwitchCheckChecked"
-        > {{onWelcomeTextEN ? 'İngilizce' : 'Türkçe'}} </label
-      >
+      <label class="form-check-label" for="flexSwitchCheckChecked">
+        {{ onWelcomeTextEN ? "İngilizce" : "Türkçe" }}
+      </label>
     </div>
-    <div class="form-floating mb-3">
-      <textarea
-        id="content"
-        type="text"
-        class="form-control"
-        placeholder="..."
-        style="height: 300px"
-        v-model="data[onWelcomeTextEN ? 'welcomeTextEN' : 'welcomeText']"
-      />
-      <label for="content">İçerik</label>
-    </div>
+    <VueEditor
+      v-model="data[onWelcomeTextEN ? 'welcomeTextEN' : 'welcomeText']"
+    />
 
-    <button class="btn btn-primary" @click="save">Kaydet</button>
+    <button class="btn btn-primary mt-5" @click="save">Kaydet</button>
   </div>
 </template>
 
@@ -99,7 +91,7 @@ export default Vue.extend({
       data: {},
       loading: false,
       onWelcomeTitleEN: false,
-      onWelcomeTextEN: false
+      onWelcomeTextEN: false,
     };
   },
   components: {

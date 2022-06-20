@@ -3,16 +3,10 @@
     <div class="footer-content">
       <div class="container">
         <div class="row m-0 text-muted">
-          <div class="col-md-3 mb-4">
+          <div class="col-md-3 mb-4 text-center">
             <img src="../assets/images/logo.png" alt="" width="100%">
 
-            <p>
-              203, Envato Labs, Behind Alis Steet, Melbourne,
-              Australia.immersion along the information close the loop on
-              focusing
-            </p>
-
-            <div class="socials d-flex">
+            <div class="socials d-flex justify-content-center">
               <div class="item">
                 <i class="bi bi-instagram" />
               </div>

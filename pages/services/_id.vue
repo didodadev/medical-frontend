@@ -1,12 +1,13 @@
 <template>
   <div>
-    <PaginationHeader title="service" sub-title="Example Service" />
+    <PaginationHeader title="service" :sub-title="isEn ? data.titleEN : data.title" />
+    
 
     <div class="white-block p-5">
       <div class="container">
         <img :src="publicURL(data.thumbnailURL)" width="100%" />
 
-        <h3 class="mt-5">Operation Theater</h3>
+        <h3 class="mt-5">{{ isEn ? data.titleEN : data.title }}</h3>
 
         <p class="mt-4" v-html="isEn ? data.contentEN : data.content"></p>
       </div>

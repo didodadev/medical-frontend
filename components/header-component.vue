@@ -3,7 +3,9 @@
     <div class="container">
       <div class="row justify-content-between align-items-center">
         <div class="col-2">
-          <img src="../assets/images/logo.png" width="100%" />
+          <NuxtLink :to="pathHandler('/home')">
+            <img src="../assets/images/logo.png" width="100%" />
+          </NuxtLink>
         </div>
 
         <div class="col-xl-10 d-none d-xl-block">
@@ -193,20 +195,6 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-/* .lang-select {
-  padding: 6px;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: max-content;
-}
-
-div[class="lang-select active-lang"] {
-  background-color: var(--secondary);
-  opacity: .4;
-} */
-
 .header {
   background: white;
   z-index: 990999;
@@ -249,10 +237,7 @@ div[class="lang-select active-lang"] {
 }
 
 .nav-item .title {
-  /* background: var(--secondary); */
-  /* color: white; */
   padding: 0.5em 1em;
-  /* font-weight: 600; */
 }
 
 .nav-item .title i {
@@ -277,14 +262,11 @@ div[class="lang-select active-lang"] {
   transition: 0.2s;
   position: absolute;
   background: white;
-  /* border-top: 2px solid black; */
   width: max-content;
   opacity: 0;
   visibility: hidden;
   left: -2em;
-  /* box-shadow: 10px 10px 25px var(--shadow-1); */
   border-radius: 7px;
-  /* border-bottom-left-radius: 7px; */
   min-width: 20vw;
   overflow: hidden;
   border: 1px solid var(--border-1);

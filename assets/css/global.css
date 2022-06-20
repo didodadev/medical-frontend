@@ -111,9 +111,6 @@ body {
   background: var(--secondary);
 }
 
-.admin .page-title {
-}
-
 .admin .head-actions {
   justify-content: flex-end;
   align-items: flex-end;
@@ -208,4 +205,30 @@ body {
 input[type='time'] {
   border: 1px solid var(--border-2);
   padding: .3em .5em;
+}
+
+.card-cover {
+  transition: 0.2s;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: black;
+  opacity: 0;
+  text-align: left;
+  padding: 2em;
+  cursor: pointer;
+}
+
+.card-cover * {
+  color: white;
+}
+
+.tooltip {
+  z-index: 999999 !important;
+}
+
+.admin .btn {
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.2),0 2px 10px 0 rgba(0,0,0,.1);
 }

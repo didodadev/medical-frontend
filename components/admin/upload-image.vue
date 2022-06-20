@@ -7,13 +7,13 @@
       @change="onSelect($event)"
     />
 
-    <div v-if="(imageBase64 !== '' || (data !== '' && data)) && noPreview" class="preview">
+    <div v-if="(imageBase64 !== '' || (data !== '' && data)) && noPreview === undefined" class="preview">
       <label class="cover-wrapper" :for="`upload-image${id}`">
         <div class="primary-cover">
           <i class="bi bi-pen-fill" style="font-size: 30px" />
         </div>
 
-        <img ref="image" :src="data ? publicURL(data) : imageBase64" alt="" class="w-100" />
+        <img ref="image" :src="data ? publicURL(data) : imageBase64" alt="" style="max-width: 300px;" />
       </label>
     </div>
 
@@ -81,8 +81,8 @@ export default Vue.extend({
 
 .preview {
   max-height: 400px;
-  min-width: 200px;
-  min-height: 200px;
+  max-width: 100%;
+  width: max-content;
   overflow: hidden;
   border: 1px solid var(--border-2);
   border-radius: 5px;

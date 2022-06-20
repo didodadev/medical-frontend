@@ -14,7 +14,7 @@
         </p>
 
         <b-button variant="outline-primary" class="mt-3">
-          {{ $t('view-details') }}
+          {{ $t('viewDetails') }}
         </b-button>
       </b-card-body>
     </b-card>

@@ -1,8 +1,8 @@
 <template>
   <b-card
     :img-src="img"
-    class="shadow"
-    style="border-radius: 13px; height: 100%; border: 1px solid var(--border-2); overflow: hidden;"
+    style="border-radius: 13px; height: 100%; border: none; overflow: hidden;"
+    class="service-card"
   >
     <b-body class="p-5">
       <h4> {{ name }} </h4>
@@ -31,3 +31,29 @@ export default Vue.extend({
   }
 })
 </script>
+
+<style scoped>
+.service-card img {
+  height: 100%;
+}
+
+.service-card .card-body {
+  position: absolute;
+  left: 0;
+}
+
+.service-card .card-body * {
+  color: white;
+}
+
+.service-card::before {
+  content: ' ';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 100%;
+  background-color: black;
+  opacity: .5;
+}
+</style>

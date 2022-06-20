@@ -117,6 +117,11 @@ export default Vue.extend({
   overflow: auto;
 }
 
+.modal-body {
+  min-height: 40vh;
+
+}
+
 .modal-header {
   position: sticky;
   top: 0;

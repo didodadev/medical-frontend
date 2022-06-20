@@ -2,22 +2,18 @@
 <style></style>
 <template>
   <div class="doctors">
-    <PaginationHeader title="doctorsDoctor" sub-title="Maria" />
+    <PaginationHeader title="doctorsDoctor" :sub-title="data.fullName" />
 
     <div class="white-block">
       <div class="container p-5">
-        <h4 class="text-muted">
-          {{ $t("doctors-doctor") }}
-        </h4>
-
         <div>
           <img
             :src="publicURL(data.thumbnailURL)"
             :alt="data.fullName"
-            width="200"
+            width="400"
             height="auto"
           />
-          <h2>{{ data.fullName }}</h2>
+          <h2 class="mt-3">{{ data.fullName }}</h2>
         </div>
 
         <div
