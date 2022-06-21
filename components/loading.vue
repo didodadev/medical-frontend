@@ -19,25 +19,6 @@
   </div>
 </template>
 
-<script lang="ts">
-import Vue from "vue";
-import publicURL from "../ts/public-url";
-
-export default Vue.extend({
-  data: () => ({
-    loadingImageURL: "",
-  }),
-  async created() {
-    this.loadingImageURL = (
-      await this.$axios("/loading")
-    ).data.data.thumbnailURL;
-  },
-  methods: {
-    publicURL,
-  },
-});
-</script>
-
 <style scoped>
 .introduction {
   position: fixed;

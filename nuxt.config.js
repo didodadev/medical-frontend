@@ -1,6 +1,8 @@
 import tr from './languages/tr'
 import en from './languages/en'
 
+const URL = 'https://medionpremium.com/api'
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -47,7 +49,7 @@ export default {
 
   publicRuntimeConfig: {
     axios: {
-      browserBaseURL: 'http://localhost:4000/api'
+      browserBaseURL: URL
     }
   },
 
@@ -87,14 +89,11 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    browserBaseURL: 'http://localhost:4000/api/',
+    browserBaseURL: URL,
     proxyHeaders: false,
     credentials: false
   },
 
-  // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-  },
   generate: {
     fallback: true
   }
