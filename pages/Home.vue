@@ -158,13 +158,9 @@
           </h1>
         </div>
 
-        <div class="row blogs justify-content-center">
-          <div class="col-md-4 mb-4">
-            <NuxtLink
-              :to="pathHandler(`/blog/${i.seourl}`)"
-              v-for="(i, index) in blog"
-              :key="index"
-            >
+        <div class="row justify-content-center">
+          <div class="col-md-4 mb-4" v-for="(i, index) in blog" :key="index">
+            <NuxtLink :to="pathHandler(`/blog/${i.seourl}`)">
               <BLogCard
                 :date="i.createdDate"
                 :img="publicURL(i.thumbnailURL)"

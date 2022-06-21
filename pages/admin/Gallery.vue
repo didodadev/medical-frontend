@@ -1,6 +1,6 @@
 <template>
   <PageLayout
-    name="Galeri"
+    name="Resim"
     :emptyData="emptyData"
     :tableHeadKeys="tableHeadKeys"
     :dataFields="dataFileds"

@@ -7,50 +7,61 @@
             <img src="../assets/images/logo.png" alt="" width="100%" />
 
             <div class="socials d-flex justify-content-center">
-              <div class="item">
-                <i class="bi bi-instagram" />
-              </div>
-
-              <div class="item">
-                <i class="bi bi-facebook" />
-              </div>
-
-              <div class="item">
-                <i class="bi bi-youtube" />
-              </div>
-
-              <div class="item">
-                <i class="bi bi-twitter" />
+              <div class="item" v-for="(i, index) in data" :key="index">
+                <a :href="i.link">
+                  <i class="bi" :class="i.icon" />
+                </a>
               </div>
             </div>
           </div>
 
           <div class="col-md-3">
-            <h3>{{ $t("footer pages") }}</h3>
+            <h3>{{ $t("footerPages") }}</h3>
             <div class="title-line" />
 
             <p>
-              <NuxtLink :to="pathHandler('/home')"> Home </NuxtLink>
+              <NuxtLink :to="pathHandler('/home')"> {{ $t("home") }} </NuxtLink>
             </p>
 
             <p>
-              <NuxtLink :to="pathHandler('/about')"> About </NuxtLink>
+              <NuxtLink :to="pathHandler('/about')">
+                {{ $t("about") }}
+              </NuxtLink>
             </p>
 
             <p>
-              <NuxtLink :to="pathHandler('/services')"> Services </NuxtLink>
+              <NuxtLink :to="pathHandler('/services')">
+                {{ $t("services") }}
+              </NuxtLink>
             </p>
 
             <p>
-              <NuxtLink :to="pathHandler('/contact')"> Contact </NuxtLink>
+              <NuxtLink :to="pathHandler('/contact')">
+                {{ $t("contact") }}
+              </NuxtLink>
             </p>
+          </div>
+
+          <div class="col-md-3">
+            <h3>{{ $t("homeLatest") }}</h3>
+            <div class="title-line" />
+
+            <div v-for="(i, index) in latest" :key="index" class="mb-3">
+              <NuxtLink :to="pathHandler(`/blog/${i.seourl}`)">
+                <h6 class="mb-0">{{ isEn ? i.titleEN : i.title }}</h6>
+
+                <small class="text-muted">
+                  {{ isEn ? i.coverLetterEN : i.coverLetter }}
+                </small>
+              </NuxtLink>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="bottom">
-      <div class="container">© 2021 ThemeMascot. All Rights Reserved.</div>
+    <div class="bottom text-center">
+      <div class="container">Medion Premium</div>
     </div>
   </footer>
 </template>
@@ -60,6 +71,20 @@ import Vue from "vue";
 import pathHandler from "../tools/path-handler";
 
 export default Vue.extend({
+  data: () => ({
+    data: {},
+    latest: [],
+    isEn: false,
+  }),
+  async created() {
+    // @ts-expect-error
+    if (this.$i18n._localeChainCache.en) {
+      this.isEn = true;
+    }
+
+    this.data = (await this.$axios("/social")).data.data;
+    this.latest = (await this.$axios("/blog?range=2")).data.data;
+  },
   methods: {
     pathHandler,
   },

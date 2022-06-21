@@ -5,7 +5,7 @@ export default ({ $axios, store }) => {
 
   $axios.onResponseError((e) => {
     store.dispatch('addNotification', {
-      title: 'Hata',
+      type: false,
       message: e.response.data.message
     })
   })
@@ -15,6 +15,7 @@ export default ({ $axios, store }) => {
 
     store.dispatch('addNotification', {
       title: 'Tamamlandı',
+      type: true,
       message: e.data.message
     })
   })

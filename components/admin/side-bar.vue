@@ -179,6 +179,10 @@ export default Vue.extend({
   position: relative;
 }
 
+.nav .active * {
+  color: var(--secondary);
+}
+
 .nav .active .text {
   font-weight: 600;
 }

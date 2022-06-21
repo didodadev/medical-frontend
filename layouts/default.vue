@@ -33,17 +33,25 @@
       <Nuxt />
     </div>
 
-    <div
-      v-for="(i, index) in notifications"
-      :key="index"
-      class="toast d-block"
-      role="alert"
-    >
-      <div class="toast-header">
+    <div class="toast-container">
+      <div
+        v-for="(i, index) in notifications"
+        :key="index"
+        class="toast d-block"
+        :class="i.type ? 'text-bg-success' : 'text-bg-danger'"
+        role="alert"
+      >
+        <!-- <div class="toast-header">
         <strong class="me-auto"> {{ i.title }} </strong>
-      </div>
-      <div class="toast-body">
-        {{ i.message }}
+      </div> -->
+        <div class="toast-body">
+          <i class="bi bi-check2-circle" v-if="i.type"></i>
+          <i class="bi bi-x-circle" v-if="!i.type"></i>
+
+          <strong>
+            &nbsp; {{ i.message }}
+          </strong>
+        </div>
       </div>
     </div>
 
@@ -52,13 +60,19 @@
 </template>
 
 <style lang="css">
-.toast {
+.toast-container {
   position: fixed;
   top: 1em;
   left: 0;
   right: 0;
   margin: 0 auto;
-  z-index: 99999;
+  z-index: 999999999;
+  max-height: 300px;
+  overflow: hidden;
+}
+
+.text-bg-success {
+  background-color: #1ABC9C !important;
 }
 </style>
 
@@ -111,6 +125,14 @@ const routeTitleAndNames: RouteTitleAndName = {
   [pathHandler("/admin/about")]: {
     title: "Hakkımızda",
     icon: "bi-body-text",
+  },
+  [pathHandler("/admin/price")]: {
+    title: "Fiyatlandırmalar",
+    icon: "bi-tag-fill",
+  },
+  [pathHandler("/admin/social")]: {
+    title: "Sosyal Medya",
+    icon: "bi-globe",
   },
   [pathHandler("/admin/home")]: {
     title: "Anasayfa",

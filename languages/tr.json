@@ -33,7 +33,10 @@
 
   "serviceServices": "Hizmetlerimiz",
   "service": "Hizmet",
+  "services": "Hizmetler",
   "serviceDownloadPdf": "PDF İndir",
+
+  "home": "Anasayfa",
 
   "contact": "İletişim",
   "contactFullname": "Tam isim",

@@ -7,7 +7,6 @@
   "headerDoctors": "DOCTORS",
   "headerContract": "CONTRACTED INSTITUTIONS",
 
-
   "homeCallUsAnytime": "Call Us Anytime",
   "homeBookAnAppointment": "Book An Appointment",
   "homeOur": "Our",
@@ -34,7 +33,10 @@
 
   "serviceServices": "Services",
   "service": "Service",
+  "services": "Services",
   "serviceDownloadPdf": "Download PDF",
+
+  "home": "Home",
 
   "contact": "Contact",
   "contactFullname": "Fullname",

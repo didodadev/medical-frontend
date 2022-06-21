@@ -1,79 +1,80 @@
 <template>
-  <div class="header">
-    <div class="container">
-      <div class="row justify-content-between align-items-center">
-        <div class="col-2">
-          <NuxtLink :to="pathHandler('/home')">
-            <img src="../assets/images/logo.png" width="100%" />
-          </NuxtLink>
-        </div>
+  <span>
+    <div class="header">
+      <div class="container">
+        <div class="row justify-content-between align-items-center">
+          <div class="col-2">
+            <NuxtLink :to="pathHandler('/home')">
+              <img src="../assets/images/logo.png" width="100%" />
+            </NuxtLink>
+          </div>
 
-        <div class="col-xl-10 d-none d-xl-block">
-          <div class="navs d-flex">
-            <div
-              v-for="(i, index) in headerNavs"
-              :key="index"
-              class="nav-item"
-              :class="isActive(i.path, i.extraKey)"
-            >
-              <div class="title">
-                <NuxtLink :to="pathHandler(i.path)">
-                  {{ $t(i.i18nTitle) }}
-                </NuxtLink>
-
-                <i v-if="i.list" class="bi bi-chevron-down" />
-              </div>
-
-              <div v-if="i.list" class="list">
-                <div v-for="(k, index2) in i.list" :key="index2" class="item">
-                  <NuxtLink :to="k.path">
-                    {{ $t(k.i18nTitle) }}
+          <div class="col-xl-10 d-none d-xl-block">
+            <div class="navs d-flex">
+              <div
+                v-for="(i, index) in headerNavs"
+                :key="index"
+                class="nav-item"
+                :class="isActive(i.path, i.extraKey)"
+              >
+                <div class="title">
+                  <NuxtLink :to="pathHandler(i.path)">
+                    {{ $t(i.i18nTitle) }}
                   </NuxtLink>
+
+                  <i v-if="i.list" class="bi bi-chevron-down" />
+                </div>
+
+                <div v-if="i.list" class="list">
+                  <div v-for="(k, index2) in i.list" :key="index2" class="item">
+                    <NuxtLink :to="k.path">
+                      {{ $t(k.i18nTitle) }}
+                    </NuxtLink>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="d-block d-xl-none col-2 mt-2">
-          <i
-            class="bi bi-list"
-            style="font-size: 30px"
-            @click="changeShowDrawer(true)"
-          />
-        </div>
+          <div class="d-block d-xl-none col-2 mt-2">
+            <i
+              class="bi bi-list"
+              style="font-size: 30px"
+              @click="changeShowDrawer(true)"
+            />
+          </div>
 
-        <div
-          class="
-            bottom
-            d-flex
-            align-items-center
-            justify-content-center
-            col-1
-            m-auto
-            mb-3
-          "
-          style="cursor: pointer"
-        >
-          <img
-            src="../assets/images/en.webp"
-            alt="en"
-            width="30"
-            height="20"
-            @click="changeLang('en')"
-          />
-          &nbsp;&nbsp;&nbsp;
-          <img
-            src="../assets/images/tr.svg"
-            alt="tr"
-            width="30"
-            height="20"
-            @click="changeLang('tr')"
-          />
+          <div
+            class="
+              bottom
+              d-flex
+              align-items-center
+              justify-content-center
+              col-1
+              m-auto
+              mb-3
+            "
+            style="cursor: pointer"
+          >
+            <img
+              src="../assets/images/en.webp"
+              alt="en"
+              width="30"
+              height="20"
+              @click="changeLang('en')"
+            />
+            &nbsp;&nbsp;&nbsp;
+            <img
+              src="../assets/images/tr.svg"
+              alt="tr"
+              width="30"
+              height="20"
+              @click="changeLang('tr')"
+            />
+          </div>
         </div>
       </div>
     </div>
-
     <div class="drawer" :class="showDrawer ? 'show-drawer' : ''">
       <div class="shadow" @click="changeShowDrawer(false)" />
 
@@ -105,7 +106,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </span>
 </template>
 
 <script lang="ts">
@@ -196,11 +197,13 @@ export default Vue.extend({
 
 <style scoped>
 .header {
-  background: white;
   z-index: 990999;
   position: sticky;
   top: 0;
   border-bottom: 1px solid var(--border-2);
+  /* backdrop-filter: saturate(180%) blur(10px); */
+  background: white;
+  width: 100%;
 }
 
 .search-input {
@@ -260,7 +263,7 @@ export default Vue.extend({
 
 .nav-item .list {
   transition: 0.2s;
-  position: absolute;
+  position: fixed;
   background: white;
   width: max-content;
   opacity: 0;
@@ -289,13 +292,13 @@ export default Vue.extend({
   right: 0;
   top: 0;
   bottom: 0;
-  z-index: 999;
   opacity: 0;
   visibility: hidden;
   transition: 0.2s;
   text-align: center;
   display: flex;
   justify-content: center;
+  z-index: 999999;
 }
 
 .drawer .navs {
