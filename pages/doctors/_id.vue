@@ -18,7 +18,7 @@
 
         <div
           class="mt-4 text-muted"
-          v-html="isEn ? data.aboutEN : data.about"
+          v-html="getLocaleKey(data, 'about')"
         ></div>
       </div>
     </div>
@@ -28,6 +28,7 @@
 <script>
 import PaginationHeader from "../../components/pagination-header.vue";
 import publicURL from "../../ts/public-url";
+import getLocaleKey from '../../ts/get-locale'
 
 export default {
   components: {
@@ -35,12 +36,10 @@ export default {
   },
   methods: {
     publicURL,
+    getLocaleKey
   },
-  data: () => ({ data: {}, isEn: false }),
+  data: () => ({ data: {} }),
   async created() {
-    if (this.$i18n._localeChainCache.en) {
-      this.isEn = true;
-    }
     this.data = (
       await this.$axios.get(`/doctor/${this.$route.params.id}`)
     ).data.data;

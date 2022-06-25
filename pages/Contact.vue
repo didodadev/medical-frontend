@@ -5,60 +5,10 @@
     <div class="white-block">
       <div class="container pt-5">
         <div class="row">
-          <div class="col-md-6 mb-5" style="padding-right: 3em">
-            <form action="">
-              <div class="form-floating mb-3">
-                <input
-                  id="floatingInput"
-                  type="text"
-                  class="form-control"
-                  placeholder="name@example.com"
-                  required
-                  maxlength="30"
-                />
-                <label for="floatingInput">{{ $t("contactFullname") }}</label>
-              </div>
+          <div class="col-md-6">
+            <h1> {{ $t('contactMe') }} </h1>
 
-              <div class="form-floating mb-3">
-                <input
-                  id="floatingInput"
-                  type="text"
-                  class="form-control"
-                  placeholder="name@example.com"
-                  required
-                  maxlength="30"
-                />
-                <label for="floatingInput">{{ $t("contactFullname") }}</label>
-              </div>
-
-              <div class="form-floating mb-3">
-                <input
-                  id="floatingInput"
-                  type="email"
-                  class="form-control"
-                  placeholder="name@example.com"
-                  required
-                  maxlength="40"
-                />
-                <label for="floatingInput">Mail</label>
-              </div>
-
-              <div class="form-floating mb-3">
-                <textarea
-                  id="floatingInput"
-                  class="form-control"
-                  placeholder="name@example.com"
-                  style="height: 150px"
-                  required
-                  maxlength="500"
-                />
-                <label for="floatingInput">{{ $t("contactMessage") }}</label>
-              </div>
-
-              <button class="btn btn-primary" type="submit">
-                {{ $t("contactSendMessage") }}
-              </button>
-            </form>
+            <p v-html="getLocaleKey(data, 'contactText')"></p>
           </div>
 
           <div class="col-md-6">
@@ -83,7 +33,7 @@
           </div>
         </div>
 
-        <div v-html="data.location"></div>
+        <div class="mt-5" v-html="data.location"></div>
       </div>
     </div>
   </div>
@@ -91,16 +41,23 @@
 
 <script>
 import PaginationHeader from "../components/pagination-header.vue";
+import getLocaleKey from '../ts/get-locale'
 
 export default {
   components: {
     PaginationHeader,
   },
+
   data() {
     return {
       data: {},
     };
   },
+
+  methods: {
+    getLocaleKey
+  },
+
   async created() {
     this.data = (await this.$axios.get("/contact")).data.data;
   },

@@ -6,6 +6,9 @@
   "headerContact": "CONTACT",
   "headerDoctors": "DOCTORS",
   "headerContract": "CONTRACTED INSTITUTIONS",
+  "headerBlog": "BLOG",
+
+  "viewAll": "View All",
 
   "homeCallUsAnytime": "Call Us Anytime",
   "homeBookAnAppointment": "Book An Appointment",
@@ -51,5 +54,9 @@
   "doctors": "Doctors",
   "doctorsDoctor": "Doctor",
 
-  "contractedInstitutions": "Contracted Institutions"
+  "contractedInstitutions": "Contracted Institutions",
+
+  "blog": "Blog",
+
+  "contactMe": "Contact Us"
 }

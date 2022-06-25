@@ -232,3 +232,25 @@ input[type='time'] {
 .admin .btn {
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.2),0 2px 10px 0 rgba(0,0,0,.1);
 }
+
+.column {
+  column-count: 3;
+  column-width: 200px;
+  column-gap: 10px;
+  text-align: left;
+}
+
+.column > div {
+  flex-basis: 30%;
+}
+
+.column img {
+  width: 100%;
+}
+
+.ql-toolbar {
+  position: sticky;
+  top: 4.8em;
+  z-index: 9;
+  background-color: white;
+}

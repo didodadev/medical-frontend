@@ -9,9 +9,6 @@
   >
     <template v-slot:item="i">
       <td>
-        <img :src="publicURL(i.data.thumbnailURL)" width="100px" />
-      </td>
-      <td>
         {{ i.data.fullName }}
       </td>
       <td>
@@ -36,7 +33,6 @@ const emptyData: IDoctorView = {
 };
 
 const tableHeadKeys = {
-  thumbnailURL: "Resim",
   fullName: "İsim Soyisim",
   branch: "Alan",
 };
@@ -58,14 +54,14 @@ const dataFileds: IDataField[] = [
     label: "Alan",
     bind: "branch",
     type: "input",
-    EN: true,
+    lang: true
   },
   {
     required: true,
     label: "Doktor Hakkında Açıklama Metni",
     bind: "about",
     type: "editor",
-    EN: true,
+    lang: true,
   },
   {
     title: "Sosyal Medya Linkleri",

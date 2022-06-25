@@ -1,7 +1,8 @@
 import tr from './languages/tr'
 import en from './languages/en'
+import de from './languages/de'
 
-const URL = 'https://medionpremium.com/api'
+const URL = 'https://backend.medionpremium.com/api'
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -79,10 +80,14 @@ export default {
       {
         code: 'tr',
         iso: 'tr-TR'
+      },
+      {
+        code: 'de',
+        iso: 'de'
       }
     ],
     vueI18n: {
-      messages: { tr, en }
+      messages: { tr, en, de }
     }
   },
 

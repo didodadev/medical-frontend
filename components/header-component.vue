@@ -63,6 +63,7 @@
               height="20"
               @click="changeLang('en')"
             />
+
             &nbsp;&nbsp;&nbsp;
             <img
               src="../assets/images/tr.svg"
@@ -70,6 +71,15 @@
               width="30"
               height="20"
               @click="changeLang('tr')"
+            />
+
+            &nbsp;&nbsp;&nbsp;
+            <img
+              src="../assets/images/de.png"
+              alt="de"
+              width="30"
+              height="20"
+              @click="changeLang('de')"
             />
           </div>
         </div>
@@ -144,18 +154,17 @@ export default Vue.extend({
           path: "/contracts",
           extraKey: "contract",
         },
+        {
+          i18nTitle: "headerBlog",
+          path: "/blog",
+          extraKey: "blog",
+        },
       ],
       showSearch: false,
       showDrawer: false,
-      isEn: false,
     };
   },
   mounted() {
-    // @ts-expect-error
-    if (this.$i18n._localeChainCache.en) {
-      this.isEn = true;
-    }
-
     this.$forceUpdate();
   },
   methods: {
@@ -237,6 +246,8 @@ export default Vue.extend({
 .nav-item {
   margin: 0.6em;
   position: relative;
+  border-bottom: 3px solid transparent;
+  transition: .2s;
 }
 
 .nav-item .title {
@@ -248,9 +259,11 @@ export default Vue.extend({
 }
 
 .active {
-  background: var(--secondary);
-  color: white;
-  border-radius: 30px;
+  /* background: var(--secondary); */
+  /* color: white; */
+  /* border-radius: 30px; */
+  border-color: var(--secondary);
+  color: var(--secondary);
 }
 
 .nav-item:hover .list {

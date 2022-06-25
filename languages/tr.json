@@ -6,6 +6,9 @@
   "headerContact": "İLETİŞİM",
   "headerDoctors": "DOKTORLAR",
   "headerContract": "ANLAŞMALI KURUMLAR",
+  "headerBlog": "BLOG",
+
+  "viewAll": "Tümünü Görüntüle",
 
   "homeCallUsAnytime": "Bizi İstediğiniz Zaman Arayın",
   "homeBookAnAppointment": "Randevu Al",
@@ -24,6 +27,8 @@
   "footerAbout": "Hakkımızda",
   "footerServices": "Hizmetler",
   "footerContact": "İletişim",
+
+  "contactMe": "Bizimle İletişime Geçin",
 
   "about": "Hakkımızda",
   "aboutOpeningHours": "Açılış Saatleri",
@@ -51,5 +56,8 @@
   "doctors": "Doktorlar",
   "doctorsDoctor": "Doktor",
 
-  "contractedInstitutions": "Anlaşmalı Kurumlar"
+  "contractedInstitutions": "Anlaşmalı Kurumlar",
+
+  "blog": "Blog"
+
 }

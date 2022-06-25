@@ -73,9 +73,28 @@
           daha detaylı bir açıklama bulabilirsiniz.
         </small>
       </div>
+
+      <div class="col-12 mt-5">
+        <div class="form-check form-switch">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            role="switch"
+            id="flexSwitchCheckChecked"
+            :checked="contactTextEN"
+            @change="contactTextEN = !contactTextEN"
+          />
+          <label class="form-check-label" for="flexSwitchCheckChecked">
+            {{ contactTextEN ? "İngilizce" : "Türkçe" }}
+          </label>
+        </div>
+
+        <h3>İletişim Yazısı</h3>
+        <VueEditor v-model="data[contactTextEN ? 'contactTextEN' : 'contactText']" />
+      </div>
     </div>
 
-    <button class="btn btn-dark" @click="save" :disabled="loading">
+    <button class="btn btn-dark mt-5" @click="save" :disabled="loading">
       Kaydet
     </button>
   </div>
@@ -88,6 +107,7 @@ export default Vue.extend({
   data: () => ({
     data: {},
     loading: false,
+    contactTextEN: false
   }),
   created() {
     this.getData();

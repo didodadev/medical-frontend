@@ -55,21 +55,21 @@ const dataFileds: IDataField[] = [
     label: "Başlık",
     bind: "title",
     type: "input",
-    EN: true,
+    lang: true,
   },
   {
     required: true,
     label: "Alt Başlık",
     bind: "subTitle",
     type: "input",
-    EN: true,
+    lang: true,
   },
   {
     required: true,
     label: "Kategori",
     bind: "category",
     type: "input",
-    EN: true,
+    lang: true,
   },
 ];
 

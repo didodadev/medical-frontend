@@ -37,12 +37,7 @@
                   {{ $t("about") }}
                 </h4>
 
-                <p class="text-muted">
-                  <i v-html="isEn ? data.aboutTextEN : data.aboutText"></i>
-
-                  <br />
-                  <br />
-                </p>
+                <p class="text-muted about-text" v-html="getLocaleKey(data, 'aboutText')"></p>
               </div>
               <div class="col-md-5">
                 <img :src="publicURL(data.doctorImage)" alt="" />
@@ -56,12 +51,12 @@
             <h1>{{ $t("aboutOurServices") }}</h1>
 
             <p class="text-muted">
-              {{ isEn ? data.servicesTextEN : data.servicesText }}
+              {{ getLocaleKey(data, 'servicesText') }}
             </p>
 
             <div class="row services mt-5">
               <div
-                class="col-md-6 item"
+                class="col-md-6 item mb-4"
                 v-for="(i, index) in services"
                 :key="index"
               >
@@ -70,7 +65,7 @@
                 </div>
 
                 <div class="content">
-                  <h5>{{ isEn ? i.titleEN : i.title }}</h5>
+                  <h5>{{ getLocaleKey(i, 'title') }}</h5>
                 </div>
               </div>
             </div>
@@ -176,9 +171,9 @@
             </h1>
           </div>
 
-          <div class="row mt-5">
+          <div class="row mt-5 justify-content-center">
             <div
-              class="col-md-6 col-xl-4"
+              class="col-md-4 col-xl-3"
               v-for="(i, index) in doctors"
               :key="index"
             >
@@ -186,7 +181,7 @@
                 <DoctorCard
                   :img="publicURL(i.thumbnailURL)"
                   :name="i.fullName"
-                  :branch="isEn ? i.branchEN : i.branch"
+                  :branch="getLocaleKey(i, 'branch')"
                   :socials="i.socials"
                 />
               </NuxtLink>
@@ -203,6 +198,7 @@ import PaginationHeader from "../components/pagination-header.vue";
 import DoctorCard from "../components/doctor-card.vue";
 import publicURL from "../ts/public-url";
 import pathHandler from "../tools/path-handler";
+import getLocaleKey from '../ts/get-locale'
 
 export default {
   components: {
@@ -212,7 +208,6 @@ export default {
   data() {
     return {
       data: {},
-      isEn: false,
       services: [],
       doctors: [],
     };
@@ -220,12 +215,9 @@ export default {
   methods: {
     publicURL,
     pathHandler,
+    getLocaleKey
   },
   async created() {
-    if (this.$i18n._localeChainCache.en) {
-      this.isEn = true;
-    }
-
     this.data = (await this.$axios.get("/about")).data.data;
     this.services = (await this.$axios.get("/service?range=4")).data.data;
     this.doctors = (await this.$axios.get("/doctor?range=3")).data.data.map(
@@ -278,5 +270,9 @@ table tr td:last-child {
 .not-collapsed {
   background: var(--primary);
   color: white;
+}
+
+.about-text {
+  word-wrap: break-word;
 }
 </style>

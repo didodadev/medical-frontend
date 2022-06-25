@@ -8,8 +8,8 @@
           <NuxtLink :to="pathHandler(`/doctors/${i.seourl}`)">
             <DoctorCard
               :img="publicURL(i.thumbnailURL)"
-              :name="i.fullName"
-              :branch="isEn ? i.branchEN : i.branch"
+              :name="getLocaleKey(i, fullName)"
+              :branch="getLocaleKey(i, branch)"
               :socials="i.socials"
             />
           </NuxtLink>
@@ -24,6 +24,7 @@ import PaginationHeader from "../../components/pagination-header.vue";
 import DoctorCard from "../../components/doctor-card.vue";
 import pathHandler from "../../tools/path-handler";
 import publicURL from "../../ts/public-url";
+import getLocaleKey from '../../ts/get-locale'
 
 export default {
   components: {
@@ -33,10 +34,11 @@ export default {
   methods: {
     pathHandler,
     publicURL,
+    getLocaleKey
   },
   data: () => ({ data: {} }),
   async created() {
-    this.data = (await this.$axios.get("/doctor?range=3")).data.data.map(
+    this.data = (await this.$axios.get("/doctor")).data.data.map(
       (d) => {
         d.socials = JSON.parse(d.socials);
         return d;

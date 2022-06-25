@@ -2,7 +2,7 @@
   <div class="white-block">
     <PaginationHeader
       title="contractedInstitutions"
-      sub-title="Contract Name"
+      :sub-title="data.name"
     />
 
     <div class="container p-5">
@@ -18,7 +18,7 @@
         </div>
       </div>
 
-      <p class="mt-4" v-html="isEn ? data.contentEN : data.content"></p>
+      <p class="mt-4" v-html="getLocaleKey(data, 'content')"></p>
     </div>
   </div>
 </template>
@@ -26,21 +26,17 @@
 <script lang="ts">
 import Vue from "vue";
 import publicURL from "../../ts/public-url";
+import getLocaleKey from '../../ts/get-locale'
 
 export default Vue.extend({
   data: () => ({
     data: {},
-    isEn: false,
   }),
   methods: {
     publicURL,
+    getLocaleKey
   },
   async created() {
-    // @ts-expect-error
-    if (this.$i18n._localeChainCache.en) {
-      this.isEn = true;
-    }
-
     this.data = (
       await this.$axios.get(`/contract/${this.$route.params.id}`)
     ).data.data;

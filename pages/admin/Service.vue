@@ -9,9 +9,6 @@
   >
     <template v-slot:item="i">
       <td>
-        <img :src="publicURL(i.data.thumbnailURL)" width="100px" />
-      </td>
-      <td>
         {{ i.data.title }}
       </td>
     </template>
@@ -32,7 +29,6 @@ const emptyData = {
 };
 
 const tableHeadKeys = {
-  thumbnailURL: "Resim",
   title: "İsim",
 };
 
@@ -47,13 +43,13 @@ const dataFileds: IDataField[] = [
     label: "Hizmet Adı",
     bind: "title",
     type: "input",
-    EN: true,
+    lang: true,
   },
   {
     title: "Hizmet Açıklaması",
     bind: "content",
     type: "editor",
-    EN: true,
+    lang: true,
   },
 ];
 

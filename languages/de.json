@@ -1,0 +1,62 @@
+{
+  "headerHome": "STARTSEITE",
+  "headerAbout": "ÜBER UNS",
+  "headerSearchPlaceholder": "Sayfa veya içerik arayın",
+  "headerServices": "DIENSTLEISTUNGEN",
+  "headerContact": "KONTAKT",
+  "headerDoctors": "ÄRZTE",
+  "headerContract": "BEAUFTRAGTE EINRICHTUNGEN",
+  "headerBlog": "BLOG",
+
+  "viewAll": "Alle ansehen",
+
+  "homeCallUsAnytime": "Rufen Sie uns jederzeit an",
+  "homeBookAnAppointment": "Einen Termin machen",
+  "homeOur": "",
+  "homeServices": "Dienstleistungen",
+  "homeGallery": "Galerie",
+  "homeAll": "ALLE",
+  "homePricing": "Preisgestaltung",
+  "homeFees": "Unsere Gebühren",
+  "homeGet offer": "Befehl",
+  "homeLatest": "Ende",
+  "homeNews": "Nachrichten",
+
+  "footerPages": "Seiten",
+  "footerHome": "Startseite",
+  "footerAbout": "Über uns",
+  "footerServices": "Dienstleistungen",
+  "footerContact": "Kommunikation",
+
+  "contactMe": "Kontaktiere uns",
+
+  "about": "Über uns",
+  "aboutOpeningHours": "Öffnungszeiten",
+  "aboutOurServices": "Unsere Leistungen",
+  "aboutOurDoctors": "Unsere Ärzte",
+  "aboutNeedHelp": "Ich brauche Hilfe",
+
+  "serviceServices": "Unsere Leistungen",
+  "service": "Service",
+  "services": "Dienstleistungen",
+  "serviceDownloadPdf": "PDF Herunterladen",
+
+  "home": "Startseite",
+
+  "contact": "Kommunikation",
+  "contactFullname": "Vollständiger Name",
+  "contactSubject": "Thema",
+  "contactMessage": "Nachricht",
+  "contactSendMessage": "Nachricht senden",
+
+  "readMore": "Weiterlesen",
+  "phone": "Telefon",
+  "viewDetails": "Details anzeigen",
+
+  "doctors": "Ärzte",
+  "doctorsDoctor": "Arzt",
+
+  "contractedInstitutions": "Vertragsinstitutionen",
+
+  "blog": "Blog"
+}

@@ -27,44 +27,17 @@
       <div class="container mt-5">
         <div class="row justify-content-between text-center">
           <h1 style="font-size: 50px">
-            {{ data[isEn ? "welcomeTitleEN" : "welcomeTitle"] }}
+            {{ getLocaleKey(data, "welcomeTitle") }}
           </h1>
 
           <p
             class="text-muted mt-3"
-            v-html="data[isEn ? 'welcomeTextEN' : 'welcomeText']"
+            v-html="getLocaleKey(data, 'welcomeText')"
           ></p>
-          <!-- <div class="col-md-6">
-            <div class="row">
-              <div class="col-md-5 l-bg-primary p-3 m-1">
-                <h1><i class="bi bi-activity" /></h1>
-                <h3>Event Time</h3>
-
-                <p>Event Date: 11 To 13 Aug Event Time: 9am To 5pm</p>
-              </div>
-              <div class="col-md-5 l-bg-secondary p-3 m-1">
-                <h1><i class="bi bi-person" /></h1>
-                <h3>Speakers</h3>
-
-                <p>Programme Workshop Presentations For Medinova Conference.</p>
-              </div>
-              <div class="col-md-5 l-bg-secondary p-3 m-1">
-                <h1><i class="bi bi-activity" /></h1>
-
-                <h3>Submit Opinion</h3>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-              </div>
-              <div class="col-md-5 l-bg-primary p-3 m-1">
-                <h1><i class="bi bi-person-fill" /></h1>
-
-                <h3>Confirm Ticket</h3>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-              </div>
-            </div>
-          </div> -->
         </div>
+
+        <br />
+        <br />
 
         <div class="text-center mt-5">
           <h1>
@@ -72,16 +45,20 @@
             <strong class="l-text-primary"> {{ $t("homeServices") }} </strong>
           </h1>
         </div>
-        <div class="row justify-content-center services mt-5">
-          <div class="col-md-4" v-for="(i, index) in services" :key="index">
-            <ServiceCard
-              :img="publicURL(i.thumbnailURL)"
-              :name="isEn ? i.titleEN : i.title"
-              :seourl="i.seourl"
-            />
-          </div>
+        <div class="column services mt-5">
+          <ServiceCard
+            v-for="(i, index) in services"
+            :key="index"
+            :img="publicURL(i.thumbnailURL)"
+            :name="getLocaleKey(i, 'title')"
+            :seourl="i.seourl"
+          />
         </div>
       </div>
+
+      <br />
+      <br />
+      <br />
 
       <div class="container mt-5 pt-5">
         <div class="text-center">
@@ -94,7 +71,7 @@
 
         <div class="row justify-content-center mt-5">
           <div
-            class="col-md-3 mb-4 h-100"
+            class="col-md-4 mb-4 h-100"
             style="height: 100%"
             v-for="(i, index) in price"
             :key="index"
@@ -105,9 +82,9 @@
                   <i class="bi bi-activity" />
                 </div>
 
-                <h3>{{ isEn ? i.titleEN : i.title }}</h3>
+                <h3>{{ getLocaleKey(i, "title") }}</h3>
                 <small class="text-muted">
-                  {{ isEn ? i.explanationEN : i.explanation }}
+                  {{ getLocaleKey(i, "explanation") }}
                 </small>
 
                 <div class="price mt-3">
@@ -124,7 +101,11 @@
           </div>
         </div>
       </div>
+
+      <br />
+      <br />
     </div>
+
     <div class="container">
       <div class="text-center mt-5 pb-5">
         <h1>
@@ -132,16 +113,16 @@
           <strong class="l-text-primary"> {{ $t("homeGallery") }} </strong>
         </h1>
 
-        <div class="row justify-content-center mt-5 gallery">
+        <div class="mt-5 gallery column d-block">
           <div
-            class="col-md-4 item mb-3"
+            class="item mb-3 d-block"
             v-for="(i, index) in gallery"
             :key="index"
           >
             <GalleryCard
               :img="publicURL(i.thumbnailURL)"
-              :title="isEn ? i.titleEN : i.title"
-              :text="isEn ? i.subTitleEN : i.subTitle"
+              :title="getLocaleKey(i, 'title')"
+              :text="getLocaleKey(i, 'subTitle')"
             />
           </div>
         </div>
@@ -149,6 +130,9 @@
     </div>
 
     <div class="white-block p-3" style="padding-bottom: 6em !important">
+      <br />
+      <br />
+
       <div class="container">
         <div class="text-center pt-5 mb-5">
           <h1>
@@ -164,12 +148,19 @@
               <BLogCard
                 :date="i.createdDate"
                 :img="publicURL(i.thumbnailURL)"
-                :title="isEn ? i.titleEN : i.title"
-                :cover="isEn ? i.coverLetterEN : i.coverLetter"
+                :title="getLocaleKey(i, 'title')"
+                :cover="getLocaleKey(i, 'coverLetter')"
+                :seourl="i.seourl"
               />
             </NuxtLink>
           </div>
         </div>
+
+        <NuxtLink :to="pathHandler('/blog')">
+          <button class="btn btn-primary btn-lg">
+            {{ $t("viewAll") }}
+          </button>
+        </NuxtLink>
       </div>
     </div>
   </div>
@@ -181,6 +172,7 @@ import ServiceCard from "../components/service-card.vue";
 import GalleryCard from "../components/gallery-card.vue";
 import BLogCard from "../components/blog-card.vue";
 import publicURL from "../ts/public-url";
+import getLocaleKey from "../ts/get-locale";
 
 export default Vue.extend({
   name: "IndexPage",
@@ -193,7 +185,6 @@ export default Vue.extend({
     slide: 0,
     data: {},
     sliding: true,
-    isEn: false,
     services: [],
     gallery: [],
     blog: [],
@@ -202,6 +193,7 @@ export default Vue.extend({
   methods: {
     pathHandler,
     publicURL,
+    getLocaleKey,
 
     onSlideStart() {
       this.sliding = true;
@@ -211,18 +203,11 @@ export default Vue.extend({
     },
   },
   async created() {
-    console.log(this);
-    // @ts-expect-error
-    if (this.$i18n._localeChainCache.en) {
-      this.isEn = true;
-    }
-
     this.data = (await this.$axios.get("/home")).data.data;
-    this.services = (await this.$axios.get("/service?range=3")).data.data;
+    this.services = (await this.$axios.get("/service?range=6")).data.data;
     this.gallery = (await this.$axios.get("/image?range=6")).data.data;
     this.blog = (await this.$axios.get("/blog?range=3")).data.data;
     this.price = (await this.$axios.get("/price?range=3")).data.data;
-    // @ts-expect-error
     this.data.slide = JSON.parse(this.data.slide);
   },
 });

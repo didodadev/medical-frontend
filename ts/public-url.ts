@@ -1,5 +1,5 @@
 function publicURL(fileName: string) {
-  return `http://localhost:4000/static/${fileName}`
+  return `https://backend.medionpremium.com/static/${fileName}`
 }
 
 export default publicURL

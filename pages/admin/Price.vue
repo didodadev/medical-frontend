@@ -45,20 +45,20 @@ const dataFileds: IDataField[] = [
     title: "Fiyat Adı",
     type: "input",
     bind: "title",
-    EN: true,
+    lang: true,
   },
   {
     required: true,
     label: "Fiyat Açıklaması (Kısa bir cümle olması gerekir)",
     bind: "explanation",
     type: "input",
-    EN: true,
+    lang: true,
   },
   {
     title: "Fiyat",
     bind: "price",
     type: "input",
-    EN: true,
+    lang: true,
   },
 ];
 

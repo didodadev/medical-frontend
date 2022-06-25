@@ -75,18 +75,16 @@
         <div class="field mb-3" v-for="(i, index) in dataFields" :key="index">
           <h5>{{ i.title }}</h5>
 
-          <div class="form-check form-switch" v-if="i.EN">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              role="switch"
-              id="flexSwitchCheckChecked"
-              :checked="enFiled[i.bind]"
-              @change="changeEnFiled(i.bind)"
-            />
-            <label class="form-check-label" for="flexSwitchCheckChecked">
-              {{ i.label }} {{ enFiled[i.bind] ? "İngilizce" : "Türkçe" }}
-            </label>
+          <div class="lang-list" v-if="i.lang === true">
+            <div class="lang-item" @click="changeLangFiled(i.bind, '')" :class="fieldLang[i.bind] === '' ? 'active' : ''">
+              Türkçe
+            </div>
+            <div class="lang-item" @click="changeLangFiled(i.bind, 'EN')" :class="fieldLang[i.bind] === 'EN' ? 'active' : ''">
+              İngilizce
+            </div>
+            <div class="lang-item" @click="changeLangFiled(i.bind, 'DE')" :class="fieldLang[i.bind] === 'DE' ? 'active' : ''">
+              Almanca
+            </div>
           </div>
 
           <!-- Image Field -->
@@ -101,7 +99,7 @@
                 :id="`filed-input${index}`"
                 class="form-control"
                 :placeholder="i.label"
-                v-model.trim="data[enFiled[i.bind] ? i.bind + 'EN' : i.bind]"
+                v-model.trim="data[i.bind + fieldLang[i.bind]]"
                 v-if="i.textArea"
                 style="height: 200px"
               ></textarea>
@@ -110,7 +108,7 @@
                 class="form-control"
                 :placeholder="i.label"
                 :type="i.inputType"
-                v-model.trim="data[enFiled[i.bind] ? i.bind + 'EN' : i.bind]"
+                v-model.trim="data[i.bind + fieldLang[i.bind]]"
                 v-else
               />
               <label :for="`filed-input${index}`" v-if="i.label">
@@ -123,9 +121,7 @@
 
           <!-- Editor Filed -->
           <div v-else-if="i.type === 'editor'">
-            <VueEditor
-              v-model.trim="data[enFiled[i.bind] ? i.bind + 'EN' : i.bind]"
-            />
+            <VueEditor v-model.trim="data[i.bind + fieldLang[i.bind]]" />
           </div>
 
           <!-- Icon Field -->
@@ -213,7 +209,8 @@ import Vue from "vue";
 import Modal from "../../components/ui/modal-component.vue";
 import IconSelect from "../../components/ui/icon-select.vue";
 import UploadImage from "../../components/admin/upload-image.vue";
-import { IDataField } from "~/ts/global.types";
+import { IDataField, FieldLangs } from "../../ts/global.types";
+import getLocaleKey from "../../ts/get-locale";
 
 export default Vue.extend({
   props: [
@@ -228,7 +225,7 @@ export default Vue.extend({
     return {
       dataList: [],
       data: { ...this.emptyData },
-      enFiled: {},
+      fieldLang: {},
       err: "",
       range: 10,
       show: false,
@@ -246,12 +243,14 @@ export default Vue.extend({
   },
   created() {
     this.reloadList();
+
     this.dataFields.forEach((filed: IDataField) => {
-      // @ts-expect-error
-      this.enFiled[filed.bind] = false;
+      this.fieldLang[filed.bind] = "";
     });
   },
   methods: {
+    getLocaleKey,
+
     controller() {
       for (const key in this.controllers) {
         const controller = this.controllers[key];
@@ -267,9 +266,8 @@ export default Vue.extend({
       return false;
     },
 
-    changeEnFiled(bindName: string) {
-      // @ts-expect-error
-      this.enFiled[bindName] = !this.enFiled[bindName];
+    changeLangFiled(bindName: string, lang: FieldLangs) {
+      this.fieldLang[bindName] = lang;
 
       this.$forceUpdate();
     },
@@ -354,3 +352,25 @@ export default Vue.extend({
   },
 });
 </script>
+
+<style scoped>
+.lang-list {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: .4em;
+}
+
+.lang-item {
+  box-shadow: 0 0 10px 10px rgb(241, 241, 241);
+  margin-right: 1em;
+  border-radius: 3px;
+  padding: .3em .6em;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+div[class="lang-item active"] {
+  background: var(--primary);
+  color: white;
+}
+</style>

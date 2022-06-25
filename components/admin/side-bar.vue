@@ -17,9 +17,12 @@
           </div>
         </NuxtLink>
 
-        <div class="item" @click="exit">
-          <i class="bi bi-door-open-fill"></i>
-          <div class="text">Çıkış Yap</div>
+        <div class="item" @click="auth">
+          <i
+            class="bi"
+            :class="isLogin ? 'bi-door-open-fill' : 'bi-door-closed'"
+          ></i>
+          <div class="text">{{ isLogin ? "Çıkış Yap" : "Giriş Yap" }}</div>
         </div>
       </div>
     </div>
@@ -45,9 +48,12 @@
           </div>
         </NuxtLink>
 
-        <div class="item" @click="exit">
-          <i class="bi bi-door-open-fill"></i>
-          <div class="text">Çıkış Yap</div>
+        <div class="item" @click="auth">
+          <i
+            class="bi"
+            :class="isLogin ? 'bi-door-open-fill' : 'bi-door-closed'"
+          ></i>
+          <div class="text">{{ isLogin ? "Çıkış Yap" : "Giriş Yap" }}</div>
         </div>
       </div>
     </div>
@@ -75,6 +81,7 @@ interface IRoute {
 interface IData {
   routes: IRoute[];
   showMobileSideBar: boolean;
+  isLogin: boolean;
 }
 
 export default Vue.extend({
@@ -93,15 +100,26 @@ export default Vue.extend({
       { icon: "globe", path: "/social", text: "Sosyal Medya" },
     ],
     showMobileSideBar: false,
+    isLogin: false,
   }),
+  created() {
+    if (typeof window === "undefined") return;
+
+    const token = localStorage.getItem("token");
+
+    this.isLogin = !!token;
+  },
   methods: {
     pathHandler,
 
     setMobileSideBarShow(m: boolean = true) {
       this.showMobileSideBar = m;
     },
-    exit() {
-      localStorage.removeItem("token");
+    auth() {
+      if (this.isLogin) {
+        localStorage.removeItem("token");
+      }
+
       this.$router.replace("/tr/admin/login");
     },
   },

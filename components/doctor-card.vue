@@ -1,5 +1,8 @@
 <template>
-  <b-card style="border-radius: 5px" class="doctor-card shadow">
+  <b-card
+    style="border-radius: 10px; border: none !important"
+    class="doctor-card shadow"
+  >
     <div class="text-center">
       <img
         class="card-img img-fluid"
@@ -8,7 +11,7 @@
       />
     </div>
     <b-card-body class="p-3 mt-5">
-      <h2>{{ name }}</h2>
+      <h3>{{ name }}</h3>
       <p class="text-muted">
         {{ branch }}
       </p>

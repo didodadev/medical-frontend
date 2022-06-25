@@ -1,5 +1,7 @@
 export type IDataFieldTypes = 'input' | 'editor' | 'image' | 'icon' | 'single-icon'
 
+export type FieldLangs = '' | 'EN' | 'DE'
+
 export interface IDataField {
   title?: string
   type: IDataFieldTypes
@@ -8,7 +10,7 @@ export interface IDataField {
   label?: string
   inputType?: string
   textArea?: boolean
-  EN?: boolean
+  lang?: boolean
   social?: boolean
 }
 

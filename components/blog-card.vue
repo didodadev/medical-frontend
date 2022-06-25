@@ -5,6 +5,7 @@
       tag="article"
       img="top"
       style="border-radius: 13px; overflow: hidden"
+      class="d-block blog-card"
     >
       <b-card-body>
         <h5>{{ title }}</h5>
@@ -18,9 +19,11 @@
           <small class="text-muted">{{ cover }} </small>
         </p>
 
-        <b-button variant="outline-primary" class="mt-3">
+        <NuxtLink :to="pathHandler(`/blog/${seourl}`)">
+          <b-button variant="outline-primary" class="mt-3">
           {{ $t("viewDetails") }}
         </b-button>
+        </NuxtLink>
       </b-card-body>
     </b-card>
   </div>
@@ -28,8 +31,18 @@
 
 <script lang="ts">
 import Vue from "vue";
+import pathHandler from "../tools/path-handler";
 
 export default Vue.extend({
-  props: ["img", "title", "cover", "date"],
+  props: ["img", "title", "cover", "date", "seourl"],
+  methods: {
+    pathHandler
+  }
 });
 </script>
+
+<style scoped>
+.blog-card {
+  height: max-content !important;
+}
+</style>

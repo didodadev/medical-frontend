@@ -2,17 +2,17 @@
   <b-card
     :img-src="img"
     style="border-radius: 13px; height: 100%; border: none; overflow: hidden"
-    class="service-card"
+    class="service-card d-block mb-3"
   >
     <b-body class="p-5">
-      <h4>{{ name }}</h4>
+      <h5>{{ name }}</h5>
 
       <p class="text-muted">
         {{ cover }}
       </p>
 
       <NuxtLink :to="pathHandler(`/services/${seourl}`)">
-        <b-button variant="primary">
+        <b-button variant="primary btn-sm">
           {{ $t("readMore") }}
         </b-button>
       </NuxtLink>
@@ -33,6 +33,10 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+.service-card {
+  height: max-content !important;
+}
+
 .service-card img {
   height: 100%;
 }
@@ -40,6 +44,8 @@ export default Vue.extend({
 .service-card .card-body {
   position: absolute;
   left: 0;
+  bottom: 0;
+  padding: 1em;
 }
 
 .service-card .card-body * {

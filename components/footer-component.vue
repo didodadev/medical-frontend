@@ -48,10 +48,13 @@
 
             <div v-for="(i, index) in latest" :key="index" class="mb-3">
               <NuxtLink :to="pathHandler(`/blog/${i.seourl}`)">
-                <h6 class="mb-0">{{ isEn ? i.titleEN : i.title }}</h6>
+                <h6 class="mb-0">{{ getLocaleKey(i, 'title') }}</h6>
 
                 <small class="text-muted">
-                  {{ isEn ? i.coverLetterEN : i.coverLetter }}
+                  {{ getLocaleKey(i, 'coverLetter') }}
+                  {{
+                    getLocaleKey(i, 'coverLetter').length > 100 ? '...' : null
+                  }}
                 </small>
               </NuxtLink>
             </div>
@@ -69,24 +72,20 @@
 <script lang="ts">
 import Vue from "vue";
 import pathHandler from "../tools/path-handler";
+import getLocaleKey from '../ts/get-locale'
 
 export default Vue.extend({
   data: () => ({
     data: {},
     latest: [],
-    isEn: false,
   }),
   async created() {
-    // @ts-expect-error
-    if (this.$i18n._localeChainCache.en) {
-      this.isEn = true;
-    }
-
     this.data = (await this.$axios("/social")).data.data;
-    this.latest = (await this.$axios("/blog?range=2")).data.data;
+    this.latest = (await this.$axios("/blog?range=3")).data.data;
   },
   methods: {
     pathHandler,
+    getLocaleKey
   },
 });
 </script>

@@ -51,7 +51,7 @@ const dataFileds: IDataField[] = [
     label: "Başlık",
     bind: "title",
     type: "input",
-    EN: true,
+    lang: true,
   },
   {
     required: true,
@@ -59,14 +59,14 @@ const dataFileds: IDataField[] = [
     bind: "coverLetter",
     type: "input",
     textArea: true,
-    EN: true,
+    lang: true,
   },
   {
     required: true,
     bind: "content",
     type: "editor",
     title: "Blog İçeriği",
-    EN: true,
+    lang: true,
   },
 ];
 

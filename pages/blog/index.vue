@@ -1,14 +1,14 @@
 <template>
   <div>
-    <PaginationHeader title="serviceServices" />
+    <PaginationHeader title="blog" />
 
     <div class="white-block p-5">
       <div class="container">
         <div class="column services">
           <div class="mb-3" v-for="(i, index) in data" :key="index">
-            <ServiceCard
+            <BlogCard
               :img="publicURL(i.thumbnailURL)"
-              :name="getLocaleKey(i, 'title')"
+              :title="getLocaleKey(i, 'title')"
               :cover="getLocaleKey(i, 'coverLetter')"
               :seourl="i.seourl"
             />
@@ -22,14 +22,14 @@
 <script lang="ts">
 import Vue from "vue";
 import pathHandler from "../../tools/path-handler";
-import ServiceCard from "../../components/service-card.vue";
+import BlogCard from "../../components/blog-card.vue";
 import PaginationHeader from "../../components/pagination-header.vue";
 import publicURL from "../../ts/public-url";
 import getLocaleKey from '../../ts/get-locale'
 
 export default Vue.extend({
   components: {
-    ServiceCard,
+    BlogCard,
     PaginationHeader,
   },
   data: () => ({
@@ -37,7 +37,7 @@ export default Vue.extend({
   }),
   methods: { pathHandler, publicURL, getLocaleKey },
   async created() {
-    this.data = (await this.$axios.get("/service")).data.data;
+    this.data = (await this.$axios.get("/blog")).data.data;
   },
 });
 </script>

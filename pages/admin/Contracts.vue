@@ -53,7 +53,7 @@ const dataFileds: IDataField[] = [
     title: "Kurum Açıklaması",
     bind: "content",
     type: "editor",
-    EN: true,
+    lang: true,
   },
 ];
 
