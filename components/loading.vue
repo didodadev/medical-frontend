@@ -5,14 +5,14 @@
 
       <br />
 
-      <i class="bi bi-dash-lg" style="font-size: 100px"></i>
-      <i class="bi bi-dash-lg" style="font-size: 100px"></i>
-      <i class="bi bi-activity" style="font-size: 100px"></i>
-      <i class="bi bi-activity" style="font-size: 100px"></i>
-      <i class="bi bi-activity" style="font-size: 100px"></i>
-      <i class="bi bi-activity" style="font-size: 100px"></i>
-      <i class="bi bi-dash-lg" style="font-size: 100px"></i>
-      <i class="bi bi-dash-lg" style="font-size: 100px"></i>
+      <i class="bi bi-dash-lg"></i>
+      <i class="bi bi-dash-lg"></i>
+      <i class="bi bi-activity"></i>
+      <i class="bi bi-activity"></i>
+      <i class="bi bi-activity"></i>
+      <i class="bi bi-activity"></i>
+      <i class="bi bi-dash-lg"></i>
+      <i class="bi bi-dash-lg"></i>
     </div>
 
     <div class="transition"></div>
@@ -36,6 +36,10 @@
   animation-delay: 3s;
   opacity: 1;
   visibility: visible;
+}
+
+i {
+  font-size: 10vw;
 }
 
 .transition {

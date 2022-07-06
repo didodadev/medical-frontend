@@ -245,6 +245,7 @@ export default Vue.extend({
     this.reloadList();
 
     this.dataFields.forEach((filed: IDataField) => {
+      // @ts-expect-error
       this.fieldLang[filed.bind] = "";
     });
   },
@@ -267,6 +268,7 @@ export default Vue.extend({
     },
 
     changeLangFiled(bindName: string, lang: FieldLangs) {
+      // @ts-expect-error
       this.fieldLang[bindName] = lang;
 
       this.$forceUpdate();

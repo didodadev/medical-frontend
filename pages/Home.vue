@@ -208,6 +208,7 @@ export default Vue.extend({
     this.gallery = (await this.$axios.get("/image?range=6")).data.data;
     this.blog = (await this.$axios.get("/blog?range=3")).data.data;
     this.price = (await this.$axios.get("/price?range=3")).data.data;
+    // @ts-expect-error
     this.data.slide = JSON.parse(this.data.slide);
   },
 });

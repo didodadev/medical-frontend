@@ -164,7 +164,6 @@
         <div class="row" style="padding-top: 12em">
           <div class="text-center">
             <h1>
-              Our
               <strong style="color: var(--primary)">{{
                 $t("aboutOurDoctors")
               }}</strong>

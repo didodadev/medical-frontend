@@ -159,6 +159,11 @@ export default Vue.extend({
           path: "/blog",
           extraKey: "blog",
         },
+        {
+          i18nTitle: "paitentRights",
+          path: "/paitent-rights",
+          extraKey: "paitentrights",
+        },
       ],
       showSearch: false,
       showDrawer: false,
@@ -244,10 +249,12 @@ export default Vue.extend({
 }
 
 .nav-item {
-  margin: 0.6em;
+  margin: 0.3em;
   position: relative;
   border-bottom: 3px solid transparent;
   transition: .2s;
+  font-size: 14px;
+  white-space: nowrap;
 }
 
 .nav-item .title {

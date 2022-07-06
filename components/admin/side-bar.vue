@@ -1,7 +1,7 @@
 <template>
   <div style="position: sticky; top: 0; z-index: 1000">
     <div class="side-bar white-block d-none d-xl-flex">
-      <div class="nav d-block p-5">
+      <div class="nav d-block">
         <!-- <div class="nav-title">İçerikler</div> -->
 
         <NuxtLink
@@ -87,7 +87,6 @@ interface IData {
 export default Vue.extend({
   data: (): IData => ({
     routes: [
-      { icon: "journal-text", path: "/guide", text: "Klavuz" },
       { icon: "person-heart", path: "/doctor", text: "Doktorlar" },
       { icon: "box2-heart", path: "/service", text: "Hizmetler" },
       { icon: "images", path: "/gallery", text: "Galeri" },
@@ -98,6 +97,7 @@ export default Vue.extend({
       { icon: "telephone", path: "/contact", text: "İletişim" },
       { icon: "tag-fill", path: "/price", text: "Fiyatlandırmalar" },
       { icon: "globe", path: "/social", text: "Sosyal Medya" },
+      { icon: "blockquote-right", path: "/paitent-rights", text: "Hasta Hakları" },
     ],
     showMobileSideBar: false,
     isLogin: false,
@@ -164,8 +164,10 @@ export default Vue.extend({
   border-right: 1px solid var(--border-2);
   display: flex;
   justify-content: center;
-  padding-top: 3em;
   background: white;
+  overflow: auto;
+  padding-top: 2em;
+  padding-bottom: 2em;
   /* color: white; */
 }
 

@@ -2,7 +2,8 @@ import tr from './languages/tr'
 import en from './languages/en'
 import de from './languages/de'
 
-const URL = 'https://backend.medionpremium.com/api'
+const URL = 'http://localhost:4000/api'
+// const URL = 'https://backend.medionpremium.com/api'
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -20,7 +21,7 @@ export default {
     link: [
       { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css' },
       { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css' },
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/logo.png' }
     ]
   },
 
